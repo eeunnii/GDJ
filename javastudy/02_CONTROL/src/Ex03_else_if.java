@@ -47,33 +47,42 @@ public class Ex03_else_if {
 		//여름 : 6~8
 		//가을 : 9~11
 		//겨울 : 12, 1~2
+		//잘못된 월
 		int month = 1;
 		
 		
-	//	if(month==12 || month<3) {
-	//		System.out.println("겨울");
-	//	} else if (8<month<12)
+		if(month<1 || month>12) {
+			System.out.println("잘못된 월");
+		} else if (month == 12 || month <= 2) {
+			System.out.println("겨울");
+		} else if (month == 12 || month <=2) {
+			System.out.println("봄");
+		} else if (month <=8) {
+			System.out.println("여름");
+		} else {
+			System.out.println("가을");
+		}
 			
 		
 		// 나머지 연산을 활용한 modular 연산
-//		
-//		int mod = month % 12;
-//		if(mod < 1 || month >12) {
-//			System.out.println("잘못된 월");
-//		} else if (mod<=2) {
-//			System.out.println("겨울");
-//		} else if (mod <= 5 ) {
-//			System.out.println("봄");
-//		} else if (mod<=9) {
-//			System.out.println }
-				
 		
-		
-		
+		int mod = month % 12;
+		if(mod < 1 || month >12) {
+			System.out.println("잘못된 월");
+		} else if (mod<=2) {
+			System.out.println("겨울");
+		} else if (mod <= 5 ) {
+			System.out.println("봄");
+		} else if (mod<=8) {
+			System.out.println("여름"); 
+		} else {
+			System.out.println("가을");
+		}
 			
+		
+		
+		
 	
-			
-			
 			//연습
 			//점수에 따른 학점
 			//score~grade		
