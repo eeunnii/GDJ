@@ -29,7 +29,7 @@ public class Ex03 { //첫글자 대문자면 무조건 클라스
 	   //100(숫자)-->"100"(문자)
 	   //숫자데이터를 문자열로 변환하기 
 	   int age = 100;
-	   String strAge = String.valueOf(age);
+	   String strAge = String.valueOf(age); /////////공식적인 방법 강사쌤은 잘 안쓴다고 함
 		
 	   System.out.println(strAge);
 		
