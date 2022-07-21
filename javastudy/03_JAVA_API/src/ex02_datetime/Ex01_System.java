@@ -17,6 +17,7 @@ public class Ex01_System {
 		// 자주 쓸건아니라서 한번쓰고 말거라고 햇 삼
 		
 		long beginTime = System.nanoTime();
+		
 		int total = 1+2+3+4+5;
 		long endTime = System.nanoTime();
 		System.out.println(total + " 계산에 걸린시간 : " + (endTime - beginTime) +"ns");
