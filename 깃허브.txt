@@ -95,3 +95,148 @@ exit하면 끝
 
 git commit -am ' ' (스테이징, 커밋 동시에 진행하는 명령어 근데 이거 쓸려면
 최초 1회는 git add . 으로 해줬어야함)
+
+
+
+
+
+
+
+---리눅스 버전으로 수업중 참고하셈---
+
+홈디렉터리
+pwd ???
+이게 머지 
+~~~ 이건 뭐지?
+ls : 있는 파일들을 보여줌
+cd : 경로이동
+cd c: --> c드라이브로 가겟다는 듯
+mkdir testdir : 폴더를 만들겠다는 뜻 -- 이렇게 하면 c 드라이브에 폴더 생김
+touch test.txt : 테스트 파일을 만들어라 --- 이렇게 하면 testdir에 txt 파일 생김
+echo 'hello' : 헬로 출력  ==== text 파일에 hello를 보낼거임
+ echo 'hello' >> test.txt      -=========test로 hello 보냄
+$ cat test.txt =================== test 파일을 읽어서 화면에 보여줌
+rm test. txt =============remove 파일. 히든 파일이랑 같이 지우고 싶으면 && 붙여줌
+rm test.txt && rm .hidden ================ 두개 지움
+
+$ rm -r testdir
+rm: cannot remove 'testdir': No such file or directory
+
+testdir이 있는 파일에 있지 않음.
+
+경로 를 바꿔줘야함
+
+cd..   ========== 상위폴더로 이동(씨드라이브)
+
+다시 rm -r testdir 명령( 씨드라이브보면 지워져있음)
+
+
+
+
+
+
+GDJ54@DESKTOP-QOBTT7H MINGW64 ~
+$ pwd
+/c/Users/GDJ54
+
+GDJ54@DESKTOP-QOBTT7H MINGW64 ~
+$ ls
+'3D Objects'/
+ AppData/
+'Application Data'@
+ Contacts/
+ Cookies@
+ Desktop/
+ Documents/
+ Downloads/
+ Favorites/
+ IntelGraphicsProfiles/
+ Links/
+'Local Settings'@
+ Music/
+'My Documents'@
+ NTUSER.DAT
+ NTUSER.DAT{42cfb817-024d-11ed-b58e-9883897e55f2}.TM.blf
+ NTUSER.DAT{42cfb817-024d-11ed-b58e-9883897e55f2}.TMContainer00000000000000000001.regtrans-ms
+ NTUSER.DAT{42cfb817-024d-11ed-b58e-9883897e55f2}.TMContainer00000000000000000002.regtrans-ms
+ NetHood@
+ OneDrive/
+ Pictures/
+ PrintHood@
+ Recent@
+'Saved Games'/
+ Searches/
+ SendTo@
+ Templates@
+ Videos/
+ ntuser.dat.LOG1
+ ntuser.dat.LOG2
+ ntuser.ini
+'시작 메뉴'@
+
+GDJ54@DESKTOP-QOBTT7H MINGW64 ~
+$ cd c:
+
+GDJ54@DESKTOP-QOBTT7H MINGW64 /c
+$ mkdir testdir
+
+GDJ54@DESKTOP-QOBTT7H MINGW64 /c
+$ cd testdir
+
+GDJ54@DESKTOP-QOBTT7H MINGW64 /c/testdir
+$ touch test.txt
+
+GDJ54@DESKTOP-QOBTT7H MINGW64 /c/testdir
+$ ls
+test.txt
+
+GDJ54@DESKTOP-QOBTT7H MINGW64 /c/testdir
+$ touch .hidden
+
+GDJ54@DESKTOP-QOBTT7H MINGW64 /c/testdir
+$ echo 'hello'
+hello
+
+GDJ54@DESKTOP-QOBTT7H MINGW64 /c/testdir
+$ ^C
+
+GDJ54@DESKTOP-QOBTT7H MINGW64 /c/testdir
+$ echo 'hello' >> test.txt
+
+GDJ54@DESKTOP-QOBTT7H MINGW64 /c/testdir
+$ cat test.txt
+hello
+
+GDJ54@DESKTOP-QOBTT7H MINGW64 /c/testdir
+$ rm test. txt && .hidden
+rm: cannot remove 'test.': No such file or directory
+rm: cannot remove 'txt': No such file or directory
+
+GDJ54@DESKTOP-QOBTT7H MINGW64 /c/testdir
+$ rm test.txt && rm .hidden
+
+GDJ54@DESKTOP-QOBTT7H MINGW64 /c/testdir
+$ ls
+
+GDJ54@DESKTOP-QOBTT7H MINGW64 /c/testdir
+$ rm -r testdir
+rm: cannot remove 'testdir': No such file or directory
+
+GDJ54@DESKTOP-QOBTT7H MINGW64 /c/testdir
+$ ^C
+
+GDJ54@DESKTOP-QOBTT7H MINGW64 /c/testdir
+$ cd ..
+
+GDJ54@DESKTOP-QOBTT7H MINGW64 /c
+$ rm -r testdir
+
+GDJ54@DESKTOP-QOBTT7H MINGW64 /c
+$
+
+
+
+
+
+
+
