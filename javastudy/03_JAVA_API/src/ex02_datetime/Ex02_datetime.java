@@ -20,7 +20,7 @@ public class Ex02_datetime {
 		//java.lang 패키지에 소속된 클래스들은 패키지를 생략한다.
 		
 		
-		//java.util 패키지의 Date 클래스
+		//java.util 패키지의 Date 클래스★★
 		// 1. java.util.Date
 		// 2. import java. util.Date;
 		//     Date

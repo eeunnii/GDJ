@@ -4,6 +4,10 @@ public class Ex01_System {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		
+		
+		// 핑크색 클래스, 주황색 메소드
 
 		// 1. 타임스탬프 (timestamp) ★★★★★★★
 		// 1970-01-01 0:00부터 1/1000 초마다 증가하는 long 타입의 정수값  천부의 일초 = 엠에스
@@ -23,8 +27,7 @@ public class Ex01_System {
 		System.out.println(total + " 계산에 걸린시간 : " + (endTime - beginTime) +"ns");
 		
 		
-		
-		
+
 		
 		
 		
