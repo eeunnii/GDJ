@@ -26,11 +26,7 @@ public class Ex01_System {
 		long endTime = System.nanoTime();
 		System.out.println(total + " 계산에 걸린시간 : " + (endTime - beginTime) +"ns");
 		
-		
-
-		
-		
-		
+	
 		
 		
 		
