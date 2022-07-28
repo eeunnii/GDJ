@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="ex03_number.Ex03"/>
-    <fullyQualifiedTypeName name="java.lang.Math"/>
     <fullyQualifiedTypeName name="java.util.Calendar"/>
     <fullyQualifiedTypeName name="java.time.LocalDate"/>
     <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
@@ -17,6 +16,27 @@
     <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
-    <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="ex01_field.Student"/>
+    <fullyQualifiedTypeName name="ex01_field.SchoolMain"/>
+    <fullyQualifiedTypeName name="ex01_field.School"/>
+    <fullyQualifiedTypeName name="ex03_method.Calculator"/>
+    <fullyQualifiedTypeName name="ex04_method.Car"/>
+    <fullyQualifiedTypeName name="ex05_method_overload.Calculator"/>
+    <fullyQualifiedTypeName name="contstruc.Computer"/>
+    <fullyQualifiedTypeName name="ex08_access_modi.User"/>
+    <fullyQualifiedTypeName name="ex09_this.School"/>
+    <fullyQualifiedTypeName name="java.lang.Math"/>
+    <fullyQualifiedTypeName name="ex09_this.Student"/>
+    <fullyQualifiedTypeName name="ex01_is_a.StudentMain"/>
+    <fullyQualifiedTypeName name="ex03_has_a.Gun"/>
+    <fullyQualifiedTypeName name="ex03_has_a.Soldier"/>
+    <fullyQualifiedTypeName name="ex04_has_a_inherit.Soldier"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="hitv.ClassStudy"/>
+    <fullyQualifiedTypeName name="fleid_pa.School"/>
+    <fullyQualifiedTypeName name="fleid_pa.Student"/>
+    <fullyQualifiedTypeName name="calculatorpppp.CCpp"/>
+    <fullyQualifiedTypeName name="coffee.Coffee"/>
 </qualifiedTypeNameHistroy>
