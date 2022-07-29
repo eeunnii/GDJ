@@ -5,10 +5,13 @@ public class StudentMain {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		//필드 
+		Student student = new Student();
 		
-		
-		//메소드 
+		student.eat();
+		student.sleep();
+		student.walk();
+		student.study();
+		 
 		
 
 		

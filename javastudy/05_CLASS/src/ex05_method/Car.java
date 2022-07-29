@@ -26,13 +26,16 @@ public class Car {
 		}
 	}
 	
+	
+	
+	
 	// 2. 달리기
 	// 반환타입 : void
 	// 메소드명 : pushAccel
 	// 매개변수 : X
 	void pushAccel() {
 		if(oil == 0) {
-			return;  // 반환타입이 void일때만 사용 가능
+			return;  
 		}
 		if(speed == 120) {
 			oil--;
@@ -47,6 +50,10 @@ public class Car {
 		oil--;
 	}
 	
+	
+	
+	
+	
 	// 3. 멈추기
 	// 반환타입 : void
 	// 메소드명 : pushBrake
@@ -60,6 +67,11 @@ public class Car {
 			speed = 0;
 		}
 	}
+	
+	
+	
+	
+	
 	
 	// 4. 계기판(기름, 속도) 확인
 	// 반환타입 : void

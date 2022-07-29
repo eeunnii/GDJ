@@ -15,10 +15,9 @@ public class SchoolMain {
 		//this.stuNo
 		//this.naem
 		
-//		student.setStuNo("1125");
-//		student.setName("전지현");
-//		System.out.println(student.getStuNo());
-//		System.out.println(student.getName());
+		student1.setStuNo("1125");
+		student1.setName("전지현");
+
 		
 		Student student2 = new Student("1101", "정우성");
 //		
@@ -26,7 +25,7 @@ public class SchoolMain {
 		school.addStudent(student1);
 		school.addStudent(student2);
 		school.addStudent(student1);
-		
+		school.printStudents();
 		
 		
 	}

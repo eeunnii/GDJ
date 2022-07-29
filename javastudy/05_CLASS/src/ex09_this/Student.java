@@ -11,6 +11,21 @@ public class Student {
 	//필드 
 	private String stuNo;  //this.stuNo
 	private String name;   //this.name
+	
+	
+	//생성자 
+	public Student() {
+		
+	}
+	public Student(String stuNo, String name) {
+		this.stuNo=stuNo;
+		this.name= name;
+	}
+	
+	
+	
+	
+	//메소드
 	public String getStuNo() {
 		return stuNo;
 	}
@@ -25,14 +40,7 @@ public class Student {
 	}
 	
 	
-	//생성자 
-	public Student() {
-		
-	}
-	public Student(String stuNo, String name) {
-		this.stuNo=stuNo;
-		this.name= name;
-	}
+
 	
 	//메소드 
 //	public void printThis() {

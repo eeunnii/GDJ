@@ -10,7 +10,7 @@ public class SoldierMain {
 		soldier.reload(10);
 		soldier.shoot();
 		
-		
+		System.out.println(soldier.getBullet());
 		
 		//////////////////has a 관계//////////////////
 		

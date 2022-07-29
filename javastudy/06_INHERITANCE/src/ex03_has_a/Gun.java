@@ -1,4 +1,4 @@
-package ex04_has_a_inherit;
+package ex03_has_a;
 
 
 
@@ -8,6 +8,11 @@ public class Gun {
 	//필드 
 	private String model;
 	private int bullet;
+	private final int MAX_BULLET = 15;
+	
+	
+	
+	//메소드
 	public String getModel() {
 		return model;
 	}
@@ -20,18 +25,18 @@ public class Gun {
 	public void setBullet(int bullet) {
 		this.bullet = bullet;
 	}
-	private final int Max_BULLET = 15;
+	
 	
 	
 	
 	
 	//장전
 			public void reload(int bullet) {
-				if(this.bullet == Max_BULLET) {
+				if(this.bullet == MAX_BULLET) {
 					return;
 				}
 				this.bullet +=bullet;
-				this.bullet = (this.bullet>Max_BULLET? Max_BULLET : this.bullet);
+				this.bullet = (this.bullet>MAX_BULLET ? MAX_BULLET : this.bullet);
 				
 			}
 			

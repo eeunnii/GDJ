@@ -9,7 +9,7 @@ public class Rectangle {
 
 	
 	
-	
+	//생성자
 	public Rectangle (int width, int intheight) {
 		this.width = width;
 		this.height = height;
@@ -20,7 +20,7 @@ public class Rectangle {
 	}
 	
 	
-	
+	//메소드
 	public int getArea() {
 		return width*height;	
 	}
