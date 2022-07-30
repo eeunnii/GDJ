@@ -28,25 +28,28 @@ public class Ex01 { /////////////////class는 main이라는 기능을 갖고 있
 		
 		// 2. 난수 값 생성 
 		
-		// math.random()       0.0<=n<1.0
-		// math.random() * 5   0.0<=n<5.0
-		// (int)(Math.random() * 5)  0<=n<5
-		//(int)(Math.random()+ 
-
+		// Math.random()                     0.0 <= n < 1.0
+		// Math.random() * 5                 0.0 <= n < 5.0
+		// (int)(Math.random() * 5)            0 <= n < 5
+		// (int)(Math.random() * 5) + 1        1 <= n < 6
 		
 		
 		//연습
-//		int(int n = 0; n<2;, n++)P ;
-//				*intn
-//		
-		
-
-		
-		// 연습
-		//6자리 숫자 인증번호 만들기 
-		String dxpe="l";
+		// 주사위 2개 던지기
+				for(int n = 0; n < 2; n++) {
+					int dice = (int)(Math.random() * 6) + 1;
+					System.out.println("주사위 " + dice);
+				}
 				
 		
+				// 연습.
+				// 6자리 숫자 인증번호 만들기
+				// String code = "501924"
+				String code = "";
+				for(int n = 0; n < 6; n++) {
+					code += (int)(Math.random() * 10);
+				}
+				System.out.println(code);
 		
 		
 		
@@ -71,23 +74,19 @@ public class Ex01 { /////////////////class는 main이라는 기능을 갖고 있
 		
 				
 				
-		///연습
-		////자리 영문 (대문자+소문자) 인즈번호 만들기 
+
 		
-		
-	
-		String code = "";
-		for(int n=0; n<6; n++) {
-			if(Math.random() < 0.5 ) {
+		// 연습.
+		// 6자리 영문(대문자 + 소문자) 인증번호 만들기
+		code = "";
+		for(int n = 0; n < 6; n++) {
+			if(Math.random() < 0.5) {
 				code += (char)((int)(Math.random() * 26) + 'A');
 			} else {
 				code += (char)((int)(Math.random() * 26) + 'a');
 			}
 		}
 		System.out.println(code);
-		
-		
-		
 		
 		
 		

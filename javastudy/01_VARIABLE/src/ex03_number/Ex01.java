@@ -20,9 +20,11 @@ public class Ex01 {
 		System.out.println(result4);
 		System.out.println(result5);
 		
-		//연습
-		// 25를 2와 5로 나누기 
-		
+		// 연습
+				// a = 7이고, b = 2이므로 
+				// a 나누기 b는 3.5이다.
+				// 힌트.
+				// 7.0 나누기 2.0은 3.5이다
 		int n = 25 ;
 		int ten = n/10; //2
 		int one = n%10; //5
