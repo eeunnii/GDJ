@@ -21,12 +21,12 @@ public class Ex02_datetime {
 		
 		
 		//java.util 패키지의 Date 클래스★★
-		// 1. java.util.Date
-		// 2. import java. util.Date;
-		//     Date
+//		 1. java.util.Date
+//		 2. import java. util.Date;
+//		     Date
 		
 		
-		// Date                 //클래스를 넣을 땐 컨트롤 스페이스 눌러서 확인해야함 , 맨 위에 import 들어감 
+		// Date         //클래스를 넣을 땐 컨트롤 스페이스 눌러서 확인해야함 , 맨 위에 import 들어감 
 		
 		
 		
@@ -48,14 +48,16 @@ public class Ex02_datetime {
 		// 메소드 사용
 		// 1. 클래스를 이용해서 호출
 		//       System.out.println();
-		//       System.out.currentTimeMillis();
+		//       System.out.curentTimeMillis();
 		//	     System.naoaTime()
 		//       Math.random()
 		// 2. 객체를 만들어서 호출하는 방법
-		//       String str = new String("Hello");  e(); // 클// 클래스 String, 객체 str	
-		//       Date now = new 클래스 Date, 객체 now	
-		//       StringBuilder sb = new StringBuilder(); / 클래스 StringBuilder, 객체 sb
-		
+		//    String str = new String("Hello");  // 클래스 String, 객체 str
+		//    str.equals("Hello")
+		//    Date now = new Date();  // 클래스 Date, 객체 now
+		//    now.getMonth()
+		//    StringBuilder sb = new StringBuilder();  // 클래스 StringBuilder, 객체 sb
+		//    sb.append()
 		
 		// Date 클래스와 now 객체 
 		Date now = new Date();

@@ -15,10 +15,10 @@ public class Ex01_System {
 		System.out.println(timestamp);
 		
 		// 2.나노타임
-		// s > ms > ㎲ > ㎱(십억분의 1초)
-		// 나노초(ns) 값을 가지는 long 타입의 정수값
-		// 어떤 기준일자는 없어서 두 개의 나노초(ns)사이의 경과시간 계산용
-		// 자주 쓸건아니라서 한번쓰고 말거라고 햇 삼
+//		 s > ms > ㎲ > ㎱(십억분의 1초)
+//		 나노초(ns) 값을 가지는 long 타입의 정수값
+//		 어떤 기준일자는 없어서 두 개의 나노초(ns)사이의 경과시간 계산용
+//		 자주 쓸건아니라서 한번쓰고 말거라고 햇 삼
 		
 		long beginTime = System.nanoTime();
 		
