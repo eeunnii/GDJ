@@ -1,4 +1,4 @@
-package prc5;
+                                                            package prc5;
 
 import java.util.Scanner;
 
@@ -38,9 +38,10 @@ public class Prc05 {
 			for (int z =0; z<3; z++) {
 				
 				if (arr[i]==arr[z] || arr[i]<arr[z]) {
-					
+					                              
 					break;
 				}
+				                                
 				
 				
 				
