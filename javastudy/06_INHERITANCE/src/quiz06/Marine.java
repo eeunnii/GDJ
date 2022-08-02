@@ -1,0 +1,41 @@
+package quiz06;
+
+public class Marine extends GameUnit{
+	
+	
+	
+
+	public Marine(String name) {
+		super(name, 100, 10);		// TODO Auto-generated constructor stub
+	}
+
+	
+	
+
+	
+	//내 에너지 : getEnergy(), this.getEnergy()
+	//내 공격력 : getPower(), this.getPower()
+	//내 이름 : getName(), this.getName()
+	
+	//상대 에너지 : unit.getEnergy()
+	//상대 공격력 : unit.getPower()
+	//상대 공격력 : unit.Name()
+	
+	
+	//40%확률로 ko 시킬 수 있다.
+	
+	if ( Math.random() < 0.4) {
+		unit.setEnergy(0);
+		unit.steAlive(false);
+		System.out.println(unit.getName()+ "를 한방에 죽엿다.");
+	} else {
+		unit.setEnergy
+	}
+	
+	
+	
+	
+	
+	
+	
+}

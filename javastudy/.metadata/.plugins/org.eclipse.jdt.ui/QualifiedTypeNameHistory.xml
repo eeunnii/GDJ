@@ -46,6 +46,16 @@
     <fullyQualifiedTypeName name="quiz01_coffee.Espresso"/>
     <fullyQualifiedTypeName name="quiz01_coffee.Americano"/>
     <fullyQualifiedTypeName name="ex09_upcasting.alba"/>
-    <fullyQualifiedTypeName name="java.lang.Override"/>
     <fullyQualifiedTypeName name="quiz04_cart.Custom"/>
+    <fullyQualifiedTypeName name="ex10_downcasting.Student"/>
+    <fullyQualifiedTypeName name="sun.net.httpserver.DefaultHttpServerProvider"/>
+    <fullyQualifiedTypeName name="ex12_ObjectClass.Person"/>
+    <fullyQualifiedTypeName name="ex13.Circle"/>
+    <fullyQualifiedTypeName name="ex13.Shape"/>
+    <fullyQualifiedTypeName name="quiz05_exam.Exam"/>
+    <fullyQualifiedTypeName name="sun.reflect.generics.tree.SimpleClassTypeSignature"/>
+    <fullyQualifiedTypeName name="quiz06.GameUnit"/>
+    <fullyQualifiedTypeName name="java.lang.Override"/>
+    <fullyQualifiedTypeName name="lombok.Getter"/>
+    <fullyQualifiedTypeName name="lombok.Setter"/>
 </qualifiedTypeNameHistroy>
