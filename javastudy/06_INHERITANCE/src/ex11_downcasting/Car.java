@@ -11,7 +11,7 @@ public class Car {
 //		    Hybrid이면 addOil() 호출
 	
 	
-	public void dirve() {
+	public void drive() {
 		System.out.println("운전한다.");
 	}
 	

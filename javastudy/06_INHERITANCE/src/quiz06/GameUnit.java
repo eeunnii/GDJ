@@ -1,11 +1,11 @@
 package quiz06;
 
-public class  GameUnit {
+public abstract class  GameUnit {
 	
 	private String name;
 	private int energy;
 	private boolean isAlive;
-	private int power;// boolean alive;로 해도 동일한 메소드가 생성됨
+	private int power;// boolean alive;로 해도 동일한 Getter/Setter가 생성됨
 	
 
 
@@ -66,13 +66,8 @@ public class  GameUnit {
 	}
 	
 	
-	public void attack() {
-		
-		
-		
-	}
 	
-	
+	public abstract void attack(GameUnit unit);
 	
 	
 	

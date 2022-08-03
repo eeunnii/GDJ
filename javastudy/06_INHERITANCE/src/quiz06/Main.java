@@ -25,16 +25,16 @@ public class Main {
 			//unit1.getEnergy() > 0 && unit.getEnergy() > 0
 			
 			
-			if(myturn) {
+			if(myTurn) {
 				System.out.println(unit1.getName() + "의 공격!");
 				unit1.attack(unit2);  
 				// unit1이 unit2를 공격한다. (탱크은 40%의 확률로 상대를 한 번에 죽인다.)
-				MyTurn = false ;
+				myTurn = false ;
 			}else {
 				System.out.println(unit2.getName() + "의 공격!");
 				unit2.attack(unit2);  
 				// unit1이 unit2를 공격한다. (마린은 40%의 확률로 상대를 한 번에 죽인다.)
-				MyTurn = true ;
+				myTurn = true ;
 				
 			}
 			
@@ -44,10 +44,12 @@ public class Main {
 		
 		System.out.println("===전투종료===");
 		// 승자 확인
-		if (unit.isAlive) {
-			System.out.println(unit1.getname() + "의 승리! 남은에너지는 "+unti1.getEnerge);
+		if (unit1.isAlive()) {
+			System.out.println(unit1.getName() + "의 승리! 남은에너지는 "+unit1.getEnergy());
 			
-		}else if 
+		}else {
+			System.out.println(unit2.getName() + "의 승리! 남은 에너지 " + unit2.getEnergy());
+		}
 		
 		
 	}
