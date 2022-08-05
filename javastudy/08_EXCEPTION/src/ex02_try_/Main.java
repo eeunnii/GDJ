@@ -1,9 +1,11 @@
 package ex02_try_;
 
+import java.io.File;
+import java.io.FileReader;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-	
 	
 	
 	public static void m1() {
@@ -71,7 +73,6 @@ public class Main {
 	public static void main(String[] args) {
 		m4();
 	}
-	
 		
 }	
 		

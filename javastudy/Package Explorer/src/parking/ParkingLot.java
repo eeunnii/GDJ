@@ -20,7 +20,10 @@ public class ParkingLot {
 	
 	
 	
-	public void addCar() {
+	public void addCar() throws RuntimeException {
+		
+		
+		
 		
 		System.out.println("현재 등록된 차량 "+idx+"대");
 		
@@ -129,7 +132,9 @@ public class ParkingLot {
 			case 0 : System.out.println("종료"); return;
 			default : System.out.println("존재하지 않는 메뉴입니다.");
 			}
-		}
+		} 
+			
+		
 		
 	}
 	

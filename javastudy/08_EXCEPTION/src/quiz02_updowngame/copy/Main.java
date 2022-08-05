@@ -1,4 +1,4 @@
-package quiz01_updowngame;
+package quiz02_updowngame.copy;
 
 public class Main {
 

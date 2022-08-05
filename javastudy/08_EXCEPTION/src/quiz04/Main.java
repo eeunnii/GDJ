@@ -1,19 +1,9 @@
-package quiz01_updowngame;
+package quiz04;
 
 public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
-		
-		
-		//new UpDownGame().play();
-		
-		
-		new UpDownGame().play();
-		
-		
-		
 
 	}
 

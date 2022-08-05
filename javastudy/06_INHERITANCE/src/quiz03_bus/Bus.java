@@ -1,14 +1,20 @@
 package quiz03_bus;
 
-public class Bus extends Person{
+public class Bus{
 	
 	
 
 	private Seat[] seats;      // 배열 선언
 	private int limit;         // 버스 정원
 	
+	
+	
+	
+
+
 	// Bus 생성자에서 배열 생성을 진행함
 	public Bus(int cnt) {
+	
 		seats = new Seat[cnt];  // 배열 생성, new Bus(25)인 경우 Seat가 25개 생성됨
 		limit = cnt;
 		for(int i = 0; i < cnt; i++) {
