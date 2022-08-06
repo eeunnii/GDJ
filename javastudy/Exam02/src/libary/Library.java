@@ -28,7 +28,7 @@ public class Library {
 		books[idx++] = book;
 	}
 	
-	private void removeBook() {
+	private void removeBook() { 
 		if(idx == 0) {
 			System.out.println("등록된 책이 한 권도 없습니다.");
 			return;

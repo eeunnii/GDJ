@@ -3,63 +3,57 @@ package ex04;
 public class User {
 
 	
-	
+
+	// 필드(Builder 객체가 가진 값을 받아 옴)
 	private int userNo;
 	private String id;
 	private String email;
 	
-	//필드(Builer 객체가 가진 값을 받아 옴)
-	public User(Builer builer) {
-		this.userNo = builer.userNo;
-		this.id=builer.id;
-		this.email = builer.email;
-		
-		
-	
-		
+	// Builder 클래스의 build() 메소드가 호출하는 생성자
+	public User(Builder builder) {
+		this.userNo = builder.userNo;
+		this.id = builder.id;
+		this.email = builder.email;
 	}
 	
-	//Builder 반환 메소드
-	public static Builer builder() {
-		return new Builer();
+	// Builder 반환 메소드
+	public static Builder builder() {
+		return new Builder();
 	}
 	
-	
-	
-	
-	//User 클래스 내부에 Builder 클래스 생성
-	//User 클래스를 이용해서 호출라기 위해 static 처리 
-	public class Builer {
+	// User 클래스 내부에 Builder 클래스 생성
+	// User 클래스를 이용해서 호출하기 위해 static 처리
+	public static class Builder {
 		
-		
-		//내부 필드 (여기에 값을 전달 받아서 User의 필드로 보내는 원리)
+		// 내부 필드(여기에 값을 전달 받아서 User의 필드로 보내는 원리)
 		private int userNo;
 		private String id;
 		private String email;
-	
-		//userNo() 메소드
-		public Builer userNo(int userNo)	{
+		
+		// userNo() 메소드
+		public Builder userNo(int userNo) {
 			this.userNo = userNo;
 			return this;
 		}
 		
-		//id() 메소드
-		public Builer id(String id) {
+		// id() 메소드
+		public Builder id(String id) {
 			this.id = id;
 			return this;
 		}
 		
-		public Builer email(String email) {
+		// email() 메소드
+		public Builder email(String email) {
 			this.email = email;
 			return this;
 		}
+		
+		// build() 메소드
 		public User build() {
-			return new User(this);
+			return new User(this);  // this는 Builder 객체(userNo, id, email을 가지고 있는 객체)를 의미함
 		}
 		
-		
-		
-	} // /class Builder
+	}  // class Builder
 
 	@Override
 	public String toString() {
