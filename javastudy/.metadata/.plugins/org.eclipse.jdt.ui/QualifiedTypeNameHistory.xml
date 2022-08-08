@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="ex05_method_overload.Calculator"/>
-    <fullyQualifiedTypeName name="contstruc.Computer"/>
-    <fullyQualifiedTypeName name="ex08_access_modi.User"/>
-    <fullyQualifiedTypeName name="ex09_this.School"/>
-    <fullyQualifiedTypeName name="java.lang.Math"/>
-    <fullyQualifiedTypeName name="ex09_this.Student"/>
-    <fullyQualifiedTypeName name="ex03_has_a.Gun"/>
-    <fullyQualifiedTypeName name="ex03_has_a.Soldier"/>
-    <fullyQualifiedTypeName name="ex04_has_a_inherit.Soldier"/>
-    <fullyQualifiedTypeName name="java.lang.String"/>
-    <fullyQualifiedTypeName name="hitv.ClassStudy"/>
-    <fullyQualifiedTypeName name="fleid_pa.School"/>
-    <fullyQualifiedTypeName name="fleid_pa.Student"/>
     <fullyQualifiedTypeName name="calculatorpppp.CCpp"/>
     <fullyQualifiedTypeName name="coffee.Coffee"/>
     <fullyQualifiedTypeName name="ex01_is_a.Person"/>
@@ -40,7 +27,6 @@
     <fullyQualifiedTypeName name="lombok.Builder"/>
     <fullyQualifiedTypeName name="java.lang.Override"/>
     <fullyQualifiedTypeName name="java.lang.NullPointerException"/>
-    <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="quiz01_updowngame.UpDownGame"/>
     <fullyQualifiedTypeName name="lombok.Getter"/>
@@ -57,7 +43,21 @@
     <fullyQualifiedTypeName name="java.util.InputMismatchException"/>
     <fullyQualifiedTypeName name="quiz04.Company"/>
     <fullyQualifiedTypeName name="quiz04.Employee"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
-    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="java.lang.ArrayStoreException"/>
+    <fullyQualifiedTypeName name="org.graalvm.compiler.hotspot.aarch64.AArch64HotSpotLoadAddressOp"/>
+    <fullyQualifiedTypeName name="org.graalvm.compiler.replacements.nodes.arithmetic.IntegerSubExactSplitNode"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="java.sql.Array"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="javax.print.attribute.HashAttributeSet"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.lang.Math"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="java.lang.Object"/>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="java.util.Set"/>
+    <fullyQualifiedTypeName name="java.util.HashSet"/>
 </qualifiedTypeNameHistroy>
