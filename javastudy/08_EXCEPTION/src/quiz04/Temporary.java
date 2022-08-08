@@ -2,32 +2,33 @@ package quiz04;
 
 public class Temporary extends Employee{
 	
-	private int pay;
-	private int WorkTimes;
+
+	private double hourPay;
+	private int workTimes;
 	
 	public Temporary(int empNo, String name) {
 		super(empNo, name);
 	}
 
-	public int getPay() {
-		return pay;
+	public double getHourPay() {
+		return hourPay;
 	}
-
-	public void setPay(int pay) {
-		this.pay = pay;
+	public void setHourPay(double hourPay) {
+		this.hourPay = hourPay;
 	}
-
 	public int getWorkTimes() {
-		return WorkTimes;
+		return workTimes;
 	}
-
 	public void setWorkTimes(int workTimes) {
-		WorkTimes = workTimes;
+		this.workTimes = workTimes;
 	}
-
 	@Override
 	public String toString() {
-		return "Temporary [pay=" + pay + ", WorkTimes=" + WorkTimes + "]";
+		return super.toString() + ", hourPay=" + hourPay + ", workTimes=" + workTimes + "]";
+	}
+	@Override
+	public int getPay() {
+		return (int)(hourPay * workTimes);  // 비정규는 시급 * 근무시간이 월급
 	}
 	
 	

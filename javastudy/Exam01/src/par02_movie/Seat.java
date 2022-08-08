@@ -1,4 +1,4 @@
-package prac2;
+package par02_movie;
 
 public class Seat {
 	
@@ -16,6 +16,9 @@ public class Seat {
 	}
 	
 	
+
+
+
 	//예약
 	public void reserve(String name) {
 		this.name = name;

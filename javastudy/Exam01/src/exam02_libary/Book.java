@@ -1,4 +1,4 @@
-package libary;
+package exam02_libary;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -15,6 +15,8 @@ public class Main {
 		// 특정 인스턴스가 어떤 클래스 타입인지를 점검하는 연산자
 		// 해당 클래스 타입이면 true 반환, 아니면 false 반환
 		
+		
+		
 		System.out.println(p instanceof Person);
 		System.out.println(p instanceof Student);
 		System.out.println(p instanceof Alba);

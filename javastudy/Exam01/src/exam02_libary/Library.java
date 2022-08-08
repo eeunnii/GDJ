@@ -1,4 +1,4 @@
-package libary;
+package exam02_libary;
 
 import java.util.Scanner;
 

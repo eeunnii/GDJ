@@ -1,4 +1,4 @@
-package parking;
+package exam02_parking;
 
 public class ParkingLotMain {
 

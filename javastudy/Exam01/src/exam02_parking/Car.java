@@ -1,4 +1,4 @@
-package parking;
+package exam02_parking;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

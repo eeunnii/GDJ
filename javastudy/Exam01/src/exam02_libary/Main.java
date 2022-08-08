@@ -1,4 +1,4 @@
-package libary;
+package exam02_libary;
 
 public class Main {
 

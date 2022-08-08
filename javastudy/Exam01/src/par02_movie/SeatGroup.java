@@ -1,4 +1,4 @@
-package prac2;
+package par02_movie;
 
 import java.util.Scanner;
 
@@ -8,6 +8,9 @@ public class SeatGroup {
 	private String seatType;
 	private Seat[] seats;
 	private Scanner sc;
+	
+	
+	
 	
 	public SeatGroup(String seatType, int cnt) {
 		this.seatType = seatType;
@@ -88,21 +91,18 @@ public class SeatGroup {
 	
 	
 	public void reserveInfo() {
-		
-		System.out.println("["+seatType +"]");
-		for(int i = 0; i<seats.length; i++) {
-			            // 한글 ㅎ
-		 if(seats[i].isOccupied()) {
-			 System.out.print(seats[i].getName().substring(0,1)+"* ");
-		 }else {
-			System.out.print((i+1)+(i<9? "   " : "  "));
-//					김* === 스페이스 4개 사이즈 
-//					김 ==- 영어 2개 들어가는 사이즈
+		System.out.println("[" + seatType + "]");
+		for(int i = 0; i < seats.length; i++) {
+			if(seats[i].isOccupied()) {
+				System.out.print(seats[i].getName().substring(0, 1) + "* ");
+			} else {
+				System.out.print((i + 1) + (i < 9 ? "   " : "  "));
+			}
+			if((i + 1) % 10 == 0) {
+				System.out.println();
+			}
 		}
-		
-		
-		
-		
+		System.out.println();
 	}
-}
+	
 }

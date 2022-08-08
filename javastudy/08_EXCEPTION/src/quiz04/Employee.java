@@ -1,6 +1,6 @@
 package quiz04;
 
-public class Employee {
+public abstract class Employee {
 	
 	
 	
@@ -50,5 +50,5 @@ public class Employee {
 	
 	//public Employee() { }  // @NOARGS~~~
 	
-
+	public abstract int getPay();
 }
