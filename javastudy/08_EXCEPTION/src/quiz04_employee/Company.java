@@ -1,4 +1,4 @@
-package quiz04;
+package quiz04_employee;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

@@ -27,12 +27,10 @@ public class NoMain {
 		map.put(95,"사만다");
 		
 		
-		
 		//순회 
 		for(Map.Entry<Integer, String>entry : map.entrySet()) {
 			System.out.println(entry.getKey()+":"+entry.getValue());
 		}
-		
 		
 		
 	}
@@ -43,7 +41,7 @@ public class NoMain {
 		// TreeMap 타입으로 생성하는 것이 좋다.
 		
 		// 기본 정렬 : 오름차순 정렬
-		Map<Integer, String> map = new TreeMap<Integer, String>();
+		TreeMap<Integer, String> map = new TreeMap<Integer, String>();
 		
 		map.put(65, "제시카");
 		map.put(85, "에밀리");
@@ -55,26 +53,18 @@ public class NoMain {
 		NavigableMap<Integer, String> map2 = map.descendingMap();
 		for(Map.Entry<Integer, String> entry : map2.entrySet()) {
 			System.out.println(entry.getKey() + ":" + entry.getValue());
-		}}
-		
-		
+		}
 		// 다시 decendingMpa() 메소드 호출하면 오름차순 정렬이 된다.
-	NavigableMap<Integer, String> map3 = map2.descendingMap();
-	for(Integer key : map3.keySet()) {
-		System.out.println(key + ":" + map3.get(key));
+		NavigableMap<Integer, String> map3 = map2.descendingMap();
+		for(Integer key : map3.keySet()) {
+			System.out.println(key + ":" + map3.get(key));
+		}
+		
 	}
 		
-		
-		
-		
-		
-	
-	
-	
 	
 	public static void main(String[] args) {
-		m1();
-		
+		m2();
 	}
 
 }
