@@ -21,7 +21,7 @@ public class Main {
 		list.add("화");
 		list.add(0,"일");
 		
-		//요소 제거 
+				//요소 제거 
 				//1. boolean remove( Object obj) : obj 제거, 성공하면 ture 반환
 				//2. Object remove(int index) : index 위치의 요소 제거. 제거한 요소 반환
 				boolean result = list.remove("일");
@@ -48,6 +48,7 @@ public class Main {
 		//리스트 길이 
 		int size = list.size();
 		System.out.println(size);
+		
 		// 개별요소
 		String element1 = list.get(0);
 		String element2 = list.get(1);

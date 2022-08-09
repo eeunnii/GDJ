@@ -67,8 +67,8 @@ public class Main {
 			
 			//교집합
 			// 교집합 결과는 retainAll() 메소드를 호출한 Set에 저장
-			// set1.retainAll(set2);
-			// System.out.println(set1);
+			set1.retainAll(set2);
+			System.out.println(set1);
 			
 			//합집합
 			// 합집합 결과는 addAll() 메소르를 호출한 set에 저장
@@ -110,7 +110,7 @@ public class Main {
 		
 		public static void main(String[] args) {
 			
-			m3();
+			m4();
 			
 		}
 		
