@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="calculatorpppp.CCpp"/>
-    <fullyQualifiedTypeName name="coffee.Coffee"/>
-    <fullyQualifiedTypeName name="ex01_is_a.Person"/>
-    <fullyQualifiedTypeName name="ex01_is_a.StudentMain"/>
-    <fullyQualifiedTypeName name="ex07.Espresso"/>
-    <fullyQualifiedTypeName name="ex07.Americano"/>
-    <fullyQualifiedTypeName name="ex07.Coferatte"/>
     <fullyQualifiedTypeName name="quiz01_coffee.Espresso"/>
     <fullyQualifiedTypeName name="quiz01_coffee.Americano"/>
     <fullyQualifiedTypeName name="ex09_upcasting.alba"/>
@@ -48,16 +41,23 @@
     <fullyQualifiedTypeName name="org.graalvm.compiler.replacements.nodes.arithmetic.IntegerSubExactSplitNode"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="java.sql.Array"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="javax.print.attribute.HashAttributeSet"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="java.lang.Math"/>
+    <fullyQualifiedTypeName name="java.lang.StringBuffer"/>
+    <fullyQualifiedTypeName name="java.util.TreeMap"/>
+    <fullyQualifiedTypeName name="java.util.NavigableMap"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="java.util.HashSet"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="java.lang.Object"/>
     <fullyQualifiedTypeName name="java.util.HashMap"/>
     <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="java.util.Map.Entry"/>
     <fullyQualifiedTypeName name="java.util.Set"/>
-    <fullyQualifiedTypeName name="java.util.HashSet"/>
+    <fullyQualifiedTypeName name="java.util.Iterator"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.util.Collection"/>
 </qualifiedTypeNameHistroy>
