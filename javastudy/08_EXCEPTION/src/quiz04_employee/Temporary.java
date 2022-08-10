@@ -1,4 +1,4 @@
-package quiz04;
+package quiz04_employee;
 
 public class Temporary extends Employee{
 	

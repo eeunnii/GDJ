@@ -1,4 +1,4 @@
-package quiz04;
+package quiz04_employee;
 
 public abstract class Employee {
 	

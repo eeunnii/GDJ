@@ -79,7 +79,7 @@ public static void m1() {
 	}
 	
 	public static void main(String[] args) {
-		m4();
+		m1();
 	}
 	
 
