@@ -1,4 +1,4 @@
-package Ex;
+package ex01_File;
 
 import java.io.File;
 import java.io.IOException;
