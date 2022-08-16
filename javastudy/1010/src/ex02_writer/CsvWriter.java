@@ -27,7 +27,7 @@ public class CsvWriter {
 		List<String> product2 = Arrays.asList("101", "양파링", "2000");
 		List<String> product3 = Arrays.asList("102", "홈런볼", "3000");
 		
-		List<List<String>> list = Arrays.asList(header, product1, product2, product3);
+		List<List<String>> list = Arrays.asList(header, product1, product2, product3);     /// list를 왜 list안에 한 번 더 넣지?
 		
 		File file = new File("C:\\storage", "product.csv");
 		FileWriter fw = null;

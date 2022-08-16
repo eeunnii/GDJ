@@ -12,12 +12,14 @@ import java.net.URL;
 
 public class Main {
 	
+	//★중요!!
+	
 public static void main(String[] args) {
 		
 		try {
 		
 			// 접속
-			String apiURL = "https://kma.go.kr/XML/weather/sfc_web_map.xml";
+			String apiURL = "https://www.kma.go.kr/XML/weather/sfc_web_map.xml";
 			URL url = new URL(apiURL);
 			HttpURLConnection con = (HttpURLConnection)url.openConnection();
 			
@@ -47,6 +49,7 @@ public static void main(String[] args) {
 		} catch(MalformedURLException e) {
 			System.out.println("API 주소 오류");
 		} catch(IOException e) {
+			e.printStackTrace();
 			System.out.println("API 서버 오류");
 		}
 

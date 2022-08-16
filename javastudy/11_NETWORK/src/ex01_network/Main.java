@@ -5,13 +5,20 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 public class Main {
 	
 	public static void m1() {
+		
+		
+		
 		
 		//URL 
 		// 1. Uniform Resource Locator : 
@@ -19,7 +26,7 @@ public class Main {
 		// 3. 웹 주소를 의미
 		// 4. 구성
 		// https : 프로토콜 
-		// search.naver.com 호스트
+		// search.naver.com 호스트 : 포트번호 (생략가능) // 정해진 포트번호가 있다(?)
 		// search.naver 서버경로
 		// ? 의 뒷부분은 파라미터 = 값 (전송하고자하는 데이터) &를 이용해 연결함
 		//    https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=%EC%9E%90%EB%B0%94+%ED%8C%8C%EC%9D%BC+%EB%B3%B5%EC%82%AC+&oquery=%EC%8A%A4%EC%BA%94%EA%B8%B0&tqi=hYTrMsprvxZsshg9hldssssstOG-268285
@@ -76,7 +83,7 @@ public class Main {
 		         // 3.500~(오백번대):서버 오류
 
 		         System.out.println("응답 코드:"+con.getResponseCode());                    //멀리가지말고
-		         System.out.println("정상 : "+HttpURLConnection.HTTP_OK);
+		         System.out.println("정상 : "+HttpURLConnection.HTTP_OK);			//HTTP_OK 정상 200
 		         System.out.println("컨텐트 타입:"+con.getContentType());
 		         System.out.println("Not Found : "+HttpURLConnection.HTTP_NOT_FOUND);
 		         System.out.println("Internal Error"+HttpURLConnection.HTTP_INTERNAL_ERROR);
@@ -94,6 +101,12 @@ public class Main {
 		   }
 		   
 	public static void m3() {
+		
+		
+		//★ 암기해야되는 부분
+		//server측의 정보를 내려 받는게  stream in임. 
+		//inputStream(바이트)
+		//서버측에서 내려받고 싶은게 텍스트면 inputStreamReader(char)로 바꿔줘야함 
 		//HttpURLConnection과 스트림
 		
 		try {
@@ -110,7 +123,17 @@ public class Main {
 			//문자 입력 스트림으로 변환
 			InputStreamReader reader = new InputStreamReader(in);
 			
-			//모두 읽어서 StringBuilder에 저장 
+			
+			//바이트 입력 + 문자입력스트림으로 변환하는 거 한줄로 
+			//InputStreamReader reader1 = new InputStreamReader(con.getInputStream());
+			
+			
+			
+			
+			
+			
+			
+			//모두 읽어서(웹페이지의 텍스트를) StringBuilder에 저장 
 			StringBuilder sb = new StringBuilder();
 			char[] cbuf = new char[100];		//100글자씩 처리
 			int readCnt = 0; //실제로 읽은 글자 수 
@@ -136,7 +159,35 @@ public class Main {
 		}
 	}
 		   
-		   
+	public static void m4() {
+		
+		// 인코딩 디코딩하는 방법을 볼거임
+		// 인코딩 : UTF -8 방식으로 암호화 
+		// 디코딩 : UTF -8 방식으로 복호화
+		// 원본테이너 -> 인코딩 -> 전송 -> 디코딩 -> 원본데이터
+		// 실제보내는 건 안하고 인코딩, 디코딩만 볼거임
+		
+		try {
+			
+			//원본데이터
+			String str = "한글 english 1234 !@#$+"; // 출력해보면 영어랑 숫자는 그냥 사는데 한글이랑 특수문자가 인코딩됨. 공백은 +기호로 인코팅
+													// + 인코딩은 %2B로 된거 확인할 수 있음
+			//인코딩
+			String encode = URLEncoder.encode(str, "UTF-8"); // UTF-8 : 인코딩 방식
+			System.out.println(encode);
+			
+			//디코딩  (인코딩된 데이터를 디코딩하는거임)
+			String decode = URLDecoder.decode(encode, StandardCharsets.UTF_8);
+			System.out.println(decode);
+			
+			
+			
+			
+		}catch (UnsupportedEncodingException e) {		//디코딩입센션은 없음 
+			e.printStackTrace();
+		}
+		
+	}
 		   
 		   
 		   
@@ -156,7 +207,7 @@ public class Main {
 		   
 		   public static void main(String[] args) {
 		      
-		      m3();
+		      m4();
 		      
 		   }
 
