@@ -5,57 +5,47 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
-public class Client extends Thread{
-	
-	private Socket socket;
+public class Client extends Thread {
+
 	private BufferedReader in;
 
 	public Client(Socket socket) {
-		
-		
 		try {
-			this.socket = socket;
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			
-		}catch(IOException i) {
-			i.printStackTrace();
+		} catch(IOException e) {
+			e.printStackTrace();
 		}
-		
-		
-		
 	}
 	
 	@Override
 	public void run() {
+		
 		try {
 			while(true) {
 				String message = in.readLine();
-				if(message.equalsIgnoreCase("exit")) {
+				if(message == null || message.equalsIgnoreCase("exit")) {
 					break;
 				}
 				System.out.println(message);
 			}
-		}catch (IOException e) {
+		} catch(IOException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
-				if ( in != null) {
+				if(in != null) {
 					in.close();
 				}
-				if(socket.isClosed() == false) {
-					socket.close();
-				}
-			}catch(IOException e) {
+			} catch(IOException e) {
 				e.printStackTrace();
 			}
-			
-		} {
-			
 		}
+		
 	}
+	
+}
 	
 	
 	
 
 	
-}
+

@@ -18,14 +18,15 @@ import org.w3c.dom.Element;
 public class XMLWriter {
 
 	public static void main(String[] args) {
-		
+
 		// XML
 		// 1. eXtensible Markup Language
 		// 2. 확장 마크업 언어
 		// 3. 표준 마크업 언어인 HTML의 확장 버전
 		// 4. 정해진 태그(<>) 외 사용자 정의 태그 사용
 		/*
-			<products>
+		<products>
+			<product>
 				<number>100</number>
 				<name>새우깡</name>
 				<price>1500</price>
@@ -39,28 +40,37 @@ public class XMLWriter {
 				<number>102</number>
 				<name>홈런볼</name>
 				<price>3000</price>
-			</products>
+			</product>
+		</products>
 		*/
-		
+
 		try {
-			
+
+			// 목적은 Document객체를 구하는 것이다.
+			// 이 목적을 달성하기 위해 DocumentBuilder가 필요하며,
+			// 이런 builder객체를 DocumentBuilderFactory로 인하여 만들어진다.
+			// Factory Pattern 사용
+
 			// Document 생성(문서 생성)
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			Document document = builder.newDocument();
-			document.setXmlStandalone(true);  // standalone="no" 제거
+			document.setXmlStandalone(true); // standalone="no" 제거  // 의존성  정보임. 다른 문서를 참고하는지의 여부
+			// standalone="yes"면 외부문서를 참고하지 않고 no일때는 외부문서를 참고할 수 있다는 의미
 			
+			
+
 			// 추가 2라인
 			Element products = document.createElement("products");
 			document.appendChild(products);
-			
+
 			List<String> product1 = Arrays.asList("100", "새우깡", "1500");
 			List<String> product2 = Arrays.asList("101", "양파링", "2000");
 			List<String> product3 = Arrays.asList("102", "홈런볼", "3000");
-			
+
 			List<List<String>> list = Arrays.asList(product1, product2, product3);
-			
-			for(List<String> line : list) {
+
+			for (List<String> line : list) {
 				// 태그 생성
 				Element product = document.createElement("product");
 				Element number = document.createElement("number");
@@ -70,25 +80,26 @@ public class XMLWriter {
 				Element price = document.createElement("price");
 				price.setTextContent(line.get(2));
 				// 태그 배치
-				products.appendChild(product);  // 변경
+				products.appendChild(product); // 변경
 				product.appendChild(number);
 				product.appendChild(name);
 				product.appendChild(price);
 			}
-			
+
 			// XML 생성
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			transformer.setOutputProperty("encoding", "UTF-8");
 			transformer.setOutputProperty("indent", "yes");
-			transformer.setOutputProperty("doctype-public", "yes");  // document.setXmlStandalone(true); 하면 개행이 안 되기 때문에 추가
-			
+			transformer.setOutputProperty("doctype-public", "yes"); // document.setXmlStandalone(true); 하면 개행이 안 되기 때문에
+																	// 추가
+
 			Source source = new DOMSource(document);
 			File file = new File("C:\\storage", "product.xml");
 			StreamResult result = new StreamResult(file);
-			
+
 			transformer.transform(source, result);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
