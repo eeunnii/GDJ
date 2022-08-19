@@ -31,7 +31,7 @@ import org.w3c.dom.NodeList;
 // URL 문서 보면 필수/선택으로 보내야하는게 분리되어 있음
 // apiURL? 파라미터=값&파라미터=값   ...     --> <파라미터=값&>  이 보내줘야하는 데이터
 
-public class Main {
+public class Main_XML {
 	
 	//알아야될 용어 
 	// 요청
