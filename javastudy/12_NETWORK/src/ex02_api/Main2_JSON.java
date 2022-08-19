@@ -12,9 +12,12 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.XML;
 
 //xml에 비해 json이 좋은 점
 //
@@ -236,10 +239,201 @@ public class Main2_JSON {
 		}
 		
 	}
+	
+	public static String m5() {
+
+		// 소상공인시장진흥공단_상가(상권)정보
+
+		// 인증키(Decoding)
+		String serviceKey = "l90YkDBFRArypcbpBJZ/68CPmtS67/2j2/jHiQM3AWKMJrwWZPcbI77qgQIRq8uABlAJV6DTp0IQEjZJtRLsmw==";
+
+		// API 주소 (주소 + 요청 파라미터)
+		StringBuilder urlBuilder = new StringBuilder();
+		try {
+			urlBuilder.append("http://apis.data.go.kr/B553077/api/open/sdsc2/storeZoneOne");
+			urlBuilder.append("?serviceKey=").append(URLEncoder.encode(serviceKey, "UTF-8"));
+			urlBuilder.append("&key=9940");
+			urlBuilder.append("&type=json");						//	api 마다 요구하는 방식이 다름 소문자인지 대문자인지
+
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+
+		String apiURL = urlBuilder.toString();
+
+		// API 주소 접속
+		URL url = null;
+		HttpURLConnection con = null;
+
+		try {
+			url = new URL(apiURL);
+			con = (HttpURLConnection) url.openConnection();
+			con.setRequestMethod("GET");
+			con.setRequestProperty("Content-Type", "application/json; charset=UTF-8"); 	// postman의 header에 들어감
+		} catch (MalformedURLException e) {
+			System.out.println("API 주소 오류");
+		} catch (IOException e) {
+			System.out.println("API 접속 실패");
+		}
+
+		// 입력 스트림 생성
+		// 1. 서버가 보낸 데이터를 읽어야 하므로 입력 스트림이 필요
+		// 2. 서버와 연결된 입력 스트림은 바이트 스트림이므로 문자 스트림으로 변환해야 함
+		BufferedReader reader = null;
+		StringBuilder sb = new StringBuilder();
+		try {
+
+			if (con.getResponseCode() == HttpURLConnection.HTTP_OK) {
+				reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			} else {
+				reader = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+			}
+
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				sb.append(line);
+			}
+
+			// 스트림 종료
+			reader.close();
+
+		} catch (IOException e) {
+			System.out.println("API 응답 실패");
+		}
+
+		// API로부터 전달받은 json 데이터
+		String response = sb.toString();
+
+		// Json File 생성
+		File file = new File("C:\\storage", "api3.json");
+		try {
+			BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+			bw.write(response);
+			bw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return response;
+
+	}
+	
+	public static void m6() {
+		JSONObject obj = new JSONObject(m5());
+		// 오브젝트로부터 헤더값 가져오기 
+		JSONObject header = obj.getJSONObject("header");
+		JSONArray columns = header.getJSONArray("columns");
+		//System.out.println(columns.getString(i));
+		
+		JSONObject body = obj.getJSONObject("body");
+		JSONArray items = body.getJSONArray("items");
+		JSONObject item = items.getJSONObject(0);
+		///System.out.println(item.toString());
+		String[] p = {"trarNo", "mainTrarNm", "ctprvnCd", "ctprvnNm", "signguCd", "signguNm", "trarArea", "coordNum", "coords", "stdrDt"};
+			
+		Map<String, Object> map = new HashMap<String, Object>();
+			
+		for(int i = 0; i<columns.length(); i++) {
+			
+			map.put(columns.getString(i), item.get(p[i]));
+//			map.out("상권명", item.getString(item.get));		//map에서 이미 object 화 됐음
+//			item.get
+			
+			
+			
+		}
+		
+		System.out.println(map);
+		
+	}
+	
+	public static String m7() {
+
+		// 기상청 RSS
+		
+		// 제주특별자치도 서귀포시 중문동
+		String apiURL = "http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=5013061000";
+		
+		// 접속
+		URL url = null;
+		HttpURLConnection con = null;
+		try {
+			url = new URL(apiURL);
+			con = (HttpURLConnection)url.openConnection();
+		} catch(IOException e) {
+			System.out.println("접속 실패");
+		}
+		
+		// 응답 스트림 생성 및 응답 데이터 받기
+		BufferedReader reader = null;
+		StringBuilder sb = new StringBuilder();
+		try {
+			if(con.getResponseCode() == HttpURLConnection.HTTP_OK) {
+				reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			} else {
+				reader = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+			}
+			String line = null;
+			while((line = reader.readLine()) != null) {
+				sb.append(line + "\n");
+			}
+		} catch(IOException e) {
+			System.out.println("응답 실패");
+		}
+		
+		// XML 파일 생성
+		File file = new File("C:\\storage", "api4.xml");
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+			writer.write(sb.toString());
+			writer.close();
+		} catch(IOException e) {
+			System.out.println("파일 생성 실패");
+		}
+
+		return sb.toString();
+
+	}
+	
+	public static void m9() {
+
+		
+		// xm문서를 jsonobject로 변환
+		JSONObject obj = XML.toJSONObject(m7());
+		
+		JSONArray dataList = obj.getJSONObject("rss")
+								.getJSONObject("chnnel")
+								.getJSONObject("item")
+								.getJSONObject("description")
+								.getJSONObject("body")
+								.getJSONArray("data");
+		
+		//System.out.println(dataList.getJSONObject(0));
+		
+		for(int i =0; i<dataList.length(); i++) {
+			JSONObject weather = dataList.getJSONObject(i);
+			System.out.println(weather.getInt("hour")+"시 : "+weather.getInt("temp")+"도, "+weather.getString("wdKor"));
+			System.out.println();
+		}
+	
+		
+		
+		
+		System.out.println(obj.toString());
+	}
+	
+	
+	//post데이터라는게 바디에 보낸다(?)
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		m4();
+
+		// TODO Auto-generated metho
+		
+		d stub
+		m9();
+		
 	}
 
+	
+	
 }
