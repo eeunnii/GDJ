@@ -31,6 +31,8 @@ public class Main2_JSON {
 		String apiURL = "http://api.data.go.kr/openapi/tn_pubr_public_weighted_envlp_api";
 		String serviceKey = "bEQBRPHjt0tZrc7EsL0T8usfsZ1+wT+5jqamBef/ErC/5ZO6N7nYdRmrwR91bh5d3I1AQeY5qdbJOF6Kv0U1CQ==";
 
+		
+		
 		try {
 
 			apiURL += "?pageNo=" + URLEncoder.encode("0", "UTF-8");
@@ -427,9 +429,9 @@ public class Main2_JSON {
 
 	public static void main(String[] args) {
 
-		// TODO Auto-generated metho
 		
-		d stub
+		
+	
 		m9();
 		
 	}
