@@ -75,7 +75,7 @@ SELECT 1+2
     -- YSTIMESTAMP 타입의 SYSTIMESTAMP
     SELECT 
           SYSDATE       --YY/MM/DD 형식으로 표시하지만 시간 데이터도 가지고 있음
-        , SYSTIMESTAM
+        , SYSTIMESTAMP
       FROM DUAL;        --우리나라는 세계 표시기준에서 +09:00
       
     SELECT
