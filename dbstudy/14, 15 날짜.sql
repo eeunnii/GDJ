@@ -1,3 +1,5 @@
+
+
 -- 숫자 함수 
 
 -- 1. 제곱
@@ -148,7 +150,7 @@ SELECT
 SELECT 
         MONTHS_BETWEEN(SYSDATE, HIRE_DATE)
     FROM
-        EMPLOYEE;
+        EMPLOYEES;
         
 
 -- 나중에 프로젝트 할 때 비밀번호 3개월 변경 주기 만들 때 이 함수 사용됨.
