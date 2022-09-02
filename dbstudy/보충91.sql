@@ -1,6 +1,7 @@
 -- HR 계정 접속
 
 
+
 -- 1. DEPARTMENT_NAME의 오름차순 정렬 기준으로 전체 사원들의 EMPLOYEE_ID, FIRST_NAME, DEPARTMENT_ID를 조회하시오.
 -- 조인
 SELECT E.EMPLOYEE_ID, E.FIRST_NAME, D.DEPARTMENT_ID

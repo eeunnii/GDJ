@@ -32,4 +32,5 @@ SELECT VIEW_NAME, TEXT          --  뷰 이름
 FROM USER_VIEWS;                -- 저장된 쿼리문
 
 
-
+SELECT *         --  뷰 이름
+FROM USER_VIEWS;                -- 저장된 쿼리문

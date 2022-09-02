@@ -390,7 +390,10 @@ CREATE TABLE EMPLOYEE2
         FROM EMPLOYEE);
         
 --제약조건이 복ㄷ사되지 않았는지 확인        
---NOT NULL제약조건 제외한 제약조건은 복사되지 않음         
+--NOT NULL제약조건 제외한 제약조건은 복사되지 않음    
+
+
+
 DESC USER_CONSTRAINTS;
 SELECT CONSTRAINT_NAME FROM USER_CONSTRAINTS WHERE TABLE_NAME = 'EMPLOYEE2';
 
