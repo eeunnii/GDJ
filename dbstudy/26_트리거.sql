@@ -49,13 +49,17 @@ END TRIG2;
 
 
 --트리거 TRIG2 동작 확인
+
+delete from department 
+where dept_no = 5;
+
 INSERT INTO DEPARTMENT (DEPT_NO, DEPT_NAME, LOCATION) VALUES(5,'개발부','제주도')
 UPDATE DEPARTMENT SET LOCATION = '경주' WHERE DEPT_NO =2;
 DELETE FROM DEPARTMENT WHERE DEPT_NO = 3;
 
 ROLLBACK;  -- 롤백 이전 커밋까지. 두번한다고 해서 두번 뒤로 가는거 아님
-
-
+commit;
+SET SERVEROUTPUT ON;
 
 -- 트리거 TRIG3 정의 (★)
 -- OLD 테이블 확인
