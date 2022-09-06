@@ -46,7 +46,7 @@
 IS
     NAME VARCHAR2(10 BYTE);
 BEGIN
-    NAME := '민경태';
+    NAME := '정은지';
     DBMS_OUTPUT.PUT_LINE(NAME);
 END PROC1;
 
