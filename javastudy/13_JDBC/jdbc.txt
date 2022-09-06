@@ -3,7 +3,7 @@ JDBC
 1. JAVA DATABASE CONNECTION
 2. 사용할 클래스 
  	1)ORACLEDRIVER 오라클(DB벤더)에서 제공-OKDBC6.JAR 파일이 오라클 설치할 때 함께 설치됨. 이 파일 안에 오라클드라이버가 들어있음
-JAR파일은 디비벤터가 제공한다. 자바에서 제공하는게 아님. DB벤더 : 데이터베이스 제공 업체라고 이해하기
+JAR파일은 DB벤더가 제공한다. 자바에서 제공하는게 아님. DB벤더 : 데이터베이스 제공 업체라고 이해하기
 MYSQL 설치할 때 JAR 파일을 함께 설치할지 체크박스가 있음 
 (★설치할 때 체크해서 설치하도록하기)
 
@@ -54,6 +54,7 @@ ojdbc6 알집에 있는 오라클 폴더는 패키지폴더임
 
 
 PreparedStatment의 로그인 상황
+
 	1)"SELECT*FROM회원 WHERE 아이디 = ? AND 비밀번호 = ?"
 	2)변수 
 		(1)id : min
@@ -61,4 +62,13 @@ PreparedStatment의 로그인 상황
 	3)SELECT *FROM 회원 WHERE 아이디='min'AND 비밀번호=?"				>>ㅠ프레임워커는 PS기반으로 가동됨. ★★preparedStatement★★
 		
 		프리페이더 어쩌고 빈문자열을 인식하지 않고 OR1=1--를 비밀번호로 인식함
+		
+		
+		
 
+
+
+
+--INSERT, UPDATE, DELETE
+1. JDBC 코드가 동일하다. (실행이 EXECUTEUPDATE() 메소드)
+2. AUTO COMMIT 이기 때문에 코드로 COMMIT할 필요가 없다.

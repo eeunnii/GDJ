@@ -27,7 +27,7 @@ public class Main {
 			System.out.println("OrcleDriver로드 실패");
 		}
 		
-		
+		 
 		Connection con = null;
 		
 		try {
