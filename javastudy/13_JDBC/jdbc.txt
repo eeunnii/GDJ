@@ -2,43 +2,55 @@ JDBC
 
 1. JAVA DATABASE CONNECTION
 2. 사용할 클래스 
+
+
+
  	1)ORACLEDRIVER 오라클(DB벤더)에서 제공-OKDBC6.JAR 파일이 오라클 설치할 때 함께 설치됨. 이 파일 안에 오라클드라이버가 들어있음
-JAR파일은 DB벤더가 제공한다. 자바에서 제공하는게 아님. DB벤더 : 데이터베이스 제공 업체라고 이해하기
-MYSQL 설치할 때 JAR 파일을 함께 설치할지 체크박스가 있음 
-(★설치할 때 체크해서 설치하도록하기)
+		JAR파일은 DB벤더가 제공한다. 자바에서 제공하는게 아님. DB벤더 : 데이터베이스 제공 업체라고 이해하기
+		MYSQL 설치할 때 JAR 파일을 함께 설치할지 체크박스가 있음 
+		(★설치할 때 체크해서 설치하도록하기)
 
-	경로 ▼
-C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib
-	클래스▼
-오라클패키지 ->jdbc->오라클드라이버(클래스이름)
+			경로 ▼
+		C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib
+			클래스▼
+		오라클패키지 ->jdbc->오라클드라이버(클래스이름)
+		
+		프로젝트의 Build Path - class path에 ojdbc6.jar 라이브러리를 등록해야함 
+		
+		oracle.jdbc.OracleDriver
+		패키지.클래스 규칙을 지키는 이름 
 
-프로젝트의 Build Path - class path에 ojdbc6.jar 라이브러리를 등록해야함 
 
-oracle.jdbc.OracleDriver
-패키지.클래스 규칙을 지키는 이름 
 	2) DriverManager : DB 접속(커넥션) 생성 - getConnection() 메소드 : connection 반환 - 커넥션을 만들어서 반환하는 형태를 매니저가 지원함
-		(1) URL : DB주소  - 직접 컴퓨터에 설치한 데이터 베이스. 로컬에 설치한 DB임. 이 주소를 부르는 명청 : LO
-CALHOST 또는 127.0.01)
-만약 5명이서 프로젝트를 한다고 하면 DB를 내컴에설치할 수 없음.
-127.0.0.1주소가 DB로 지정한 컴으로 바뀜(?)호스팅DB ->주소 
-(2)USER : 사용자(스키마 )
-(3)PASSWORD : 비밀번호 		CONN / 비번 <--이걸로 접속하는거 필요
+		
+		(1) URL : DB주소  - 직접 컴퓨터에 설치한 데이터 베이스. 로컬에 설치한 DB임. 이 주소를 부르는 명청 : LOCALHOST 또는 127.0.01)
+		만약 5명이서 프로젝트를 한다고 하면 DB를 내컴에설치할 수 없음.
+		127.0.0.1주소가 DB로 지정한 컴으로 바뀜(?)호스팅DB ->주소 
+		
+		(2)USER : 사용자(스키마 )
+		
+		(3)PASSWORD : 비밀번호 		CONN / 비번 <--이걸로 접속하는거 필요
 
-DriverManager 부터 자바가 지원함 (공통 패키지 : java.sql 패키지)
-3) CONNECTION : DB접속을 형상화한
-4)preparedStatment : 쿼리문 실행 (Statment는 보안에 취약해서 안배울거임)
-5)ResultSet : select문의 실행결과를 처리하는 (select 의 값 : 1. 어떤 값이다. 2.테이블이다) 테이블 자체를 자바가 받아서 처리하기 위한 클래스
-insert, update, delet를 처리할 구문 X
-insert, update, delet의 실행결과는 int라서 클래스가 따로 없음. 
+		DriverManager 부터 자바가 지원함 (공통 패키지 : java.sql 패키지)
+		
+		
+	3) CONNECTION : DB접속을 형상화한
+	
+	4)preparedStatment : 쿼리문 실행 (Statment는 보안에 취약해서 안배울거임)
+	
+	5)ResultSet : select문의 실행결과를 처리하는 (select 의 값 : 1. 어떤 값이다. 2.테이블이다) 테이블 자체를 자바가 받아서 처리하기 위한 클래스
+					insert, update, delet를 처리할 구문 X
+					insert, update, delet의 실행결과는 int라서 클래스가 따로 없음. 
 
-ojdbc6 알집에 있는 오라클 폴더는 패키지폴더임
-오라클 ->>jdbc->오라클드라이버
+	ojdbc6 알집에 있는 오라클 폴더는 패키지폴더임
+	오라클 ->>jdbc->오라클드라이버
 
 
 -SQL INJECTION
 1. 특정 쿼리문을 삽입하여 원하는 정보를 탈취하는 방법
 2. 로그인 상황
 	1)SELECT*FROM 회원 WHERE 아이디 = ID AND 비밀번호=PW
+	
 	2)"SELECT*FROM 회원 WHERE 아이디 = ' "+변수1+"AND비밀번호='"+PW+'"				//	STATMENT 버전. -- 보안에 문제 발생 ~*
 	3)변수
 		(1) ID : EUN
@@ -59,7 +71,7 @@ PreparedStatment의 로그인 상황
 	2)변수 
 		(1)id : min
 		(2)pw : ' OR 1=1 --
-	3)SELECT *FROM 회원 WHERE 아이디='min'AND 비밀번호=?"				>>ㅠ프레임워커는 PS기반으로 가동됨. ★★preparedStatement★★
+	3)SELECT *FROM 회원 WHERE 아이디='min'AND 비밀번호=?"				>>ㅠ프레임워커는 PreparedStatment기반으로 가동됨. ★★preparedStatement★★
 		
 		프리페이더 어쩌고 빈문자열을 인식하지 않고 OR1=1--를 비밀번호로 인식함
 		
@@ -72,3 +84,35 @@ PreparedStatment의 로그인 상황
 --INSERT, UPDATE, DELETE
 1. JDBC 코드가 동일하다. (실행이 EXECUTEUPDATE() 메소드)
 2. AUTO COMMIT 이기 때문에 코드로 COMMIT할 필요가 없다.
+
+
+
+
+
+
+
+
+
+-- SELECT (★)
+	1. 실행이 executeQuery() 메소드를 이용 
+	2. 실행 결과는 ResultSet 객체이다. 
+	3. ResultSet 객체는 테이블을 행(Row)단위로 스캔하고 가져올 수 있는 객체이다. 
+	4. next() 메소드를 이용해서 행(Row)단위로 스캔한다  (넥스트 메소드한번, 행 한번)
+	5. 셀렉트의 결과로 나오면 행 하나를 스캔하기 위해서 resultset 객체를 rs라고 가정. rs.next라는 메소드를 호출해 주어야 행 하나를 읽어들일 수 있음 while이랑 if 반복문을 사용하여 읽어들임
+	while 행 2개 이상일 때, if 행 1개라고 확신할 때 사용함
+	
+	if 단일행. 상세보기. 게시판 클릭하면 상세정보 나오는거 . 상세 Board
+	while 목록보기. 여러개. List<Board>
+	
+	
+	
+	- DTO와 DAO
+  1. DTO : Data Transfer Object, 데이터 전송 객체, DB로 전송할 데이터는 하나로 모아서 처리, 클래스를 이용해 객체로 만들어서 전달하는 형태, 데이터 저장 객체를 처리하는 영역으로 도메인(domain) 패키지로 처리
+  2. DAO : Database Access Object, 데이터베이스 접근 객체, 쿼리문을 실행하는 모든 메소드를 처리하는 클래스, Singleton 패턴으로 하나의 객체만 존재할 수 있도록 처리, DB저장소를 처리하는 영역으로 레파지토리(repository) 패키지로 처리
+
+- Properties 파일
+  1. 각종 설정(DB 설정)을 저장하는 텍스트 파일
+  2. 확장자가 *.properties
+  3. 프로퍼티=값 형식으로 내용을 채워줌
+  4. 최근에는 Properties 파일 대신 YAML(*.yaml, *.yml) 파일을 자주 사용
+  5. 민감한 정보들은 Properties 파일에 작성하고 gitignore로 github에 올리지 않아야 함
