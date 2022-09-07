@@ -1,6 +1,7 @@
 package ex01_connection;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -22,7 +23,7 @@ public class Main {
 		
 		//oracleDriver 열기(메모리에 로드하기)
 		try {
-			Class.forName("oraclejdbc.OracleDriver");    //○외우기
+			Class.forName("oracle.jdbc.OracleDriver");    //○외우기
 		} catch(ClassNotFoundException e) { 
 			System.out.println("OrcleDriver로드 실패");
 		}
