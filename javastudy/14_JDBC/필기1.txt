@@ -1,0 +1,21 @@
+1. 민감 정보는 별도의 파일로 보관하고 gitignore를 통해서 github에 안 올려야한다 
+2. DB 접속 정보를 db.properties 파일에 보관
+
+
+-gitignore 사용 순서 
+	1. gitignore 파일에 db.properties작성 후 저장(로컬레파지토리 변경)
+	2. push(원격레파지토리 변경)
+	3. db.properties 파일 생성 
+	   url = 주소 
+	   user = 사용자
+	   password = 비밀번호 
+		(url,user,password는 정해지지 않음. )
+
+
+이클립스 , 자르에 룸복있음 ㅋ
+
+
+메소드 호출하는 방법
+
+객체.getinstance
+클래스.getinstance

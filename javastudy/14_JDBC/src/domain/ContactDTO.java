@@ -2,6 +2,7 @@ package domain;
 
 
 //DTO의 역할 
+
 //데이터베이스가 데이터를 넘겨줄때 이건 DTO
 
 import java.sql.Date;
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 @Builder
+
 
 
 
