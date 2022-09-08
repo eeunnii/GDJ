@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.io.OutputStreamWriter"/>
-    <fullyQualifiedTypeName name="java.lang.Thread"/>
-    <fullyQualifiedTypeName name="java.net.Socket"/>
-    <fullyQualifiedTypeName name="prac2.Client"/>
     <fullyQualifiedTypeName name="com.sun.tools.classfile.Annotation.element_value"/>
     <fullyQualifiedTypeName name="org.w3c.dom.Node"/>
     <fullyQualifiedTypeName name="javax.management.RuntimeErrorException"/>
@@ -18,7 +14,6 @@
     <fullyQualifiedTypeName name="java.util.Map"/>
     <fullyQualifiedTypeName name="java.lang.Object"/>
     <fullyQualifiedTypeName name="java.util.HashMap"/>
-    <fullyQualifiedTypeName name="org.graalvm.compiler.lir.aarch64.AArch64ArithmeticOp.ExtendedAddSubShiftOp"/>
     <fullyQualifiedTypeName name="java.io.UnsupportedEncodingException"/>
     <fullyQualifiedTypeName name="java.net.MalformedURLException"/>
     <fullyQualifiedTypeName name="java.io.IOException"/>
@@ -39,15 +34,11 @@
     <fullyQualifiedTypeName name="java.lang.ClassNotFoundException"/>
     <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
     <fullyQualifiedTypeName name="java.sql.SQLException"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
-    <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="java.security.KeyStore.ProtectionParameter"/>
     <fullyQualifiedTypeName name="java.lang.Class"/>
     <fullyQualifiedTypeName name="oracle.sql.ARRAY"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="domain.Board"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="lombok.Data"/>
     <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
     <fullyQualifiedTypeName name="lombok.Builder"/>
@@ -57,7 +48,16 @@
     <fullyQualifiedTypeName name="java.sql.DriverManager"/>
     <fullyQualifiedTypeName name="java.util.Properties"/>
     <fullyQualifiedTypeName name="java.io.FileReader"/>
-    <fullyQualifiedTypeName name="repository.ContactDAO"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="repository.ContactDAO"/>
+    <fullyQualifiedTypeName name="service.ContactService"/>
+    <fullyQualifiedTypeName name="service.ContactServieImpl"/>
+    <fullyQualifiedTypeName name="controller.ContactController"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.graalvm.compiler.lir.aarch64.AArch64ArithmeticOp.ExtendedAddSubShiftOp"/>
+    <fullyQualifiedTypeName name="domain.ContactDTO"/>
 </qualifiedTypeNameHistroy>
