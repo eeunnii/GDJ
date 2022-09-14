@@ -18,8 +18,7 @@
             1) <input> : 사용자 입력 (단일 행 입력)
             2) <textarea> : 사용자 입력 (다중 행 입력)
             3) <select> : 사용자 선택
-            4) <button> : 서
-                브밋하기 위한 요소 
+            4) <button> : 서브밋하기 위한 요소 
             5) <fieldset> : 입력/선택 요소들을 그룹화  --- css 꾸밀 때 날려버림(?) -- 요즘에 잘 안씀 
         4. <form> 태그의 속성
             1) action 
@@ -46,25 +45,35 @@
 
      <!-- 1.<input> 태그 -->
      <input type="text" placeholder="텍스트입력"><br>
+
      <input type="text"  value="텍스트"><br>
      <!-- ▲ "텍스트" 가 입력된 상태로 생김-->
+
      <input type="text"  value="텍스트" readonly><br>
      <!-- ▲ "텍스트" 가 입력된 상태로 생김, 텍스트 수정할 수 없음. 읽기 전용 -->
+
      <input type="password" placeholder="비밀번호"><br>
+
      <input type="password" placeholder="비밀번호" required><br>
      <!-- ▲ 반드시 필요하다는 뜻, 입력안하고 전송 누르면 입력하라는 창 뜸-->
+
      <input type="number" placeholder="숫자" min="0" max="100"><br>
      <!-- 알파벳 e는 숫자에 들어갈 수 있음  -->
      <!-- 화살표 버튼(▲▼)을 스킨버튼이라고 함 -->
+
      <input type="email" placeholder="이메일"><br>
      <!-- 이메일 아닌 문자 입력 가능, 빠져나올 수 있음.근데 submit 할 때 이메일 여부를 검사함
-     이메일 아니면 데이터 전송을 안함. 근데 이메일을 잘 못 골라서 이메일검사하는 식을 따로 짤꺼임
+     이메일 아니면 데이터 전송을 안함. 근데 sbmit에서 이메일을 잘 못 골라서 이메일검사하는 식을 따로 짤꺼임
      정규식이라고 함 -->
+
      <input type="url" placeholder="URL"><br>
      <!-- url 아니면 submit에서 데이터전송안함 -->
+
      <input type="file"><br>     
-     <!-- v파일첨부 창 -->
+     <!-- 파일첨부 창 -->
      <!-- 실제로 서버에 보내서 서버에서 내려받게하는 부분은 백엔드파트임 -->
+
+
         
         <!-- 2. name 속성 
             1)서버 측에서 인식하는 파라미터의 이름 
@@ -82,7 +91,7 @@
             <button>전송</button>
         </form>
 
-            <!-- ▼ 이것도 위와 같이 출력됨. 근데 전송버튼이 안눌려짐. 
+            <!-- ▼ 이것도 위와 같이 출력됨. 근데 전송버튼이 안눌려짐. (form안에 있는게 아니라서)
                    모양만 만들어 진거라고 이해하면 됨-->
             <input type="text" placeholder="성" name="lastName">
             <input type="text"  placeholder="이름" name="firstName">
@@ -115,6 +124,8 @@
         <!-- 성별칸에서 아무 선택도 안하고 전송 누르면 주소창에서 젠더 없어짐  -->
         <!-- 선택하고 보내면 주소창에 gender=on 생김. 근데 뭘 선택했는지 서버측에서 알 수 없음 -->
         <!-- 그래서 value 속성값을 따로 추가한다  -->
+
+ 
 
 
      <!-- 
@@ -155,7 +166,7 @@
                     <!-- 
         6. select 선택 태그 
 
-                        1) 목록을 만드는 태크
+                        1) 목록을 만드는 태그
                         2) 목록 중(1개)(그 이상)를 선택할 수 있음
                         3) 목록의 각 항목은 <option> 태그로 작성
                         4) 각 <option> 태그들은 value 속성이 지정되어 있어야 서버 측에서 valuse 속서을 확인할 수 ㅇㅆ음ㅋ
