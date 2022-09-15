@@ -229,8 +229,6 @@
             <!-- ▲현재 아무 역할이 없음 -->
             <input type="button" value="클릭" onclick="alert('아야')">
             <!-- ▲onclick뜻 : 이 버튼을 클릭하면. alert 아야 나옴 -->
-
-
            </form> 
 
            <!-- 
@@ -270,6 +268,8 @@
                         1) 특정 입력 요소에 붙이는 이름표
                         2) <label> 태그를 선택하는 것으로 입력 요소를 선택할 수 있음 
                         3) 이름표를 붙일 입력 요소의 id 속성으로 연결
+
+                        라벨의 for 속성은 input 속성의 id와 연결됨
                  -->
 
             
@@ -286,7 +286,240 @@
                 </fieldset>
             </form>
 
+            <!-- https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=%EB%82%A0%EC%94%A8 
             
+                     파라미터가 보이는건 get 방식이라고 함-->
+            <form action="https://search.naver.com/search.naver"
+                    method="get">
+                <!-- hidden -->
+                <input type="hidden" name="where" value="nexearch">
+                <input type="hidden" name="sm" value="top_hty">
+                <input type="hidden" name="fbm" value="0">
+                <input type="hidden" name="ie" value="utf8">
+                <!-- 검색창 -->
+                <input type="text" name="query">
+                <!-- 사용자가 입력한 내용이 value 값으로 감  -->
+                <button>검색</button>
+            </form>
+
+
+
+            <!-- 값이 없는 파라미터는 포함안시켜도 됨 -->
+            <form action="https://search.daum.net/search" method="get">
+                <input type="hidden" name="w" value="tot">
+                <input type="hidden" name="DA" value="YZR">
+                <input type="hidden" name="t__nil_serchbox" value="btn">
+                <input type="text" name="q">
+                <button>다음검색</button>
+            </form>
+
+
+
+<h1>연습문제4-1</h1>
+<form method="post">
+    <!-- post 아니면 아이디랑 비번이 주소창에 그대로 쓰여짐 -->
+    <input type="text" placeholder="example@naver.com" name="email">
+    <input type="text" placeholder="비밀번호" name="password">
+    <button>로그인</button>
+</form>
+
+<h1>연습문제4-2</h1>
+<form>
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="text" placeholder="아이디" name="id">
+                </td>
+                <td rowspan="2">
+                    <button>로그인</button>
+                </td>
+            <tr>
+                <td><input type="text" placeholder="비밀번호" name="pass"></td>
+            </tr>    
+            </tr>
+        </tbody>
+    </table>
+</form>
+
+
+<h1>연습문제-3</h1>
+<form>
+
+    <table>
+        <thead>
+            <tr>
+                <th colspan="2">개인 정보 작성</th>
+            </tr>
+        </thead>    
+        <tbody>
+            <tr>
+                <td>이름</td>
+                <td><input type="text" name="name"></td>
+            </tr>
+            <tr>
+                <td>메일주소</td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>연락처</td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>블로그/홈페이지</td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <th colspan="2">
+                    <button>제출하기</button>
+                    <button>다시작성</button>
+                </th>
+            </tr>
+            
+        </tbody>
+    </table>
+</form>
+
+<h1>연습문제 3-4</h1>
+
+
+<a href="https://www.naver.com"><img alt="네이버" src="../../images/naver.png" width="400px"></a>
+
+
+
+
+<form>
+
+<table>
+    <thead>
+        <tr>
+            <td>아이디</td>
+        </tr>
+    </thead>
+
+    <tbody>     
+        <tr>
+            <td>
+                <input type="text" name="id" >
+                @
+                naver.ocm 
+            </td>
+
+        </tr>
+    </tbody>
+</table>
+
+
+<table>
+    <thead>
+        <tr>
+            <td>비밀번호</td>
+        </tr>
+    </thead>
+
+    <tbody>     
+        <tr>
+            <td>
+                <input type="text" name="password">
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<table>
+    <thead>
+        <tr>
+            <td>비밀번호 재확인</td>
+        </tr>
+    </thead>
+    <!-- 비밀번호가 같은지는 서버에서 하는게 아니라 서버에 전송 안함 
+    자바스크립트에서 두 비번이 일치하는지 배울거임 
+ -->
+
+    <tbody>     
+        <tr>
+            <td>
+                <input type="text" name="repassword">
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<table>
+    <thead>
+        <tr>
+            <td>이름</td>
+        </tr>
+    </thead>
+
+    <tbody>     
+        <tr>
+            <td>
+                <input type="text" name="name">
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<table>
+    <thead>
+        <tr>
+            <td colspan="3">생년월일</td>
+        </tr>
+    </thead>
+
+    <tbody>     
+        <tr>
+            <td>
+                <input type="text" placeholder="년(4자)" name="year" maxlength="4" size="4">
+            </td>
+   
+            <td> 
+                <select name="월">
+
+                    <option selected>월</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+            </td>
+            <td>
+                <input type="text" placeholder="일" maxlength="2" size="2">
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<table>
+    <tbody>
+        <tr><td><h4>성별</h4></tr></tr>
+             <tr>
+                <select name="성별">
+                <option value="남">남</option>
+                <option value="여">여</option>
+                </select>
+             </tr>
+    </tbody>
+</table>
+
+
+
+<h4>성별</h4>
+<select name="성별"></select>
+
+</form>
+
 </body>
 </html>
 <!-- maxlength="4  -->
