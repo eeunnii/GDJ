@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <style>
+        div {
+            box-sizing: border-box;
+            border:  1px solid gray;
+        }
+    </style>
+
+
+    <!-- 박스=이미지크기 -> 상관없음
+    box>img 이미지가 여러개 들어감
+    box<img 이미지가 잘림
+     -->
+
+     <style>
+        /* 박스크기 = 이미지크기 */
+        .box1{
+            width: 100px;
+            height: 76px;
+            background-image: url(../../images/attach.png);
+            background-size: 100px 76px;  /*너비 높이 순*/
+
+        }
+
+     </style>
+
+     <div class="box1"></div>
+
+<hr>
+
+     <style>
+        /* 박스 > 이미지 */
+        .box2 {
+            width: 200px;
+            height:  152px;
+            background-image: url(../../images/attach.png);
+            background-repeat: repeat; /*디폴드*/
+        }
+     </style>
+     <div class="box2"></div>
+
+     <hr>
+
+     <style>
+        .box3{
+            width: 200px;
+            height: 152px;
+            background-image: url(../../images/attach.png);
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+     </style>
+
+     <div class="box3"></div>
+
+
+
+
+
+     <style>
+        /* 박스 < 이미지 */
+        .box4{
+            width: 50px;
+            height: 38px;
+            background-image: url(../../images/attach.png);
+        }
+     </style>
+     <div class="box4"></div>
+
+     <hr>
+
+
+     <style>
+        .box5{
+            /* 박스<이미지 */
+            width : 100px;
+            height: 38px;
+            background-image: url(../../images/attach.png);
+            background-repeat: no-repeat;
+            background-size: contain; /*너비, 높이 중 작은 값에 맞춤*/
+
+        }
+        </style>
+     <div class="box5"></div>
+
+<hr>
+     <style>
+        .box6{
+            /* 박스<이미지 */
+            width : 100px;
+            height: 38px;
+            background-image: url(../../images/attach.png);
+            background-repeat: no-repeat;
+            background-size: cover; /*너비, 높이 중 큰 값에 맞춤*/
+
+        }
+        </style>
+     <div class="box6"></div>
+
+
+        <hr>
+
+     <style>
+        .box7{
+            width: 140px;
+            height: 120px;
+            background-image: url(../../images/logos.png);
+            background-position: left -588px top -190px; /* ↓ 이렇게 내려가는 방향은 마이너스 값을 가지고 있음*/
+        }   
+        /* lift, top생략가능함 
+         */
+     </style>
+
+     <div class="box7"></div>
+
+     <hr>
+
+     <style>
+        .box8{
+            width: 960px;
+            height: 640px;
+            background-image: url(../../images/eiffeltower.jpg);
+            background-size: 100% 100%; /*박스 크기 기준*/
+            background-blend-mode: multiply;   /*이미지랑 칼라랑 섞음*/
+            background-color: gray;
+       
+
+        }
+     </style>
+     <div class="box8"></div>
+
+
+<hr>
+
+     <style>
+        .box9{
+            width: 1280px;
+            height: 972px;
+            background-image: url(../../images/hooray.jpg); 
+            background-size: 100% 100%;
+            border: 5px solid gray;
+            margin: 0 auto;
+            font-weight: 700;
+            font-size: 80px;
+            color: white;
+            text-align: center;
+            padding: 400px;
+        }
+        .box9:hover{
+            background-image: url(../../images/eiffeltower.jpg);
+            
+        }
+     </style>
+<div class="box9">
+    가라는 회사는 안 가고<br>
+    이래도 되나 싶다.
+</div>
+</body>
+</html>
