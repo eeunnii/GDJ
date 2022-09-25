@@ -162,6 +162,7 @@
                 <form>
                     <textarea name="conference"  placeholder="회의록 작성" rows"3" cols="5"></textarea><br>
                     <button>전송</button>
+                </form>    
         
                     <!-- 
         6. select 선택 태그 
@@ -237,12 +238,6 @@
             1) <form method="post">여야 함
             2) <form enctype="multipart/form-data">여야함
             3) 다중 첨부가 필요한 경우 multiple 속성(boolean 속성)을 추가함 
-
-            라벨을 쓰면 좋은 점 ??
-            check박스를 이미지로 대체해서 사용할 수 있음 
-            박스 말고 박스 옆 텍스트 선택해도 체크박스 선택됨    
-            라벨 안쓰면 정확히 체크박스를 선택해야함 
-
             -->
             <form method="post" enctype="multipart/form-data">
                 증명사진
@@ -316,10 +311,10 @@
 
 
 <h1>연습문제4-1</h1>
-<form method="post">
+<form method="post" action="01_overview.html">
     <!-- post 아니면 아이디랑 비번이 주소창에 그대로 쓰여짐 -->
     <input type="text" placeholder="example@naver.com" name="email">
-    <input type="text" placeholder="비밀번호" name="password">
+    <input type="password" placeholder="비밀번호" name="pw">
     <button>로그인</button>
 </form>
 
@@ -383,12 +378,13 @@
 <h1>연습문제 3-4</h1>
 
 
-<a href="https://www.naver.com"><img alt="네이버" src="../../images/naver.png" width="400px"></a>
+<form action="01_overview.html" method="post">
+<a href="https://www.naver.com">
+    <img alt="네이버" src="../../images/naver.png" width="400px"></a>
 
 
 
 
-<form>
 
 <table>
     <thead>
