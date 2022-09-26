@@ -51,12 +51,12 @@
 
         var a = '1';
         var b = 1;
-        console.log (a==b, a===b);
+        console.log (a==b, a===b);  // true  false
 
-        console.log(1+'1'); // '11'
-        console.log('1'+'1'); // '11'
-        console.log('5'-2);   //3
-        console.log('5'-'2');   //3
+        console.log(1+'1');     // '11'
+        console.log('1'+'1');   // '11'
+        console.log('5'-2);     // 3
+        console.log('5'-'2');   // 3
     </script>
 
 
@@ -64,15 +64,14 @@
     <script>
 
         //문제 
-        //최저시흡 9160원
+        //최저시급 9160원
         //8시간 근무 : 시급
         //8시간 초과근무 : 시급*1.5
         //10시간 근무하면 일금 얼마?
-        var payPerHour = 9160;  // const payPertype - 9160;
+        var payPerHour = 9160;  // const payPertype = 9160;
         var workkTime =10;
-        var regular = payPerHour*workkTime; // 기본금여
-        var extra 
-        (workTime <= 8) ? 0 : (workTime - 8) * payPerHour * 0.5; // 초과급여.
+        var regular = payPerHour * workkTime; // 기본금여
+        var extra = (workTime <= 8) ? 0 : (workTime - 8) * payPerHour * 0.5; // 초과급여.
         console.log(regular + extra);
     </script>
 
