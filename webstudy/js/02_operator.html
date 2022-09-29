@@ -69,8 +69,8 @@
         //8시간 초과근무 : 시급*1.5
         //10시간 근무하면 일금 얼마?
         var payPerHour = 9160;  // const payPertype = 9160;
-        var workkTime =10;
-        var regular = payPerHour * workkTime; // 기본금여
+        var workTime =10;
+        var regular = payPerHour * workTime; // 기본금여
         var extra = (workTime <= 8) ? 0 : (workTime - 8) * payPerHour * 0.5; // 초과급여.
         console.log(regular + extra);
     </script>
