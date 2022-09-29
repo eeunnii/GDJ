@@ -14,7 +14,7 @@
         /* 
             1. 이벤트 타입(알아야함)
                 1) 이벤트 종류를 의미함
-                2) 이벤트 객체의 type 속성으로 eveㅜt확인가능
+                2) 이벤트 객체의 type 속성으로 event확인가능
                 3) 주요 이벤트 타입
                     (1) click      : 클릭했을 때 동작
                     (2) dblclick   : 더블클릭 
@@ -30,12 +30,14 @@
             2. 이벤트 대상
                 1) 이벤트가 동작하는 HTML구성요소
                 2) 이벤트 객체의 target 속성  -- 이벤트 대상을 확인할 때 사용함
+
             3. 이벤트 리스너 
                 1) 이벤트가 발생하면 동작하는 함수를 리스너라고함 
-                2) 선언적, 익명 함수 모두 사용 가용 
+                2) 선언적, 익명 함수 모두 사용 가능 (대부분 익명함수로 리스너 만듬)
                 3) 이벤트 리스너의 매개변수에는 자동으로 이벤트객체가 전달됨
 
                 이벤트 객체 만들필요x 이벤트 발생시 자동으로 만들어짐 이벤트 확인할려면 이벤트 매개변수 활용해서 봐야함
+
             4. 이벤트 객체 
                 1) 해당 이벤트의 상세 정보를 저장한 객체 
                 2) 이벤트가 발생 시 자동으로 생성
@@ -66,16 +68,15 @@
 
 
     <!-- * 자바스크립트 실행순서를 거스른 코드 -->
-    
     <!-- <script>
     document.getElementById('box').textContent='Hello World';
     </script>
     <div id="box"></div> -->
-    
     <!-- document.getElementById('box').textContent = null.textContent와 같음  -->
     <!-- box를 못 찾아서 에러뜸. 에러뜬 이유 : 자바스크립트는 위에서 아래로 실행되기 때문 -->
-
     <!-- 위와 같은 경우는 load를 사용하여 해결할 수 있음 -->
+
+
     <script>
         onload = function(){
             document.getElementById('box').textContent='Hello World';
@@ -83,9 +84,178 @@
     </script>
     <div id="box"></div>
 
+    <script>
+        /*
+
+            onclick 고전이벤트 click 표준 이벤트
+
+            1. 이벤트 속성
+                1) 이벤트를 등록시키는 속성
+                2) 'on' + 이벤트 타입 
+                    예시) onclick, onload, onmouseover 등
+            2. 이벤트 모델(이벤트 처리 방식)
+                1) 고전 이벤트 모델
+                    (1) 하나의 이벤트 리스너는 하나의 이벤트 리스너만 가질 수 있음
+                    (2) 이벤트 등록 시 '이벤트 속성'을 사용
+                    (3) 처리 방식
+                            ① 선언적 함수 
+                                function fn1(){
+
+                                }
+                                문서객체.onclick = fn1; // 이벤트 리스너의 이름만 등록 
+                            ② 익명 함수(익명함수 쓰는 법★)
+                                문서객체.onclick = function(){
+
+                                }
+                2) 표준 이벤트 모델
+                    (1) 하나의 이벤트가 여러 개의 이벤트 리스너를 가질 수 있음
+                    (2) 이벤트 등록 시 '이벤트 타입'을 사용     
+                    (3) 처리 방식
+                            ① 선언적 함수 
+                                function fn1(){
+
+                                }
+                                function fn2(){
+
+                                }            
+                                문서객체.addEventListener('click', fn1);          -- 메소드임                  
+                                문서객체.addEventListener('click', fn2);   -- 덮어쓰기가 아니고 fn1,2 모두 실행
+                            ② 익명 함수(익명함수 쓰는 법★)
+                                문서객체.addEventListener(click,function(){
+
+                                });
+                3) 인라인 이벤트 모델 
+                    (1) HTML 구성요소에 이벤트 속성을 추가하고 이벤트 리스너를 등록하는 방식
+                    (2) 간단한 작업의 경우 이벤트 리스너를 생략하고 본문만 작성할 수 있다
+                    (3) 처리방식
+                            ① 선언적 함수 
+                                <button onclick="fn1()">
+                                function fn1(){
+
+                                }
+                            ② 익명 함수 
+                                <button onclick="function(){
+
+                                }">  // 잘안씀
+                            ③ 이벤트 리스너 생략
+                                <button onclick="alert('안녕');"></button>          //onclick 속성달아주면 안에는 자바스크립트 문법임. 전부 돌아감
+*/
+    </script>
+
+    <!-- 1. 고전 이벤트 모델 -->
+    <button id="btn1">클릭</button>
+    <script>
+        function fn1() {
+            alert('Hello');
+        }
+        function fn2() {
+            alert('안녕하세요');
+        }
+        /* 2개의 이벤트 리스너(fn1, fn2)는 등록되지 않는다.
+        document.getElementById('btn1').onclick=fn1;
+        document.getElementById('btn1').onclick=fn2;   /// 이 상태로 실행하면 fn1는 덮어쓰기됨.
+        */
+
+        // 2개의 이벤트를 실행하게 할려면 함수 하나 만들어서 두개 때려넣기
+       function fn3() {
+        fn1();
+        fn2();
+       }
+       document.getElementById('btn1').onclick=fn3;
+
+
+       // 익명함수 이용, 화살표 함수 사용가능
+       document.getElementById('btn1').onmouseover = function(){
+        fn3();
+       }
+    </script>
+
+
+    <!-- 2. 표준 이멘트 모델 -->
+    <button id="btn2">클릭</button>
+    <script>
+
+        function fn1(){
+            alert('Hello');
+        }
+        function fn2(){
+            alert('안녕하세요');
+        }
+        //고전 이벤트 모델 - 표준 이벤트 모델은 여러개의 이벤트 리스너를 등록할 수 있다
+        document.getElementById('btn2').addEventListener('click',fn1);
+        document.getElementById('btn2').addEventListener('click',fn2);
+
+        //익명함수 버전
+        document.getElementById('btn2').addEventListener('mouseover', function(){
+            fn1();
+            fn2();
+        })
+
+        
+        </script> 
+<!-- // 3. 인라인 이벤트 모델, onclick안에 자바스크립트 ; 있어도 되고 없어도 됨 -->
+        <button id="btn3" onclick="fn3();" onmouseover="fn3()">클릭</button>  
+        <script>
+            function fn1() {
+                alert('Hello');
+            }
+            function fn2() {
+                alert('안녕하세요');
+            }
+            function fn3() {
+                fn1();
+                fn2();
+            }
+        </script>
+
+        <hr>
+
+        <!-- 4. 이벤트 관련 용어 -->
+        <button id="btn4">클릭</button>
+        <script>
+            //  이벤트 객체 이름은 e 안씀. eve, event  둘 중에 하나 씀.
+            document.getElementById('btn4').onclick=function(event){
+                // 이벤트 타입 : click
+                // 이벤트 속성 : onclick
+                // 이벤트 대상 : btn4 
+                //  중요! 이벤트 대상 호출 방법
+                //   1. event.target
+                //   2. this 
+                // 이벤트 리스너 : function(event) {  }
+                // 이벤트 객체 : event
+                
+
+                //두개 같은거임
+                console.log(event.target.textContent);
+                console.log(this.textContent);
+
+                //이벤트 대상 변경
+                event.target.textContent = '눌렀..?' // 클릭하면 버튼 이름 바뀜
+                this.textContent = '또 눌렀?'; // 
+
+            } 
+        </script>
 
 
 
+
+        <!-- 5. load 이벤트 -->
+
+        <script>
+            // window 객체
+            // JS의 최상위 객체
+            // 생략 가능(대부분 생략함)
+            // onload 속성 걸어주면 스크립트 다 읽어본 다음에 아래 함수 실행됨. 그랫
+            window.onload = function(){
+                //load 가 없다면 null.onclick 과 같음. 자바스크립트는 위에서 아래로 실행
+                //document와 alert는 원래 document 꺼임
+                document.getElementById('btn5').onclick = function(event) {
+                    alert(event.target.textContent);
+                }
+            }
+        </script>
+        
+        <button id="btn5">클릭</button>
 
 </body>
 </html>

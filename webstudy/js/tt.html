@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+    <div id="box2">
+        <button id="btn_prev">이전</button>
+        <span id="img_no"></span>
+        <button id="btn_next">다음</button>
+        <div id="img_box"></div>
+    </div>
+
+    <style>
+        #img_box {
+            width: 860px;
+            height: 540px;
+            border: 5px solid gray;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            transition: background-image 0.5s;
+        }
+    </style>
+    <script>
+
+        var btn_prev = document.getElementById('btn_prev');
+        var btnNext = document.getElementById('btn_next');
+        var imgNo = document.getElementById('img_no');
+        var imgBox = document.getElementById('img_box');
+
+        var idx = 0;
+        var images = [
+            'animal1.jpg',
+            'animal2.jpg',
+            'animal3.jpg',
+            'animal4.jpg',
+            'animal5.jpg',
+            'animal6.jpg',
+            'animal7.jpg',
+            'animal8.jpg',
+            'animal9.jpg',
+            'animal10.jpg',
+        ];
+
+        imgBox.style['background-image']= 'url(../../images/' + images[0]+ ')';
+
+        imgNo.textContent = '1/ '+images.length;
+
+        function changeImg(n) {
+            idx += n;
+            if(idx == -1) {
+                idx=images.length-1;
+            }
+            if(idx == images.length) {
+                idx=0;
+            }
+            imgBox.style['background-image'] = 'url(../../images/'+images[idx]+')';
+            imgNo.textContent = (idx+1)+'/'+images.length;
+        }
+
+
+        btnPrev.onclick = function(event) {
+            changImg(-1); 
+        }
+
+        brnNext.onclick = function(event) {
+            changImg(1);
+        }
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+
+    
+</body>
+</html>
