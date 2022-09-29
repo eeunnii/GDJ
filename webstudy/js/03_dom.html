@@ -68,28 +68,23 @@
     </script>
 
     <div id="box1">
-        <h1>
             <h1>hello World</h1>
-        </h1>
     </div>
     <script>
         var a = document.getElementById('box1');
         console.log(a.textContent);
-        console.log(a.innerHTML);
         a.textContent = '안녕 세계';
-        a.innerHTML = '<h3>안녕 세계</h3>';
     </script>
 
+
     <div id="box2">
-        <h1>
             <h1>hello World</h1>
-        </h1>
     </div>
     <script>
         var a = document.getElementById('box2');
         console.log(a.innerHTML);
         //a.innerHTML = '<h3>안녕 세계</h3>';     <div id=box2><h3>안녕 세계</h3></div>
-        a.innerHTML = '<h3>안녕 세계</h3>';     // <div id="box2"><h1>Hello World</h1><h3>안녕 세계</h3></div>
+        a.innerHTML += '<h3>안녕 세계</h3>';     // <div id="box2"><h1>Hello World</h1><h3>안녕 세계</h3></div>
     </script>
 
     <hr>
@@ -101,8 +96,8 @@
 </a>
 <script>
     var a = document.getElementById("google");
-    a.href = "https://www.google.com"; // <a id="google" href="https://www.google,com"></a>
-    a.textContent = '구글';            // <a id="google" href="https://www.google,com">구글</a>
+    a.href = "https://www.google.com"; // <a id="google" href="https://www.google.com"></a>
+    a.textContent = '구글';            // <a id="google" href="https://www.google.com">구글</a>
     a.innerHTML = '<img alt="구글로고" src="../../images/google.png">';
 </script>
 

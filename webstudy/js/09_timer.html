@@ -12,7 +12,7 @@
             1. 한 번만 동작하는 타이머 함수
                 1) 동작
                     var id=setTimeout(동작할함수, 시간(밀리초)); -- 함수에 함수 전달, 콜백의 개념
-                    (*취소할 일 없으면 setTimeout만 써두댐)
+                    (*취소할 일 없으면 var id= 없이 setTimeout만 써두댐)
                 2) 동작 취소 
                     clearTimeout(id); 
         */
@@ -74,13 +74,14 @@
                     document.getElementById('box2').textContent='발사';
                     return;
                 }
-                document.getElementById(box2).textContent = countDown2--;
-                launch()
+                document.getElementById('box2').textContent = countDown2--;
+                launch();
             },1000);
         }
         launch();
 
     </script>
+    
     <script>
         //재귀함수 이해하기 (factorial, 팩토리얼)
         /* 
@@ -100,7 +101,7 @@
         //함수 정의
         // 5xf(4).. 이런식으로 가는데 f(0)이나 f(-1)나올 수 잇으니까 끊어주는거 해야함
         function fn_factorial(n){
-            in(n==0){
+            if(n==0){
                 return 1;
             }
             return n * fn_factorial(n-1); // 재귀 호출(자신을 다시 부름)

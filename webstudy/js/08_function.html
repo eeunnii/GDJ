@@ -36,7 +36,7 @@
         //함수 호출(함수 정의는 항상 먼저 처리되므로 어디서든 호출 가능)
         func1();
 
-        //함수 정의 
+        //함수 정의 (호이스팅 : 항상 먼저 처리되는 코드)
         function func1(){
             alert('Hello World');
         }
@@ -48,7 +48,7 @@
             2. 익명 함수
 
                 1) 이름이 없는 함수
-                2) 변수에 익명 함수를 저장 해서 사용 이벤트(클릭/누르고잇는거) 처리용으로 사용
+                2) 변수에 익명 함수를 저장 해서 사용, 이벤트(클릭/누르고잇는거) 처리용으로 사용
                 3) 호이스팅 되지 않는 함수
                 4) 함수 정의 형식
                     (1)일반 익명 함수 
@@ -101,7 +101,7 @@
                1) 함수를 정의하면 곧바로 호출되는 함수
                2) 한 번만 사용하면 되는 기능에서 주로 활용
                3) 함수 정의 및 호출 형식(익명함수 사용)
-                    function (매개변수) {
+                    (function (매개변수)) {
                         
                     }(인수)
          */
@@ -154,7 +154,7 @@ function func5(...params){
 }
 // 함수 호출
 func5();
-func5('민경태',45);
+func5('은지정',45);
 
 
 //함수 정의(디폴트)
@@ -171,15 +171,14 @@ function func6(name, greet){
             greet='안녕';
         }
         */
-}
+
     //2. 논리 or 연산의 short circuit evaluation 활용
-    //greet에 값이 전달되었다면 greet은 undifined가 아니므로 ture로 처리됨
-    //  greet에 값이 전달되었다면 greet은 undefined가 아니므로 true로 처리됨 -> greet이 true이면 논리 OR(||)은 true이므로 (greet = '안녕')을 처리하지 않음
-    // greet에 값이 전달되지 않ㄴㄴ다면 greet으 undifined이므로 galse로 퍼리됨->greet이 true이면 논리 OR(||)은 계속 수행이므로 (greet = '안녕')을 처리함
+    //greet에 값이 전달되었다면 greet은 undefined가 아니므로 true로 처리됨 -> greet이 true이면 논리 OR(||)은 true이므로 (greet = '안녕')을 처리하지 않음
+    //greet에 값이 전달되지 않는다면 greet은 undifined이므로 false로 퍼리됨->greet이 true이면 논리 OR(||)은 계속 수행이므로 (greet = '안녕')을 처리함
 
-    greet ||(greet == 'ㅎㅇ');
-    console.log || ('저응ㄴ지','name')
-
+    greet ||(greet = 'ㅎㅇ');
+    console.log(greet, name);
+}
 
 
 //함수 호출
@@ -222,17 +221,18 @@ func7('정은지');
     introduce('정은지', 24, info);
 
 
-    //2. 콜백함수(익명함수)  --- 콜백은 익명으로 많이해서 공부할때이거멎ㄴ저하기..
+    //2. 콜백함수(익명함수)  --- 콜백은 익명으로 많이해서 공부할때이거먼저하기..
+    // https://blog.naver.com/hyeonni1907/222785842845 문제 풀어보기
     function introduce(name,age,func) {
         func(name, age);
     }
     introduce('정은지',24,function(name, age){
-        console.log('이름'+name+' 나이'+age+'살');
+        console.log('이름 '+name+' 나이'+age+'살');
     });
 
 
     // howMany함수
-    // 첫 번째 인수 : 수행할 함수 
+    // 첫 번째 인수 : 수행할 횟수
     // 두 번째 인수 : 수행할 함수 
 
     // 함수 정의
@@ -243,7 +243,7 @@ func7('정은지');
         }
     }
     // 함수 호출
-    howMany(3, function(){ console.log('Hello World');});
+    howMany(3, function(){console.log('Hello World');});
 </script>
 </body>
 </html>
