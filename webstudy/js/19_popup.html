@@ -26,8 +26,10 @@
         .footer > li {
             width: 50%;
             padding: 20px;
+            text-align: center;
         }
         .footer>li:hover {
+            cursor: pointer;
             font-weight: 900;
             text-shadow: 3px 3px 1px gray;
         }
@@ -38,11 +40,13 @@
             background-color: plum;
         }
     </style>
-    <div class="box">
-    </div>
+
+    <div class="box"></div>
     <ul class="footer">
         <li>오늘 그만 보기</li>
         <li id="btn_close">닫기</li>
+        <!-- 코드긴거 보안 버전? //인라인스타일
+         <li onclick="window.close()">닫기</li>  -->
     </ul>
 
     <script>
@@ -50,10 +54,8 @@
         document.getElementById('btn_close').onclick= function(event) {
             window.close();
         }
-        /*
-       코드긴거 보안 버전? //인라인스타일-->
-        <li onclick="window.close()">닫기</li>
-        */
+       
+        
     </script>
 
 

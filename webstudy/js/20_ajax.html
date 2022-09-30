@@ -18,7 +18,7 @@
         2. 자바 스크립트와 XML간 비동기 통신
         3. 통신 방식
             1) 동기 통신
-              (1) 선수대로 통신
+              (1) 순서대로 통신
               (2) 요청하고, 응답이 올 때까지 기다림
               (3) 느림
             2) 비동기 총신
@@ -73,7 +73,8 @@
                 // 1. 텍스트 형식 응답 : responseText
                 // 2. XML    형식 응답 : responseXML
                 // 3. JSON   형식 응답 : JSON.pars(responseText)
-                document.getElementById('box1').textContent = xhr.responseText;
+                document.getElementById('box1').textContent = xhr.responseText; 
+                // 받는게 텍스트 한줄이라 텍스트로 처리한거임
             }
         }
 
