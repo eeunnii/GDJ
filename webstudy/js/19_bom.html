@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+/*
+        BOM
+
+        1. Browser Object Model(브라우저 객체 모델)
+        2. 브라우저 구성 요소를 자바스크립트 객체로 처리할 수 있음
+        3. 주요 객체 
+            1) window  : 최상위 객체. 생략 가능
+            2) screen : 화면 객체, 화면의 너비/높이
+            ★백에서도 꼭 알아야하는 개념
+            ★3) history : 방문 경로 저장 객체. 뒤로/앞으로 -- 작업실패시 스크립트 코드를 통해서 뒤로가기 기능넣음
+            ★4) location : 경로 객체. 주소창 조작(URL 조작)
+
+            html에서는 a태그, js에서는 location
+*/
+    </script>
+
+    <!-- 1. screen -->
+    <script>
+        console.log(screen.width, screen.height);
+        console.log(screen.availWidth, screen.availHeight); /*가용너비와높이*/
+    </script>
+
+
+
+
+
+    <!-- 2. histoty -->
+    <!-- 한칸뒤로갈거니 두칸뒤로갈거니? 문제 발생했을 때 히스토리 통해서 뒤로감 -->
+    <button id="btn1">뒤로</button>
+    <script>
+        /*
+        history.back()    : 뒤로가기
+        history.forward() : 앞으로 가기
+        history.go(-1)    : 뒤로 1번 가기
+        history.go(-2)    : 뒤로 2번 가기
+        */
+       document.getElementById('btn1').onclick =  function(event) {
+         history.back();
+       }
+    </script>
+
+
+
+    <hr>
+
+
+    <!-- 3. location -->
+    <button id="btn_naver">네이버</button>
+    <button id="btn_google">구글</button>
+    <script>
+        /*
+            ★★★★★★★★★★히스토리 로케이션 기억하기 ★★★★★★★★★★★
+
+            1. history를 남기는 이동(둘중에암거나써도상관X)
+                1) location.href = '경로'
+                2) location.assign = ('경로')
+            2. history를 안 남기는 이동
+                1) location.replace('경로') -- 실제로 히스토리 안남음
+        */
+
+    // 네이버 - 뒤로가기 가능
+       document.getElementById('btn_naver').onclick = function(event) {
+        location.href = 'https://www.naver.com';
+       }
+    // 구글 -  뒤로가기 불가능
+       document.getElementById('btn_google').onclick = function(event){
+        location.replace('https://www.google.com')
+       }
+
+
+
+    /*
+       window.open(url, name, features)
+       1. url : 열어 줄 파일의 경로
+       2. name : 창 이름
+       3. features : 창 특징
+            1) width/height : 창의 너비/높이
+            2) top/bottom/left/right : 창의 위치
+    */
+
+
+
+
+    </script>
+
+
+<hr>
+
+<button id="btn2">열기</button>
+
+<script>
+
+     // 10_popup.html 열기
+     document.getElementById('btn2').onclick = function(event) {
+        var features = 'width=640, height=480px,top=100px, left=100px';
+        window.open('19_popup.html','팝업',features);
+     }
+    
+</script>
+
+
+
+</body>
+</html>

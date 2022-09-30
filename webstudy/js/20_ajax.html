@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 데이터를 주고 받는 통신 방법, 개념만 이해하기 -->
+    <!-- 커서가 깜빡하면서 페이지를 다시 load함.  회원가입창에서 ㅇ아ㅣ디극 -->
+
+    <script>
+        /*
+        AJAX
+
+        1. Asynchronous Javascript And Xml-json도 받아올수잇음
+        2. 자바 스크립트와 XML간 비동기 통신
+        3. 통신 방식
+            1) 동기 통신
+              (1) 선수대로 통신
+              (2) 요청하고, 응답이 올 때까지 기다림
+              (3) 느림
+            2) 비동기 총신
+            (1)순서를 지키지 않는 통신
+            (2)요청이 오지 않더라도 응답을 계속할 수 있음
+        4. 페이지 전체를 로드하지 않고,페이지 일부만 요청해서 처리하는 기능
+        5. 자바스크립트의 XMLHttprequest0,객체가 ajax 처리를 담당함
+        */
+    </script>
+
+    <div id="box1"></div>    
+
+    <script>
+
+        //data.txt 파일이 서버가 보낸 데이터 
+
+        // 1.XMLHttpRequest 객체 생성
+        var xhr = new XMLHttpRequest();
+
+        // 2. open() - 요청 정보 만듬
+        // open(HTTP메소드, 요청서버경로, 통신방식)
+        // 1) HTTP 메소드
+        //      (1)GET : GET 방식 (디폴트)
+        //      (2)POST : POST 방식
+        // 2) 요청서버경로 
+        //       /컨텍스트패스/URLMapping
+        // 3) 통신방식
+        //      (1) 동기 통신 : false
+        //      (2) 비동기 통신 : true
+        xhr.open('GET', 'data.txt',true);
+
+        // 3. send() - 요청하기
+        xhr.send();     //문법 안외워도 됨
+
+        //비동기는 계속 떠드는거?? 
+        //4. 응답처리  
+        // 응답이 오는지 점검하기 위한 readystatechane이벤트가 필요함(응답이오면 호출되는 이벤트)
+        xhr.onreadystatechange = function(event){
+            //응답에 관련된 속성
+            // 1. readyState(통신 확인)
+            //     1) 0(OPEN)
+            //     2) 1(UNSEND)
+            //     3) 2(HEADERS_RECEIVE)
+            //     4) 3(LOADING)
+            //     5) 4(DONE) - 이것만 기억  // readyState가 4가 아니면 제대로 통신되지 않은거임
+            // 2. status(응답 코드)       -http 응답상태코드
+            //      1) 200 : 응답 성공! - 이것만 기억
+            //      2) 400번대 : 요청실패
+            //      3) 500번대 : 서버오류 -- 우리눈에 보이면 개발을 덜한거임
+            if(xhr.readyState == 4 && xhr.status == 200) {
+                // 응답 데이터 
+                // 1. 텍스트 형식 응답 : responseText
+                // 2. XML    형식 응답 : responseXML
+                // 3. JSON   형식 응답 : JSON.pars(responseText)
+                document.getElementById('box1').textContent = xhr.responseText;
+            }
+        }
+
+    </script>
+</body>
+</html>
