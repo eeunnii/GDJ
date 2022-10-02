@@ -48,7 +48,7 @@
         console.log(obj.friend.name);
         console.log(obj.friend.age);
         console.log(obj.hobbies[0],obj.hobbies[1],obj.hobbies[2]);
-        (obj.introduce)();
+        (obj.introduce)();   
     </script>
 
 
@@ -88,9 +88,9 @@
         // 객체의 속성을 for문으로 순회 (일반for문안되고 for in만 가능)
         // 객체의 속성은 문자열로 반환됨('title'.. 따옴표가 붙은 상태로 반환됨)
         for(let p in book) {
-            //book.'title'  <-- 이런식으로 해석됨
-            //그래서 ▼로 출력하면 undefined로 나옴 = 사용불가.
             //console.log(book.p);
+            //book.'title'  <-- 이런식으로 해석됨
+            //그래서 ▲로 출력하면 undefined로 나옴 = 사용불가.
 
             //book[p] : book['title'] .. 요런식으로 써줘야함
             console.log(p+':'+book[p]);
@@ -113,21 +113,17 @@
             {
                 'title' : '홍길동전',
                 'author' : '허균'
-            },
+            }
         ];
 
             
         /*
         var table = '<table><tbody>';
        
-
         for(let i=0; i<books.length; i++){
             table += '<tr>';
             for(let p in books[i]){
                 table += ('<td>'+books[i]+'</td><td>'+books[i][p]+'</td></tr>');
-                
-                
-
                 //console.log(books[i][p]);
             }
         }
@@ -170,8 +166,8 @@
         */
 
             // 생성자 함수의 정의
-            function car(model, maker) {
-                this.model = medel; // this.model이 속성 model이 존재함을 의미함
+            function Car(model, maker) {
+                this.model = model; // this.model이 속성 model이 존재함을 의미함
                 this.maker = maker;
             }
 
