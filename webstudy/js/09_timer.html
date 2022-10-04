@@ -13,6 +13,7 @@
                 1) 동작
                     var id=setTimeout(동작할함수, 시간(밀리초)); -- 함수에 함수 전달, 콜백의 개념
                     (*취소할 일 없으면 var id= 없이 setTimeout만 써두댐)
+                    (밀리초 이후에 실행됨.)
                 2) 동작 취소 
                     clearTimeout(id); 
         */
@@ -33,7 +34,7 @@
         */
        setInterval(function() {
         console.log('setInterval')
-       },1000);
+       },2000);
        clearInterval(id);
 
     </script>

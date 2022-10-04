@@ -66,42 +66,27 @@
 
             // replaveALL()함수 커스터마이징 하기
             // String에 prototype으로 추가 
+
             // 'Java,Java,Java' -> ['Java','Java','Java'] -> 'JavaJavaJava';
 
+            // 1. indexOf + replace
             String.prototype.replaceAll = function(before, after){
-                var str = this;
-                while(true) {
-                    if(str.lastIndexOf(before) == -1) {  // this : replaceAll() 메소드를 호출하는  // this=
-                        break;
-                    }
-                    str = str.replace(before, after);
-                }
-                return str;
+                var str = this; // this : replaceAll() 메소드를 호출하는 문자열
+                while(str.indexOf(before) != -1) {
+                str = str.replace(before, after);
             }
+            return str;
+        }
 
 
-
+            
             // 2. split + join  -- 이해X
             String.prototype.replace = function(before,after) {
                 return this.split(before).join(after);
             }
-
-
-
-
-
-
-
-
-
-
-
+            
             var target = 'Java,Java,Java';
             console.log(target.replaceAll('Java','자바'));
-
-
-
-
 
         </script>
     
