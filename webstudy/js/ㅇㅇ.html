@@ -7,94 +7,49 @@
     <title>Document</title>
 </head>
 <body>
+    <div><button id="btn2">클릭</button></div>
+    <div id="box2">
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>제목</td>
+                    <td>저자</td>
+                    <td>가격</td>
+                </tr>
+            </thead>
+            <tbody class="book_list"></tbody>
+        </table>
+    </div>
     <script>
-        var obj = {
-            'name' : '정은지',
-            'age' : 24,
-            'friend' : { // 친구 한명일 때 {}, 객체 안에 객체 넣기 가능
-                'name' : '김철수',
-                'age' : 45
-                },
-                'hobbies' : [
-                    '여행',
-                    '운동',
-                    '독서'
-                ],
-                'introduce' : function(){       //  익명함수에 introduce의 이름을부여했다고 봐도됨
-                    console.log('이름 '+this.name);  // 현재 객체를 의미하는 this 
-                   
+        document.getElementById('btn2').onclick = function(event){
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'books1.xml', true);
+            xhr.send();
+            xhr.onreadystatechange = function(event) {
+                if(xhr.readyState == 4 && xhr.status == 200) {
+                    // XML응답은 responseXML 속성으로 받아옴
+                    var data = xhr.responseXML;
+                    // <books> 태그 가져오기
+                    var books = data.getElementsByTagName('books')[0];
+                    // <book> 태그 가져오기 (3개)
+                    var book = books.getElementsByTagName('book');
+                    // book 배열 순회하며 <tr>..</tr> 3개 만들기
+                    var bookList = '';
+                    for(let i = 0; i < book.length; i++){
+                        bookList += '<tr>';
+                        bookList += '<td>' + book[i].getElementsByTagName('title')[0].textContent + '</td>';
+                        bookList += '<td>' + book[i].getElementsByTagName('author')[0].textContent + '</td>';
+                        bookList += '<td>' + book[i].getElementsByTagName('price')[0].textContent + '</td>';
+                        bookList += '</tr>';
+                    }
+                    // <tbody class="book_list"></tbody>에 bookList 추가
+                    document.querySelector('#box2 .book_list').innerHTML = bookList;
                 }
-        }
-        console.log(obj.name);
-        console.log(obj.age);
-        console.log(obj.friend.name);
-        console.log(obj.friend.age);
-        console.log(obj.hobbies[0]);
-        console.log(obj.hobbies[1]);
-        console.log(obj.hobbies[2]);
-        (obj.introduce)();
-    </script>
-
-    <script>
-        var computer = {};
-
-        computer.model = 'gram';
-        computer.price = 200;
-        console.log(computer);
-
-        computer.model = 'mac';
-        computer.price = 300;
-        console.log(computer);
-
-        delete computer.price;
-        console.log(computer);
-    </script>
-
-
-    <script>
-        var book = {
-            'title' : '소나기',
-            'author' : '황순원',
-            'publisher' : '우리출판사'
-        };
-
-        for(let p in book) {
-            console.log(p+':'+book[p]);
-        }
-    </script>
-
-
-    <div id="box1"></div>
-    <script>
-
-        var books = [
-        {
-                'title' : '소나기',
-                'author' : '황순원'
-            },
-            {
-                'title' : '어린왕자',
-                'author' : '황순원'
-            },
-            {
-                'title' : '홍길동전',
-                'author' : '허균'
             }
-        ];
-
-        var table = '<table border="1"><thead><tr><td>제목</td><td>저자</td></tr></thead><tbody>'
-        for(let i=0; i<books.length; i++){
-            table += '<tr>'
-                for(let p in books[i]){
-                    table += '<td>'+books[i][p]+'</td>';
-                }
-                    table+='</tr>';
         }
-        table += '</tbody></table>'
- 
-        document.getElementById('box1').innerHTML=table;
-
     </script>
+
+
 
 
 
