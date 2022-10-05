@@ -114,9 +114,8 @@
         // Promise 안에 잇으면 ajax가 끝날때까지 모두 처리하고 then, cathch들어가서 후속작업을 함(?)
         new Promise(function(resolve, reject){  // resolve, reject관용적으로 쓰이는 이름..
             // resolve는 비동기 처리가 성공했을 때 호출 할 함수 
-
-
             // resolve('성공'); // resolve는 then 구문에 선언된 익명 함수를 호출. .성공이 mag로 가는거임
+
             // reject는 비동기처리가 실패했을 때 호출할 함수
             reject('실패');  // reject는 catch 구문에 선언된 익명 함수를 호출
         }).then(function(msg){   // 
@@ -129,7 +128,7 @@
 
     <script>
 
-        // ajax와 Promise 함깨 사용하기 
+        // ajax와 Promise 함께 사용하기 
 
         new Promise(function(resolve, reject){
             $.ajax({
@@ -147,7 +146,7 @@
         }).then(function(data){
             console.log('then',data);
         }).catch(function(err){
-            console.log('catch',errCode+'('+errText+')');
+            console.log('catch',err);
         });
     </script>
 
@@ -166,6 +165,8 @@
                 })
             });
         }
+
+        
         function fn_varify(){
            // fn_check(); // 이거와 같다 new Promise()
            new Promise(function(resolve, reject){

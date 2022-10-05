@@ -19,7 +19,7 @@
             // 키, 밸류 => 객체로 들어감 (자바에선 Map으로 저장됨, js에서는 객체로 만들어짐 - 자바스크립트객체를 json이라고 부름)
             $.ajax({
                 'type':'GET',        // 요청 메소드(Reques Method) -- 외우기
-                'url':'1data.txt',    // 요청 서버 경로
+                'url':'data.txt',    // 요청 서버 경로
                 'async':true,      // 동작 방식 (통신 방식) (true-비동기통신, false-동기통신, 생략하면 비동기 통신)  - ajax의 a가 비동기 통신이라는뜻. 그래서 false 쓸 일 없음
                 'dataType':'text', // 응답 데이터 타입(text, xml, json) 등
                 'success':function(data){    // 응답 성공을 의미함. ajax통신이 성공하면 어떤 이벤트를 할거냐? function(data) -- 매개변수 data로 응답 데이터가 전달됨(responseText, responseXML)
