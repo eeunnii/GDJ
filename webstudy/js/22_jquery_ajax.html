@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>22_jquery_ajax</title>
+    <script src="jquery-3.6.1.min.js">
+        // 외부 js가져올때 스크림트 사용/script사이에 코드 입력XX 만들고 건들이면 안됨
+    </script>
+</head>
+<body>
+    <!-- 에이작스 공부는 이걸!이 페이지!!로 한다!! -->
+
+
+    <div id="box1"><button id="btn1">클릭</div>
+    <script>
+        $('#btn1').on('click', function(event){
+            // 키, 밸류 => 객체로 들어감 (자바에선 Map으로 저장됨, js에서는 객체로 만들어짐 - 자바스크립트객체를 json이라고 부름)
+            $.ajax({
+                'type':'GET',        // 요청 메소드(Reques Method) -- 외우기
+                'url':'1data.txt',    // 요청 서버 경로
+                'async':true,      // 동작 방식 (통신 방식) (true-비동기통신, false-동기통신, 생략하면 비동기 통신)  - ajax의 a가 비동기 통신이라는뜻. 그래서 false 쓸 일 없음
+                'dataType':'text', // 응답 데이터 타입(text, xml, json) 등
+                'success':function(data){    // 응답 성공을 의미함. ajax통신이 성공하면 어떤 이벤트를 할거냐? function(data) -- 매개변수 data로 응답 데이터가 전달됨(responseText, responseXML)
+                    $('#box1').append($('<data>').text(data));
+                },
+                // 비번 아이디 unique인데 여기서 중복 검사해서 에러 띄울 수 있음
+                'error' : function(jqXHR){       // 통신 실패  
+                    console.log('status',jqXHR.status);              // jqXHR.status 이건 숫자로 나옴  // 응답코드(4040)
+                    console.log('statusText',jqXHR.statusText);      // jqXHR.statusText 이건 테그슽로 나옴 not found  // 응답테스트(Not Found)
+                    console.log('responseText',jqXHR.responseText);  // java에서 던진 예외를 responseText가 받음  // 응답테스트(서버측에서 전송한 예외메시지)
+                    console.log(textStatus);    // error (안 중요함)
+                    console.log(errorThrown);   // Not Found (안중요함)
+                }
+            });
+        })
+    </script>
+
+<!-- 1. XML 읽기 -->
+<div><button id="btn2">클릭</button></div>
+<div id="box2">
+    <table border="1">
+        <thead>
+            <tr>
+                <td>제목</td>
+                <td>저자</td>
+                <td>가격</td>
+            </tr>
+        </thead>
+        <tbody class="book_list"></tbody>
+    </table>
+</div>
+
+<script>
+    // error 생략해도 됨
+    $('#btn2').on('click',function(event){
+        $.ajax({
+            'type' : 'GET',
+            'url' : 'books1.xml',       
+            'dataType' : 'xml',
+            'success' : function(data) {    //data <-xhr.reponseXML(JS : var data = xhr.responseXML)
+                //  books=data=부모. 부모 아래 자식 book 3개 찾을거임
+                // data.find('book');  //(book태그를가지고잇는배열)// data는 일반변수라서 이렇게 하면 오류남 (~is not a function : 제이쿼리 아닌거 호출하면 나오는 코드) 
+                //console.log($(data).find('book'));
+                $.each($(data).find('book'),function(i,book){   // 책 3권에서 1권씩 book 자리에 들어감  $.each(배열, function(인덱스, 요소){});
+                    //console.log(i,book);
+
+                    var tr = $('<tr>');
+
+
+                    /*
+                    tr += '<td>' + $(book).find('title').text()+'</td>';  // book.find('title') --> <title>소나기</title> 태그 전체 나옴
+                    tr += '<td>' + $(book).find('author').text()+'</td>';   //'</td>' 닫아주는 태그 생략 가능 
+                    tr += '<td>' + $(book).find('price').text()+'</td>';
+                    tr += '</tr>';
+                    $('#box2 .book_list').append(tr); // html 코드는 덮어쓰기함
+                        */
+
+
+
+                    //동일한 메솓 여러번하는거 성능 안좋음 $ 도 한 문장에 여러개 나오는거 안좋음
+                    tr.append($('<td>').text($(book).find('title').text()));
+                    tr.append($('<td>').text($(book).find('author').text()));
+                    tr.append($('<td>').text($(book).find('price').text()));
+                    $('#box2 .book_list').append(tr);
+                });
+            }
+
+        });
+    });
+</script>
+
+
+
+<!-- 2. XML 읽기 -->
+<div><button id="btn3">클릭</button></div>
+<div id="box3">
+    <table border="1">
+        <thead>
+            <tr>
+                <td>제목</td>
+                <td>저자</td>
+                <td>가격</td>
+            </tr>
+        </thead>
+        <tbody class="book_list"></tbody>
+    </table>
+</div>
+    <script>
+        $('#btn3').on('click',function(event){
+            $.ajax({
+                'type' : 'GET',
+                'url' : 'books2.xml',
+                'dataType' : 'xml',
+                'success' : function(data){ // data는 books2.xml 전체 내용을 담고 있음
+                    //$(data).find('book')  // 배열. book 3개 들어있음
+                    
+                    $.each($(data).find('book'), function(i, book){
+                        // console.log(i, book);
+                        var tr = $('<tr>');
+                        tr.append('<td>'+$(book).attr('title')+'</td>'); // 닫아주는 태그('</td>')는 생략가능함
+                        tr.append('<td>'+$(book).attr('author')+'</td>');    //제이쿼리는 알아서 닫아줌
+                        tr.append('<td>'+$(book).attr('price')+'</td>');
+                        $('#box3 .book_list').append(tr);  // 부모에다가 자식 추가
+                        //tr.appendTo('#box .book_list');   // 자식에다가 부모 추가 
+                    });
+                }
+            });
+        });
+    </script>
+
+
+
+    <!-- 네이버api e돌려서 내려받ㅇㄴ겅미 -->
+    <!-- 3. XML 읽기 연습 - naver_search.xml -->
+    <div><button id="btn4">클릭</button></div>
+    <div id="box4">
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>제목(title)</td>
+                    <td>썸네일(image+link)</td>
+                    <td>저자(author)</td>
+                    <td>정상가(price)</td>
+                    <td>할인가(discount)</td>
+                    <td>출판사(publisher)</td>
+                    <td>출판일(pubdate)</td>
+                    <td>ISBN(isbn)</td>
+                    <td>개요(description)</td>
+                </tr>
+            </thead>
+            <tbody id="search_list"></tbody>
+        </table>
+    </div>
+    <script>
+        $('#btn4').on('click', function(event){
+            $.ajax({
+                'type' : 'GET',
+                'url' : 'naver_search.xml',
+                'dataType' : 'xml',
+                'success' : function(data){
+                    $.each($(data).find('item'),function(i, item){
+                        var tr = $('<tr>');
+                        tr.append($('<td>').html($(item).find('title').text()));
+                        tr.append($('<td>').html($('<a>').attr('href', $(item).find('Link').text()).append($('<img>').attr('src', $(item).find('image').text()).attr('width','80px').attr('height','120px'))));
+                        tr.append($('<td>').html($(item).find('author').text()));
+                        tr.append($('<td>').html($('<strike>').text($(item).find('price').text() + '원')));
+                        tr.append($('<td>').html($('<span>').text($(item).find('discount').text() + '원').css('color', '#ff0000')));
+                        tr.append($('<td>').html($(item).find('publisher').text()));
+                        var pubdate = $(item).find('pubdate').text();
+                        tr.append($('<td>').html(pubdate.substring(0,4) + '-' + pubdate.substring(4,6) + '-' + pubdate.substring(6)));
+                        tr.append($('<td>').html($(item).find('isbn').text()));
+                        tr.append($('<td>').html($(item).find('description').text()));
+                        tr.appendTo('#search_list');
+                    });
+                }
+            });
+        });
+    </script>
+
+
+
+<!-- 4. XML 읽기 연습 - sfc_web_map.xml -->
+<div><button id="btn5">클릭</button></div>
+<div id="box5">
+    <table border="1">
+        <thead>
+            <tr>
+                <td>지역명</td>
+                <td>날씨</td>
+                <td>온도</td>
+            </tr>
+        </thead>
+        <tbody id="weather"></tbody>
+    </table>
+</div>
+
+<script>
+
+$('#btn5').on('click', function(event){
+            $.ajax({
+                'type': 'GET',
+                'url': 'sfc_web_map.xml',
+                'dataType': 'xml',
+                'success': function(data){
+                    $.each($(data).find('local'), function(i, region){
+                        var tr = '<tr>';
+                        tr += '<td>' + $(region).text();
+                        tr += '<td>' + $(region).attr('desc');
+                        tr += '<td>' + $(region).attr('ta');
+                        $('#weather').append(tr);
+                    })
+                }
+            })
+        });
+
+</script>
+
+
+
+
+<!-- 5. JSON 읽기 -->
+<div><button id="btn6">클릭</button></div>
+<div id="box6">
+    <table border="1">
+        <thead>
+            <tr>
+                <td>제목</td>
+                <td>저자</td>
+                <td>가격</td>
+            </tr>
+        </thead>
+        <tbody class="book_list"></tbody>
+    </table>
+</div>
+<script>
+    $('#btn6').on('click',function(event){
+        $.ajax({
+            'type' : 'GET',
+            'url' : 'books.json',
+            'dataType' : 'json',
+            'success' : function(data){
+               // console.log(data); // 20ajax에선 json parse 해줬는데 여기선 안해도 됨. data 가 이미 배열임
+                $.each(data,function(i,book){
+                    var tr = $('<tr>');
+                        /*
+                    tr.append($('<td>').text(book.title));
+                    tr.append($('<td>').text(book.author));
+                    tr.append($('<td>').text(book.price));
+                        */
+                       for(let prop in book){
+                           tr.append($('<tr>').text(book[prop]));
+                        }
+                        
+                        tr.appendTo('#box6 .book_list');
+
+                })
+            }
+
+        })
+    })
+</script>
+
+
+
+       <!-- 6. JSON 읽기 -->
+    <div><button id="btn7">클릭</button></div>
+    <script>
+        $('#btn7').on('click', function(event){
+            $.ajax({
+                'type': 'GET',
+                'url': 'car.json',
+                'dataType': 'json',
+                'success': function(data){
+                    console.log('모델명', data.model);
+                    console.log('제조사', data.maker);
+                    console.log('가격', data.price);
+                    $.each(data.option, function(i, item){
+                        console.log('옵션' + (i + 1), item);
+                    })
+                    console.log('연식', data.info.year);
+                    console.log('할인액', data.info.discount);
+                }
+            });
+        })
+    </script>
+
+
+    <!-- 7 JSON 읽기 연습 - cctv.json -->
+    <!-- 전체 cctv는 몇 대인가? (카메라대수 속성 이용) -->
+    <div><button id="btn8">클릭</button></div>
+    <div>
+        마포구 전체 CCTV 개수 : <span id="cctv_count"></span>대
+    </div>
+    <script>
+        $('#btn8').on('click', function(event){
+            $.ajax({
+                'type': 'GET',
+                'url': 'cctv.json',
+                'dataType': 'json',
+                'success': function(data){
+                    var cctvCount = 0;
+                    $.each(data, function(i, location){
+                        cctvCount += Number(location.카메라대수);
+                    })
+                    $('#cctv_count').text(cctvCount);
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

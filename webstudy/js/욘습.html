@@ -1,0 +1,39 @@
+        <!-- 1. XML 읽기 -->
+        <div><button id="btn2">클릭</button></div>
+        <div id="box2">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <td>제목</td>
+                        <td>저자</td>
+                        <td>가격</td>
+                    </tr>
+                </thead>
+                <tbody class = "book_list"></tbody>
+            </table>
+        </div>
+        <script>
+            $('#btn2').on('click', function(event){
+                $.ajax({
+                    'type':'GET',
+                    'url' :'books1.xml',
+                    'dataType' : 'xml',
+                    'success' : function(data){ // data<-xhr.responseXML (JS : var data = xhr.responseXML)
+                        console.log($(data).find('book')); // data.find('book')는 jquery function이 아니라 오류뜸(is not a function)
+                        // $.each(배열, function(인덱스, 요소){
+                           $.each($(data).find('book'), function(i, book){ 
+                            //console.log(i, book); 북배열 확인
+                            var tr = '<tr>';
+                            tr += '<td>' + $(book).find('title').text() + '</td>'; // 글자만뺄때 필요한 메소드 text() book function으로 만들기
+                            tr += '<td>' + $(book).find('author').text() + '</td>'; 
+                            tr += '<td>' + $(book).find('price').text() + '</td>'; 
+                            tr += '<tr>';
+                                $('#box2 .book_list').append(tr); // html은 덮어씀
+                            // $('#box2 .book_list').html(tr); // html은 덮어씀
+                        });
+                    }
+
+
+                })
+            })
+        </script>
