@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+ 	<!-- 주석. 컨트롤쉬프트슬래쉬-->
+ 	<!-- 1. GET 방식 요청 : <a> 태그 -->
+ 	<div>
+ 		<a href="http://localhost:9090/01_Servlet/AnchorServlet">정상링크1</a>
+ 	</div>
+ 	<div>
+ 		<a href="/01_Servlet/AnchorServlet">정상링크2</a> <!-- 됨,추천 --> // 필수
+ 	</div>
+  	<div>
+ 		<a href="/AnchorServlet">불량링크1(슬래시로 시작하면 컨텍스트 패스로인인식)</a>  <!-- 안됨 -->
+ 	</div>
+  	<div>
+ 		<a href="01_Servlet/AnchorServlet">불량링크2</a> <!-- ★ 안됨, /가 포함되어야 context path로 인식함. 슬래쉬가 없으면 매핑으로 인식, 이렇게 적어두졈 --> 
+ 	</div>
+   	<div>
+ 		<a href="AnchorServlet">불량링크(url매핑으로 인식되지만 HTML 문서의 경로에 따라 실행 여부가 ㅏ다름)</a> <!-- ★ 안됨, /가 포함되어야 context path로 인식함. 슬래쉬가 없으면 매핑으로 인식,같은 폴더더에 있다면 정상-->
+ 	</div>
+ 
+  <!-- 연습 -->
+ <!-- 응답: 1+2+3-->
+ 	<div>
+ 	<a href="/01_Servlet/AnchorServlet?1a=&b=1">더하기</a>
+ 	</div>
+ 
+ 	<hr>
+ 	<!-- 2. GET 방식 요청 : 자바스크립트 location -->
+ 	<div>
+ 		<button id="btn1">링크1</button>
+ 		<button id="btn2" data-name="정은지">링크2</button> <!-- data 속성 : 태그 안에 변수(name)저장가능 -->
+ 	</div>
+ 	<script src="../js/jquery-3.6.1.min.js"></script>
+ 	<script>
+ 	/* 자바스크립트에서 자동완성 잘 안댐... */
+ 	/* ★시험 자바 스크립트로 이동하는 방법. location(기록없이이동) 아니면 open(새창) */
+ 		$('#btn1').on('click',function(event){
+ 			// location.href='/01_Servlet/LocationServlet';
+ 			open('/01_Servlet/LocationServlet'); // open(url, name, features) 2,3번째 생략 가능. url만잇어두댐ㅋ
+ 		});
+ 		$('#btn2').click(function(event){
+ 			location.href = '/01_Servlet/LocationServlet?param='+$(this).data('name'); /* event.type = click */  /* 버튼을 부르는 두가지 방법. this, event.target */
+ 			
+ 		});
+ 	</script>
+ 
+ 
+ 
+</body>
+</html>

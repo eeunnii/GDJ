@@ -1,0 +1,78 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    /* 각자 패딩값 마진값을 가지고 있어서 박스 사이즈 잘 먹으라고 초기화해주는거임 */
+}
+
+a{
+    text-decoration: none;
+    color: #000000; /*실제 프로젝트할 때는 회색으로 쓰기*/
+}
+.container {
+    width: 460px;
+    margin: 0 auto;
+}
+header{
+     text-align: center;
+     padding: 100px 0 50px;
+}
+.gubun_desc{
+    font-weight: 900;
+}
+.gubun {
+    margin-bottom: 5px;
+}
+.input_area input {
+    width: 100%;
+    height: 50px;
+    padding: 0 10px;
+    margin-bottom: 5px;
+    border: 2px solid #007700;
+    outline: none;   /* 0도 가능 */
+}
+.input_area input:focus {
+    /* focus : 커서가 들어간 상태 */
+    border: 2px solid #ff8800;
+}
+.btn_signin{
+    width: 100%;
+    height: 60px;
+    margin: 15px 0;
+    background-color: #007700;
+    color: #ffffff;
+    font-weight: 900;
+    text-align: center;
+    line-height: 60px;
+    border: none;
+    font-size: 20px;
+}
+footer {
+    margin-top: 30px;
+    width: 100%;
+    display: flex; /*걍일케하면 옆쪽으로 쏠림, 각각 div의 사이즈를 49%로 설정. 남은 2%공간은 가운데로*/
+    justify-content: space-between;
+    text-align: center;
+}
+.join, .find{
+    width: 49%;
+}
+.title {
+    font-size: 12px;
+    font-weight: bold;
+}
+.desc{
+    font-size: 10px;
+    color: #777777;
+}
+
+.btn_footer{
+    display: block;
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
+    background-color: #007777;
+    color: #ffffff;
+    margin: 10px auto;
+    
+}
