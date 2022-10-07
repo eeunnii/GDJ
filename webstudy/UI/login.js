@@ -9,7 +9,7 @@ document.getElementById('btn_signin').onclick = function(event){
         event.preventDefault();  // 버튼의 기본동작은 submit. 그 기본 동작을 막는 다는 뜻--서브밋 막을 때 많이 씀
         return;  // 이게 없다면 return이후의 코드가 잇으면 그거까지 실행해벌임
     }
-}
+
 // onkeyup 한글자한글자마다 쓸 때 마다 
 document.getElementById('id').onkeyup = function(){
     var id =document.getElementById('id');

@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  * 		
  * 		주소창에 어떤 서블릿이 실행됏는지 나옴 
  *      2개를 열었는데 컨텍스트패스가 같으면 같은 프로젝트에 있다는 뜻
- *      URLMapping은 서블리이라고 생각하기. 
+ *      URLMapping은 서블릿이라고 생각하기. 
  *      서로 다른 서블릿이 동일한 맵핑값을 가질 수 없음. 
  *      컨테이너 안에 a라는 매핑 2개 있음 실행이 안됨
  *      URLMapping = 서블릿 네임
