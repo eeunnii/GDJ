@@ -2,19 +2,13 @@ package ex02_datetime;
 
 import java.util.Date;    ///★★★★★★★★
 
+
 public class Ex02_datetime {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-		
 		// 클래스 명명 규칙
 		// 패키지 다음에 마침표(,)를 적고 클래스명을 적는다 .
-		
 		java.lang.System.out.println("Hello"); // 시스템 클래스 = 
-		
-		
-		
 		
 		//예외 규칙
 		//java.lang 패키지에 소속된 클래스들은 패키지를 생략한다.

@@ -76,7 +76,7 @@ public static void m1() {
 		
 		public static void m4() {
 			
-			File dir = new File("D:\\GDJ54");  // C:\\GDJ
+			File dir = new File("C:\\GDJ54");  // C:\\GDJ
 			
 			File[] list = dir.listFiles();  // 디렉터리 내부의 모든 파일/디렉터리를 File 객체로 가져옴
 			for(int i = 0; i < list.length; i++) {

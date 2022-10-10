@@ -14,8 +14,8 @@ public class CsvWriter {
 		// TODO Auto-generated method stub
 		
 		//CSV 
-		//1 . Comma Separate Values
-		//2 .콤마로 분리된 값들
+		//1. Comma Separate Values
+		//2.콤마로 분리된 값들
 		//3. 확장자.csv인 파일 (기본 연결프로그램-엑셀로 되어있음 // 근데 메모장으로도 오픈가능
 		//C:\\storage\product.csv
 		//제픔, 제품명, 가격\n

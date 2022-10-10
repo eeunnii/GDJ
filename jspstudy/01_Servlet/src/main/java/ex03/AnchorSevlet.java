@@ -27,7 +27,7 @@ public class AnchorSevlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8"); // 한글의 유무와 상관없이 그냥 넣어주기 
 		
 		// 요청 파라미터 a,b
-		int a=0, b=0;
+		int a=0, b=0;   // int 자료형은 null로 초기화 불가능, 0으로 초기화해야함
 		String strA=request.getParameter("a");
 		if(strA != null) {
 			a = Integer.parseInt(strA);

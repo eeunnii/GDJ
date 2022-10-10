@@ -95,7 +95,8 @@ public class FormServlet extends HttpServlet {
 			out.println("<h3>성별     :" + xy + "</h3>");
 			out.println("<h3>도시     :" + city + "</h3>");
 			out.println("<h3>연락처     :" + strPhone + "</h3>");
-			out.print("<h3>동의여부     :" + Arrays.toString(agree) + "</h3>");   // Arrays.toString(agree) 자체가 null 이면 Arrays.toString(agree) 여기서 nullpointexception떨어짐
+			out.print("<h3>동의여부     :" + Arrays.toString(agree) + "</h3>");   
+			// Arrays.toString(agree) 자체가 null 이면 Arrays.toString(agree) 여기서 nullpointexception떨어짐
 			out.print("<h3>이메일     :" +email_id+"@"+ domain + "</h3>");
 			List<String> list = Arrays.asList(agree);
 			if(list.contains("3")) {

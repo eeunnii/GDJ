@@ -8,8 +8,6 @@ import java.util.Date;
 public class Ex06_SimpleDateFormat {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 		//java.text.SimpleDateFormat 클래스 
 		//패턴이 적용된 String 타입의 날짜 반환
 		
@@ -22,8 +20,6 @@ public class Ex06_SimpleDateFormat {
 		
 		System.out.println(result1);
 		System.out.println(result2);
-		
-		
 	}
 
 }

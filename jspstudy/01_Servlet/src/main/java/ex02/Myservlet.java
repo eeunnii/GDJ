@@ -41,14 +41,18 @@ public class Myservlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String strAge = request.getParameter("age"); // 파라미터이름은 변수랑 똑같을 필요X
 		
-		// ? 뒷부분을 완성해주지 않아서 anem age는 null값나옴. null값갖는건상관없는데 int age = Integer.parseInt(strAge);여기서 오류남
+		// ? 뒷부분을 완성해주지 않아서 name age는 null값나옴. null값갖는건상관없는데 int age = Integer.parseInt(strAge);여기서 오류남
+		// null 값 자체에 값 넣는건 상관없는데 null값이 들어간 변수를 이용할려면 null처리를 해주어야함
+		// 만약 strAge가 null일 때 Integer.parseInt(strAge); 여기에 들어가면 오류
+		
+		
 		
 		//null처리
 		int age =0;
 		if(strAge !=null) {
 			age = Integer.parseInt(strAge);
-			
 		}
+		
 		
 		// 2.응답
 		//    1) 서버 -> 클라이언트로 보내는 응답
@@ -78,8 +82,8 @@ public class Myservlet extends HttpServlet {
 		PrintWriter out = response.getWriter();   // 예외처리 안해줘도 됨
 		
 		// (4) 응답 만들기 (HTML 문서 만들기)
-		out.println("<html lang=\"ko\">");
-		out.println("<head>"); //컨트롤알트방향키가 복사임
+		out.println("<html lang=\"ko\">");   // 역슬래쉬는 특수문자 구분을 위해 사용
+		out.println("<head>"); 		 // 복사 : ctrl + alt + 방향키
 		out.println("<meta charset=\"UTF-8\">"); 
 		out.println("<title>"); 
 		out.println("<나의 첫 번째 응답>"); 
@@ -89,7 +93,7 @@ public class Myservlet extends HttpServlet {
 		if(age >= 20) {
 			out.println("<h1>귀하는 "+age+"살 이므로 입장이 가능합니다.</h1>"); 
 		} else {
-			out.println("<h1>"+age+"살? 애들은 다음에");
+			out.println("<h1>"+age+"살? 애들은 다음에</h1>");
 		}
 		out.println("</body>");
 		out.println("</html>");

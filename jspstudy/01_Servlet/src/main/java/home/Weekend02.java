@@ -1,31 +1,38 @@
-package ex04;
+package home;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-@WebServlet("/RedirevtServlet1")
-public class RedirevtServlet1 extends HttpServlet {
+@WebServlet("/Weekend02")
+public class Weekend02 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
 
-    public RedirevtServlet1() {
+    public Weekend02() {
         super();
-
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		request.setCharacterEncoding("UTF-8");
 		
-		// redirect
-		response.sendRedirect("/01_Servlet/RedirectServlet2");  // 이동경로가 새로 잡힌거임
-		// html의 a가 request로 들어옴. (요청)  response응답 이용.  a는 없다 봐도 무방
-		// a는 최종 목적지인 RedirectServlet2까지 안감. RedirectServlet2에서 파라미터 a출력해보면 null값나옴
-
+		String name = request.getParameter("name");
+		String age = request.getParameter("age");
+		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println("<h1>이름 : " + name+"</h1>");
+		out.println("<h1>나이 : " + age+"</h1>");
+		out.close();
+		
+		
 	}
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

@@ -6,9 +6,6 @@ import java.util.Calendar;
 public class Ex04_calendar {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		
 		// java.util.Calendar 클래스
 		// 현재 날짜 또는 특정 날짜를 나타낼 때  사용
 		// 날짜의 특정 요소 (년, 월, 일, 시, 분, 초 ..)를 쉽게 사용

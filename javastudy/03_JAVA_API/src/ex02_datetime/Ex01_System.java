@@ -3,9 +3,6 @@ package ex02_datetime;
 public class Ex01_System {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		
 		
 		// 핑크색 클래스, 주황색 메소드
 

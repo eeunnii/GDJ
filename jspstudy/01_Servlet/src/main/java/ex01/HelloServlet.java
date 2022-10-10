@@ -45,22 +45,20 @@ public class HelloServlet extends HttpServlet { // Servlet은 HttpServlet을 상
 	 * 2. 초기화
 	 * 	1)각종 초기화 정보 실행
 	 *  2) 서블릿 환경 설정 처리
-	 *  3) init() (메소드 호출 뒤 service() 메소드 호출)
+	 *  3) init() 메소드 호출 뒤 service() 메소드 호출
 	 */
+    
 	public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
 		//원하면 여기서 config.를 열어서 하고싶은거할수잇다 
 		System.out.println("init");
 	}
 
 	/*   
-		3. service - 클라이언트 요청을 직접 ㅐㅔ걀히ㅣ니 두 포스트잇 사용해서설명 몉여줌,
-		메소드		post면 dopost열고, 성곳이면 get여ㄹ기
+		3. service 	
 			1) 클라이언트 요청 마다 매번 호출
-			2) Get 방식의 요청은 doGet() 메소드 호출, Post 방식의 요청은 doPost() 메소드 호출  // 앞으론 do
+			2) Get 방식의 요청은 doGet() 메소드 호출, Post 방식의 요청은 doPost() 메소드 호출
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		System.out.println("service");
 		
 		// service 메소드가 존재하는 경우 doGET()/doPost()가 자동으로 호출되지 않기 때문에 
@@ -70,7 +68,7 @@ public class HelloServlet extends HttpServlet { // Servlet은 HttpServlet을 상
 		// HttpServletResponse response - 어떤사람한테 응답해줘야하는지에 대한 정보 들어잇음
 		// service가 처리하지 않고 doget, dopost 메소드로 넘김 // 코드 직접 작성
 		
-		//요청 메소드 확인 : request.getMethod() - get과 포스트. get이라고 되어잇으면 doget열고~post면똑같ㅇㅁ
+		//요청 메소드 확인 : request.getMethod() - get과 포스트. get이라고 되어잇으면 doGet열고~post면 doPost
 		switch(request.getMethod()) {
 		case "GET" : 
 			doGet(request, response); // doGet() 메소드 호출
@@ -110,7 +108,7 @@ public class HelloServlet extends HttpServlet { // Servlet은 HttpServlet을 상
 	/*	
 	 * 5. doPost
 	 * 		1) POST 방식의 요청을 처리
-	 * 		2)요청 메소드가 POST인 경우 
+	 * 		2) 요청 메소드가 POST인 경우 
 	 * 			(1)($.ajax({
 	 * 				'type' : 'POST',
 	 * 				'url' : 'http://localhost:9090/01_Servlet/HelloServlet'

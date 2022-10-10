@@ -24,6 +24,8 @@ public class ForwardServlet1 extends HttpServlet {
 		//Forward
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ForwardServlet2");
 		requestDispatcher.forward(request, response);
+		
+		//request.getRequestDispatcher("/ForwardServlet2").forward(request, response);
 	}
 
 

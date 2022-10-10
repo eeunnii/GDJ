@@ -17,7 +17,6 @@ public class Prac02A extends HttpServlet {
 
     public Prac02A() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,7 +26,7 @@ public class Prac02A extends HttpServlet {
 		String name = request.getParameter("name");
 		String age = request.getParameter("age");
 		
-		response.sendRedirect("/01_Servlet/Prac02B?name" + URLEncoder.encode(name, "UTF-8") + "&age=" + age);
+		response.sendRedirect("/01_Servlet/Prac02B?name=" + URLEncoder.encode(name, "UTF-8") + "&age=" + age);
 //		java.net에서 배운 URLEncoder
 		
 		
@@ -35,7 +34,6 @@ public class Prac02A extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

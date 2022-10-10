@@ -11,7 +11,7 @@
  		<a href="http://localhost:9090/01_Servlet/AnchorServlet">정상링크1</a>
  	</div>
  	<div>
- 		<a href="/01_Servlet/AnchorServlet">정상링크2</a> <!-- 됨,추천 --> // 필수
+ 		<a href="/01_Servlet/AnchorServlet">정상링크2</a> <!-- 됨,추천 --> <!-- 필수 --> 
  	</div>
   	<div>
  		<a href="/AnchorServlet">불량링크1(슬래시로 시작하면 컨텍스트 패스로인인식)</a>  <!-- 안됨 -->
@@ -20,7 +20,7 @@
  		<a href="01_Servlet/AnchorServlet">불량링크2</a> <!-- ★ 안됨, /가 포함되어야 context path로 인식함. 슬래쉬가 없으면 매핑으로 인식, 이렇게 적어두졈 --> 
  	</div>
    	<div>
- 		<a href="AnchorServlet">불량링크(url매핑으로 인식되지만 HTML 문서의 경로에 따라 실행 여부가 ㅏ다름)</a> <!-- ★ 안됨, /가 포함되어야 context path로 인식함. 슬래쉬가 없으면 매핑으로 인식,같은 폴더더에 있다면 정상-->
+ 		<a href="AnchorServlet">불량링크(url매핑으로 인식되지만 HTML 문서의 경로에 따라 실행 여부가 다름)</a> <!-- ★ 안됨, /가 포함되어야 context path로 인식함. 슬래쉬가 없으면 매핑으로 인식,같은 폴더에 있다면 정상-->
  	</div>
  
   <!-- 연습 -->
@@ -61,7 +61,6 @@
     		<input type="text" id="id" name="id" placeholder="아이디" >
     		</div>
     		<div>
-    		k
     		<input type="password" id="pw" name="pw" placeholder="비밀번호" > <!-- id는 js에서 사용, name은 서버에서 사용 , id=name 맞춰주는게 좋음-->
     		</div>
     		<span>
@@ -83,7 +82,7 @@
     			<option value="busan">부산</option>
     		</select>	
     		</div>
-    		<!-- 배열보내기, 같은 name으로 보내면 배열로 인식. 동일한 이름이 여러개 잇음 배열로 간다, raido는 하나만 ㅏㄱㅁ -->
+    		<!-- 배열보내기, 같은 name으로 보내면 배열로 인식. 동일한 이름이 여러개 잇음 배열로 간다, raido는 하나 감-->
     		<div>
     			<input type="text" name="phone" size="3" maxlength="3">-
     			<input type="text" name="phone" size="4" maxlength="4">-
@@ -120,7 +119,7 @@
     
     
  	<!-- 아디비번성별지역 안하면 서브밋안되게, 배열필수약관 체크안햇으면 서브밋 막기 -->
-    <script>
+<!--     <script>
     function fn1(){
         var id = document.getElementById('id');
 
@@ -130,16 +129,7 @@
             return; 
         }
     }
-    </script>
- 
- 
- 
- 
- 
- 
- 
- 
- 
+    </script> -->
  
  
  
@@ -160,23 +150,22 @@
 	});
 	
 	*/    
-    
     	//$('#btn').on('click', function(event))  이것도 가능
     	$('frm').on('submit', function(event){
     		// 아이디, 비밀번호 입력 없으면 서브밋 방지
-    		if($('id').val()==''){
+    		if($('#id').val()==''){
     			alert('아이디는 필수입니다.');
     			event.preventDefault(); // 이벤트(서브밋 방지)
     			return;
     		}
-    		if($('pw').val==''){
+    		if($('#pw').val==''){
     			alert('비밀번호는 필수입니다.');
     			event.preventDefault();
     			return;
     		}
     		
-    		//성별 선택 없으면 서브밋 방지
-    		if($(':radio').is(':checked')==false){
+    		//성별 선택 없으면 서브밋 방지 
+    		if($(':radio').is(':checked')==false){  //type 선택은 세미콜론으로
     			alert('성별은 필수입니다');
     			event.preventDefault();
     			return;
@@ -190,7 +179,7 @@
     		}
     		
     		//이용약관 동의, 서비스 동의 없으면 서브밋 방지 
-    		if($('#terms').is(':checked')==false || $('#service').is(':checked')==flase){
+    		if($('#terms').is(':checked')==false || $('#service').is(':checked')==false){
     			alert('이용약관과 서비스 동의를 해야합니다');
     			event.preventDefault();
     			return;
