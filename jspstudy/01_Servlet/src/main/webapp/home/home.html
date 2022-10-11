@@ -3,23 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
 <script src="../js/jquery-3.6.1.min.js"></script>
+</head>
 
 <body>
 
-	<form action="/01_Servlets/Weekend01">
-	<input type="text" name="to" placeholder="보내는사람">
-	<br>
-	<input type="text" name="form" placeholder="받는 사람">
-	<br>
-	<textarea name="content" rows="3" cols="21" placeholder="보낼 내용"></textarea>
-	<br>
-	<button>편지쓰기</button>
+	<div>
+	<button id="btn1">클릭</button>
+	</div>
+	<div id="box1"></div>
+	<script>
+	
+	$('#btn1').on('click',function(event){
+		$('#btn1').empty();
+		$.ajax({
+			type : 'GET',
+			url : '/01_Servlet/Weekend01?name=정은지&age=24',
+			dataType : 'text',
+			succeess : function(resData){
+				$('#box1').text(resData)
+			},
+			error : function(jqXHR){
+				
+			}
+		});	
+	});
 	
 	
-	</form>
 	
+	</script>
 	
 	
 	

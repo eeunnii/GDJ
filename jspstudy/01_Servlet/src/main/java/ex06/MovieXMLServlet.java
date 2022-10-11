@@ -16,11 +16,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/MovieServlet")
-public class MovieServlet extends HttpServlet {
+@WebServlet("/MovieXMLServlet")
+public class MovieXMLServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public MovieServlet() {
+	public MovieXMLServlet() {
 		super();
 
 	}
@@ -54,7 +54,6 @@ public class MovieServlet extends HttpServlet {
 		try {
 			url = new URL(apiURL);
 			con = (HttpURLConnection) url.openConnection();
-
 		} catch (MalformedURLException e) { // 잘못된 형태의 url일때 뜸. 주소 틀렸을 때
 			response.setContentType("text/plain; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -69,10 +68,10 @@ public class MovieServlet extends HttpServlet {
 
 		// API 요청
 		try {
-			// 요청 메소드
+			// 요청 메소드 // Method Setting(GET/POST)
 			con.setRequestMethod("GET");
 			// 요청 헤더
-			con.setRequestProperty("X-Naver-Client-Id", clientId);
+			con.setRequestProperty("X-Naver-Client-Id", clientId); // key, vaule
 			con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
 		} catch (IOException e) {
 			response.setContentType("text/plain; charset=UTF-8");

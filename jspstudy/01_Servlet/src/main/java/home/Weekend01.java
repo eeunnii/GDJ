@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -16,6 +17,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONObject;
+import org.json.XML;
 
 
 @WebServlet("/Weekend01")
@@ -33,54 +37,25 @@ public class Weekend01 extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String clientId = "_48qz3Z7EcTkgD6lEtVx";
-		String clientSecret = "_fp9SsfDX0";
-		
 		request.setCharacterEncoding("UTF-8");
-		String query = request.getParameter("UTF-8");
-		String display = request.getParameter("display");
+		String name = request.getParameter("name");
+		String age = request.getParameter("age");
 		
-		try {
-			query = URLEncoder.encode(query, "UTF-8");
-		}catch(UnsupportedEncodingException e) {
-			response.setContentType("text/plain; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("검색어 인코딩 실패");
-			out.close();
-		}
+		JSONObject obj = new JSONObject();
+		obj.put("name", name);
+		obj.put("age", age);
 		
+		JSONObject person = new JSONObject();
+		obj.put("person",obj);
 		
+		String xmldata = XML.toString(person);
 		
-		String apiURL = "https://openapi.naver.com/v1/search/movie.xml?&query="+query+"&display="+display;
-		URL url = null;
-		HttpURLConnection con = null;
+		response.setContentType("application/xml; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println(xmldata);
+		out.close();
 		
-		try {
-			url = new URL(apiURL);
-			con = (HttpURLConnection)url.openConnection();
-		}catch(MalformedURLException e) {
-			response.setContentType("text/plain; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("API URL이 잘못되었습니다.");
-			out.close();
-		}catch(IOException e) {
-			response.setContentType("text/plain; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("API 연결이 실패하였습니다.");
-			out.close();
-		}
-		
-		try {
-			con.setRequestMethod("GET");
-			con.setRequestProperty("X-Naver-Client-Id", clientId);
-			con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
-			
-		}catch(IOException e) {
-			
-		}
-		
-		
-		
+
 
 	}
 		
