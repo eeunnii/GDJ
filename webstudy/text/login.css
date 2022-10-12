@@ -9,6 +9,10 @@
 a{
     text-decoration: none;
     color: #000000; /*실제 프로젝트할 때는 회색으로 쓰기*/
+    width: 460px;
+}
+body{
+    background-color: #F5F6F7;
 }
 .container {
     width: 460px;
@@ -19,17 +23,19 @@ header{
      padding: 100px 0 50px;
 }
 .gubun_desc{
+    font-size: 13px;
     font-weight: 900;
 }
 .gubun {
     margin-bottom: 5px;
+    font-size: 13px;
 }
 .input_area input {
     width: 100%;
     height: 50px;
     padding: 0 10px;
     margin-bottom: 5px;
-    border: 2px solid #007700;
+    border: 2px solid #00FF00;
     outline: none;   /* 0도 가능 */
 }
 .input_area input:focus {
@@ -40,7 +46,7 @@ header{
     width: 100%;
     height: 60px;
     margin: 15px 0;
-    background-color: #007700;
+    background-color: #00FF00;
     color: #ffffff;
     font-weight: 900;
     text-align: center;
@@ -75,5 +81,6 @@ footer {
     background-color: #007777;
     color: #ffffff;
     margin: 10px auto;
-    
 }
+
+

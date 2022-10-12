@@ -1,4 +1,4 @@
-package ex05;
+package ex06_ajax;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,20 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
-import org.json.XML;
 
 
-@WebServlet("/XMLservlet")
-public class XMLServlet extends HttpServlet {
+@WebServlet("/JSONServlet")
+public class JSONServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
  
-    public XMLServlet() {
+    public JSONServlet() {
         super();
 
     }
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		//요청
 		request.setCharacterEncoding("UTF-8");
 		
@@ -36,31 +37,16 @@ public class XMLServlet extends HttpServlet {
 		obj.put("name", name);
 		obj.put("age", age);
 		
-		JSONObject person = new JSONObject();
-		person.put("person",obj);
-		
-		//응답할 JSON 객체를 XML로 변환하기 
-		String responseXML = XML.toString(person);
-		
-		/*
-		<person>
-			<name>민경태</name>
-			<age>45</age>
-		</person>
-	    */
-		
 		// 응답
-		response.setContentType("application/xml; charset=UTF-8");
+		response.setContentType("application/json; charset=UTF-8");
 		
 		PrintWriter out = response.getWriter();
-		out.println(responseXML);  // 응답데이터는 XML
+		out.println(obj.toString());  // 응답데이터는 텍스트 처리된 JSON객체
 		out.close();
-
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		doGet(request, response);
 	}
 

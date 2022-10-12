@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <button id="btn">전송</button> -->
+    <script>
+        // // 고전 이벤트 모델
+        // function fn1(){
+        //     alert('전송합니다');
+        // }
+        // document.getElementById('btn').onclick=fn1;
+        // // 표준 이벤트 모델
+        // function fn2(){
+        //     alert('전송합니다');
+        // }
+        // document.getElementById('btn').addEventListener('click',fn2);
+    </script>
+
+        <!-- 인라인이벤트모델 -->
+        <!-- <button id="btn" onclick="fn3()">전송</button> -->
+        <script>
+            //  function fn3() {
+            //     alert('전송합니다');
+            // }           
+        </script>
+
+
+        <button id="to_site">이동</button>
+        <script>
+
+            function google(){
+                location.href = "https://www.google.com/"
+            };
+
+            document.getElementById('to_site').onclick=google;
+
+        </script>
+
+
+
+</body>
+</html>
