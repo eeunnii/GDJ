@@ -3,11 +3,13 @@ package home;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/Weekend02")
 public class Weekend02 extends HttpServlet {
@@ -20,16 +22,12 @@ public class Weekend02 extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.setCharacterEncoding("UTF-8");
+		ServletContext ctx = getServletContext();
+		int a = (int)ctx.getAttribute("a");
+		HttpSession session = request.getSession();
+		int b = (int)session.getAttribute("b");
 		
-		String name = request.getParameter("name");
-		String age = request.getParameter("age");
 		
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		out.println("<h1>이름 : " + name+"</h1>");
-		out.println("<h1>나이 : " + age+"</h1>");
-		out.close();
 		
 		
 	}

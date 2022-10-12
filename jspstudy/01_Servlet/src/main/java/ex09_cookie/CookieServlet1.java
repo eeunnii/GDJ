@@ -38,7 +38,7 @@ public class CookieServlet1 extends HttpServlet {
 		
 		// 쿠키 유효시간 설정
 		cookie1.setMaxAge(60);  // 1분간 유효한 쿠키
-		cookie2.setMaxAge(1296000);   //15일짜리 쿠키. 쿠키동의하면 광고 계속 뜸??
+		cookie2.setMaxAge(60 * 60 * 24 * 15);   //15일짜리 쿠키. 쿠키동의하면 광고 계속 뜸??
 		
 		// 클라이언트 PC에 쿠키 저장하기
 		response.addCookie(cookie1);

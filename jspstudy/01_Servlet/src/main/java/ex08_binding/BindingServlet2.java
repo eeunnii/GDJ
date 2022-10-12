@@ -33,12 +33,12 @@ public class BindingServlet2 extends HttpServlet {
 		int b = (int)session.getAttribute("b");
 		
 		// HttpServletRequest
-		Object c = request.getAttribute("c");
+		Object c = request.getAttribute("c"); // int로 했을 때 nullpointexception나오는데 object로 수정하니까 됨
 		
 		// 응답
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("<h1>a="+a+", b="+b+" ,c="+c+"</h1>");
+		out.println("<h1>a="+a+", b="+b+" , c="+c+"</h1>");
 		out.close();
 	}
 

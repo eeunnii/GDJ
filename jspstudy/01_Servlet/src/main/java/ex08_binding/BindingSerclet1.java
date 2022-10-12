@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-@WebServlet("/BindingSerclet1")
+@WebServlet("/BindingServlet1")
 public class BindingSerclet1 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -49,7 +49,7 @@ public class BindingSerclet1 extends HttpServlet {
 		ctx.setAttribute("a", 1);
 		
 		// HttpSession 
-		HttpSession session = request.getSession();   // ★ 중요
+		HttpSession session = request.getSession();   // ★ 중요  // 변수명은 session을 주로 씀
 		session.setAttribute("b", 2);  // session 데이터 저장 가능
 		
 		// HttpServletRequest
@@ -65,7 +65,7 @@ public class BindingSerclet1 extends HttpServlet {
 		
 		// 포워드(컨텍스트패스 내부 이동)
 		// 1. request를 전달함
-		// 2. 서버 내부 이동이므로 경로 작성 시 컨텍스트패스는 작성하지 않음
+		// 2. ※서버 내부 이동※이므로 경로 작성 시 컨텍스트패스는 작성하지 않음
 		// request.getRequestDispatcher("/BindingServlet2").forward(request, response);
 		// mvc할 때 써서 잊어버리면 안됨
 		

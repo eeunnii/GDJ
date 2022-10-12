@@ -23,28 +23,34 @@ public class CookieServlet2 extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// 응답
+		// 1. 응답 타입 및 응답 스트림
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
 		//쿠키 가져오기 
-		Cookie[] cookies = request.getCookies();
+		Cookie[] cookies = request.getCookies(); // getCookies() 배열을 가져옴
 		
 		//전체 쿠키 확인
-		for(int i=0; i<cookies.length; i++) {
-			out.println("<h1>쿠키이름 :"+cookies[i].getName()+"</h1>");
-			out.println("<h1>쿠키값 :"+URLDecoder.decode(cookies[i].getValue(),"UTF-8")+"</h1>");
-		}
-		
-		// 원하는 쿠키만 확인
-		for(int i=0; i<cookies.length; i++) {
-			if(cookies[i].getName().equals("name")) {
+		if(cookies != null) {
+			for(int i=0; i<cookies.length; i++) {
 				out.println("<h1>쿠키이름 :"+cookies[i].getName()+"</h1>");
 				out.println("<h1>쿠키값 :"+URLDecoder.decode(cookies[i].getValue(),"UTF-8")+"</h1>");
+			}	
+		}
+
+		// 원하는 쿠키만 확인
+		if(cookies != null) {
+			for(int i=0; i<cookies.length; i++) {
+				if(cookies[i].getName().equals("name")) {
+					out.println("<h1>쿠키이름 :"+cookies[i].getName()+"</h1>");
+					out.println("<h1>쿠키값 :"+URLDecoder.decode(cookies[i].getValue(),"UTF-8")+"</h1>");
+				}
 			}
 		}
-			
-		out.println("<a href=\"01_Servlet/CookieServlet3\">이동</a>");
+		
+		// 5. 응답	
+		out.println("<a href=\"/01_Servlet/CookieServlet3\">이동</a>");
+		out.close();
 		
 	}
 
