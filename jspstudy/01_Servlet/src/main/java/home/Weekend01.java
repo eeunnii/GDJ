@@ -1,14 +1,14 @@
 package home;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 
 @WebServlet("/Weekend01")
@@ -20,16 +20,13 @@ public class Weekend01 extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ServletContext ctx = getServletContext();
-		ctx.setAttribute("a", 1);
+		Cookie cookie1 = new Cookie("name", "정은지");
+		Cookie cookie2 = new Cookie("adress", URLEncoder.encode("경기도 금천구","UFT-8"));
 		
-		HttpSession session = request.getSession();
-		session.setAttribute("b", 2);
+		response.addCookie(cookie1);
+		response.addCookie(cookie2);
 		
-		request.setAttribute("c", 3);
-		
-		response.sendRedirect("/01_Servlet/BindingServlet2");
-		
+		response.sendRedirect("/01_Servlet/Weekend02");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
