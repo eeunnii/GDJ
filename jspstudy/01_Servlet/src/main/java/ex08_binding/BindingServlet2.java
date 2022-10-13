@@ -15,6 +15,9 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/BindingServlet2")
 public class BindingServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+//	application.setAttribute
+	//request.setAttribute
        
 
     public BindingServlet2() {

@@ -69,6 +69,7 @@ public class UploadServlet extends HttpServlet {
 				/* 인코딩 */             "UTF-8",
 				/* 파일명 중복 처리*/    new DefaultFileRenamePolicy() // 파일이름이 똑같으면 파일 이름을 바꿔줌 - 기본 정책이 파일 뒤에 숫자 붙여주는거임
 																	   //스프링에서는 파일이름중복을 위해서 랜덤으로 저장하게함
+																	   // 파일이름기본정책
 				);
 		
 		// 5. 업로드 결과 
@@ -92,7 +93,10 @@ public class UploadServlet extends HttpServlet {
 		out.println("<h3>파일 크기 : "+strSize+"</h3>");
 		out.println("<h3>최종 수정일 : "+uploader+"</h3>");
 		out.println("<h3> : "+strLastModified+"</h3>");
+		out.println("<a href=\"/01_Servlet/FileListServlet\">파일목록</a>");
 		out.close();
+		
+		
 	}
 
 
