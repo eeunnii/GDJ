@@ -68,15 +68,15 @@ public class UploadServlet extends HttpServlet {
 				/* 최대 크기 */          1024*1024*10,
 				/* 인코딩 */             "UTF-8",
 				/* 파일명 중복 처리*/    new DefaultFileRenamePolicy() // 파일이름이 똑같으면 파일 이름을 바꿔줌 - 기본 정책이 파일 뒤에 숫자 붙여주는거임
-																	   //스프링에서는 파일이름중복을 위해서 랜덤으로 저장하게함
+																	   // 스프링에서는 파일이름중복을 위해서 랜덤으로 저장하게함
 																	   // 파일이름기본정책
 				);
 		
 		// 5. 업로드 결과 
 		// 일반 리퀘스트인 HttpServletRequest는 사용할 수 없음
 		String uploader = multipartRequest.getParameter("uploader");
-		String originalNmae = multipartRequest.getOriginalFileName("fileName");
-		String filesystemName = multipartRequest.getFilesystemName("fileName");  //  깃허브
+		String originalNmae = multipartRequest.getOriginalFileName("fileName");	// 원래 이름
+		String filesystemName = multipartRequest.getFilesystemName("fileName"); // 저장된 이름
 		File file = multipartRequest.getFile("filename");
 		long size = file.length(); // 파일크기(바이트)
 		String strSize = new DecimalFormat("#,##0").format(size);  // java.text 클래스

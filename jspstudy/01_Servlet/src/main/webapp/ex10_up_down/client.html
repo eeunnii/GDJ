@@ -18,16 +18,9 @@
 		<form action="/01_Servlet/UploadServlet"
 			  method="POST"
 		      enctype="multipart/form-data">
-		      <div>
-		      	<input type="text" name="uploader" placeholder="작성자">
-		      </div>
-		      <div>
-		      
-		      	<input type="file" name="filename" id="filename">
-		      </div>
-		      <div>
-		      	<button>첨부</button>
-		      </div>
+		      <div><input type="text" name="uploader" placeholder="작성자"></div>
+		      <div><input type="file" name="filename" id="filename"></div>
+		      <div><button>첨부</button></div>
 		 </form>     
 	</div>
 	
@@ -42,6 +35,8 @@
 			var filename = this.value;  // 첨부된 파일명 this.value == $(this).val()
 			var extension = filename.substring(filename.lastIndexOf('.')+1).toLowerCase();  // 확장자가 jpg여도 대소문자를 구분해야함
 			var accepts = ['jpg','jpeg','png','gif','tif']; // 허용할 확장자
+			
+			//inArray : 배열에서 특정 객체를 찾으면 해당 인덱스 번지 값을 리턴 (없는 경우 -1)
 			if($.inArray(extension, accepts) == -1){ //extension이 accepts에 없으면 -1이 반환됨
 				alert('확장자가 jpg, jpeg, png, gif, tif인 파일만 첨부할 수 있습니다.');
 				this.value = ''; //첨부된 파일이 없어짐, $(this).val('')
