@@ -72,6 +72,9 @@ public class UploadServlet extends HttpServlet {
 																	   // 파일이름기본정책
 				);
 		
+		
+		
+		
 		// 5. 업로드 결과 
 		// 일반 리퀘스트인 HttpServletRequest는 사용할 수 없음
 		String uploader = multipartRequest.getParameter("uploader");
