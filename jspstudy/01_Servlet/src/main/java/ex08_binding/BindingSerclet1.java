@@ -34,7 +34,7 @@ public class BindingSerclet1 extends HttpServlet {
 		// 1. 속성(Attribute)에 정보를 저장하고 사용하는 것(일반 자바 변수를 말하는거 아님) -- 어디에 저장하느냐에 따라서 사용가능한 스코프가 달라짐
 		// 2. 3개 영역을 사용
 		//		1) ServletContext          : 애플리케이션(프로젝트) 종료 전까지 접근해서 사용 가능 // ex)방문자수 // 애플리케이션 종료 : 서비스 종료
-		//   ServletContext이 jsp에선 application
+		// 									  ServletContext이 jsp에선 application
 		// 		2) HttpSesstion            : 브라우저 종료 전까지 접근해서 사용 가능 // ex)로그인
 		//      3) HttpServletRequest      : 하나의 요청.응답 사이클 내에서 접근해서 사용 가능
 		// 3. 사용 메소드  (request.~ 3개 사용가능)

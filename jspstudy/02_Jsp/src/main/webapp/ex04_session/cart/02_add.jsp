@@ -39,3 +39,4 @@
 	}else{
 		location.href='01_form.jsp';
 	}
+</script>

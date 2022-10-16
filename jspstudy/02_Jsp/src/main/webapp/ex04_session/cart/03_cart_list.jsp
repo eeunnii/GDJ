@@ -12,7 +12,7 @@
 
 <%
 	//session에 저장된 cart 가져와서 StringBuilder에 저장
-	List<Map<String, Object>> cart = (List<Map<String, Object>>)ssesion.
+	List<Map<String, Object>> cart = (List<Map<String, Object>>)session.getAttribute("cart");
 	StringBuilder sb = new StringBuilder();
 	if(cart==null){
 		sb.append("<div>장바구니가 비었습니다.</div>");
@@ -27,7 +27,7 @@
 <%if(cart != null){ %>
 <div>담은 제품 : <%=cart.size() %>개</div>
 <% } %>
-<div><%=sb.toString %></div>
+<div><%=sb.toString() %></div>
 
 <hr>
 

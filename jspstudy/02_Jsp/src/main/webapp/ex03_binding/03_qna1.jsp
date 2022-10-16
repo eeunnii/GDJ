@@ -29,10 +29,14 @@ width : 100px;
 		pageContext.setAttribute("today", today);
 	%>
 	
-	<%-- 실무에선 contextpath 변수처리함 <%=request.getContextPath()%>--%> 
+	<%-- 실무에선 contextpath 변수처리함 
+	"/02_Jsp/ex03_binding/03_qna2.jsp" 
+	"<%=request.getContextPath()%>/ex03_binding/03_qna2.jsp"
+	위 아래 동일
+	--%> 
 	
 	<div>
-		<form method="POST" action="/02_Jsp/ex03_binding/03_qna2.jsp">
+		<form method="POST" action="<%=request.getContextPath()%>/ex03_binding/03_qna2.jsp">
 			<label for="created_date">
 				<span>작성일</span>
 				<input type="text" name="created_date" id="created_date" value="${today}">

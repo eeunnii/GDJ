@@ -9,8 +9,8 @@
 <body>
 
 	<!-- 1. 가능한 작업
-		Java 변수를 JavaScript에서 표현식으로 사용할 수 있다.	
-	 -->
+		Java 변수를 JavaScript에서 표현식으로 사용할 수 있다.	-->
+	 
 	 <%
 	 	String name = "정은지";
 	 	int age = 24;

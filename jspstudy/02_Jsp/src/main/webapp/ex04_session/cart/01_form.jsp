@@ -17,7 +17,6 @@
 				<option value="세탁기">세탁기</option>
 				<option value="컴퓨터">컴퓨터</option>
 				<option value="스타일러">스타일러</option>
-				<option value=""></option>
 			</select>
 			<input type="text" name="amount" size="4">개
 			<button>Add Cart</button>

@@ -12,7 +12,7 @@
 	// 참고로.
 	// forward는 서버 내부 경로로 이동하기 때문에 전체 URL을 처리할 수 없다.
 	// 아래와 같이 처리하더라도 오류가 발생한다.
-	// request.getRequestDispatcher(site).forward(request, response);
+	// request.getRequestDispatcher(site).f norward(request, response);
 %>
 
 <%-- 다른 풀이. 자바스크립트로 이동하기 --%>

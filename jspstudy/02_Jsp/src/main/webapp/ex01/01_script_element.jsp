@@ -15,7 +15,7 @@
 	// 선언부(Declaration) : 전역 변수 선언, 메소드 정의 (느낌표 들어가면 선언부)
 	public int getSum(int begin, int end){
 		int sum = 0;
-		for (int n=begin;  n<=end; n++){
+		for (int n=begin; n<=end; n++){
 			sum += n;
 		}
 		return sum;
@@ -38,7 +38,7 @@
 	<!-- 연습. select 태그 만들기 
 		<select name="month">
 			<option value="">월 선택</option>
-			<option valus="">1월</option>
+			<option value="">1월</option>
 			...
 			<option value="12">1월</option>
 		</select>
@@ -53,8 +53,13 @@
 		</select>
 	</div>
 	
-	
-	<!-- 연습, 테이블 만들기 깃허브 보기 -->
+	<!--
+		연습. 테이블 만들기
+		순번	이름	나이
+		1		정숙	25
+		2		영희	26
+		3		영숙	27
+	-->
 	<% 
 		String[] names = {"정숙","영희", "영숙"};
 		int[] ages = {25,26,27};
@@ -69,11 +74,11 @@
 			</tr>	
 		</thead>
 		<tbody>
-			<% for(int s=0; s<names.length; s++) { %>
+			<% for(int i = 0; i < names.length; i++) { %>
 				<tr>
-					<td><%=s+1%></td>
-					<td><%=names[s]%></td>
-					<td><%=ages[s]%></td>
+					<td><%=i+1%></td>
+					<td><%=names[i]%></td>
+					<td><%=ages[i]%></td>
 				</tr>
 			<% } %>
 		</tbody>

@@ -21,9 +21,7 @@
 
 	<%
 		Date date = new Date();
-		String today = new SimpleDateFormat("yyyy-MM-dd").format(date);
-		
-		// today의 EL 사용을 위해서 속성으로 저장
+		String today = new SimpleDateFormat().format(date);
 		pageContext.setAttribute("today", today);
 	%>
 

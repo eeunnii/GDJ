@@ -11,7 +11,7 @@
 	String title = request.getParameter("title");
 	String content = request.getParameter("content");
 			
-	// 작성자 ip
+	// 작성자 IP
 	String ip = request.getRemoteAddr();
 	
 	// 파일명

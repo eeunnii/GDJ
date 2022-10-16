@@ -33,10 +33,11 @@
 	<div>a : ${a}</div>
 	<div>b : ${b}</div>
 	<div>c : ${c}</div>
+	<div>d : ${d}</div>
 	
 	<%--
 		2. 우선 순위 
-			1) 같은 이름의 속성이 서로 다른 영역에 저장된 경우 먼저 사용되는
+			1) 같은 이름의 속성이 서로 다른 영역에 저장된 경우 먼저 사용되는 우선순위가 존재함
 			2) pageContext > request > session > application 순으로 우선 순위가 높음
 			3) 각 영역을 지정하는 표현언어(EL)의 내장 객체가 존재함
 				(1) pageScope
@@ -49,14 +50,14 @@
 	 	application.setAttribute("movie", "기생충");	// 우선순위 낮음
 	 	session.setAttribute("movie", "터미네이터");
 	 	request.setAttribute("movie", "아바타");
-	 	pageContext.setAttribute("movie", "미나리"); // 우선순위가 높은게 pageContext임
+	 	pageContext.setAttribute("movie", "미나리"); // 우선순위 높음
 	 %>
 	 
 	 <div>application's movie : ${movie}</div>
 	 <div>session's movie : ${movie}</div>
 	 <div>request's movie : ${movie}</div>
 	 <div>pageContext's movie : ${movie}</div>
-	 <%-- 위 값 출력해보면 동일한 값 4개 나옴, 덮어쓰기 개념아님. 원하는 값 꺼내쓰기 --%>
+	 <%-- 위 값 출력해보면 동일한 값 4개 나옴, 덮어쓰기 개념아님. 원하는 값 꺼내써야함 --%>
 	
 	<hr>
 	
