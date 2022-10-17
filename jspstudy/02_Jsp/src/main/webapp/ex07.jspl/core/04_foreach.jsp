@@ -14,22 +14,27 @@
 </head>
 <body>
 
-	<%-- 1. 1~5 --%>
+	<%-- 1. 1 ~ 5 --%>
 	<c:forEach var="n" begin="1" end="5" step="1">
-		<div>${n}</div>
+		${n}&nbsp;
 	</c:forEach>
 	
 	<hr>
 	
-	<%--2. 5~1 --%>
-	<c:forEach var="n" begin="1" end="5" step="1" >
-	<div>${6-n}</div>
+	<%-- 2. 5 ~ 1 --%>
+	<c:forEach var="n" begin="1" end="5" step="1">
+		${6 - n}&nbsp;
 	</c:forEach>
 	
 	<hr>
 	
 	<%--3. <select> 1월~12월 --%>
-	
+	<select name="month">
+		<option value="">월 선택</option>
+		<c:forEach var="m" begin="1" end="12" step="1">
+			<option value="${m}">${m}월</option>
+		</c:forEach>
+	</select>	
 	
 	
 	<%--4. 배열 // varStatues 배열의 인덱스를 꺼내서 선언하고 싶으면 써야함--%>
@@ -37,7 +42,7 @@
 		String[] menus = {"튀김","떡볶이","순대"};
 		pageContext.setAttribute("menus", menus);
 	%>
-	<c:forEach var="menu" items="${menues}" varStatues="vs">
+	<c:forEach var="menu" items="${menues}" varStatus="vs">
 		인덱스 : ${vs.index},  순번 : ${vs.count}, 배열요소 : ${menu}<br>
 	</c:forEach>
 	
@@ -70,16 +75,24 @@
 		Board board = new Board();
 		board.setBoardNo(1);
 		board.setTitle("언제");
-		board.getHit(100);
+		board.setHit(100);
 		pageContext.setAttribute("board", board);
 	%>
-	${board.boardNo}, ${board.title}, ${board.hit}<hr>
+	${board.boardNo}, ${board.title}, ${board.hit}<br>
+	${board.getBoardNo()}, ${board.getTitle()}, ${board.getHit()}<br>
 	
 	<%--${board.title}은 ${board.getTitle()}을 자동으로 호출한다 그래서 게터세터없으면 오류남 // bin 만들때 게터세터 기본적으로 만들어야함--%>
 	
 	<%--
 		문제. 임의의 Board 객체를 3개 저장한 리스트 
 	 --%>
+	<%
+		List<Board> boards = new ArrayList<>();
+		boards.add(new Board(100, "질문입니다", 2));
+		boards.add(new Board(200, "  [Re] 저도 궁금해요", 1));
+		boards.add(new Board(300, "답변입니다", 5));
+		pageContext.setAttribute("boards", boards);
+	%>
 	 <table border="1">
 	 	<thead>
 	 		<tr>
@@ -98,9 +111,7 @@
 					<td>${board.hit}</td>
 				</tr>
 			 </c:forEach>
-		
 		</tbody>
-	 
 	 </table>
 	
 	

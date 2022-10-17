@@ -21,7 +21,6 @@
 	<c:when test="${age<=19}">고등학생</c:when>
 	<c:when test="${age<=00}">성인</c:when>
 	<c:otherwise>인간이아님(100살초과)</c:otherwise>
-	
 </c:choose>
 
 </body>
