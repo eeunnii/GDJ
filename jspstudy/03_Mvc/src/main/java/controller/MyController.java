@@ -34,7 +34,7 @@ public class MyController extends HttpServlet {
 		response.setContentType("txet/html; charset=UTF-8");
 		
 		// 요청확인 (/today.do인지 /now.do인지 )
-		String requestURI = request.getRequestURI();						 // requestURI : /02_Mvc/today.do 또는 /03_Mvc/now.do
+		String requestURI = request.getRequestURI();						 // requestURI : /03_Mvc/today.do 또는 /03_Mvc/now.do
 		String contextPath = request.getContextPath(); 					   	 // contextPath : /03_Mvc
 		String command = requestURI.substring(contextPath.length()+1); 		 // command : today.do 또는 now.do
 		
@@ -52,7 +52,6 @@ public class MyController extends HttpServlet {
 		case "today.do" : 
 			myService = new Todayservice();
 			break;
-		// 비즈니스 로직 필요 없는 단순 이동의 경우
 		case "now.do" : 
 			myService = new NowService();
 			break;
@@ -73,7 +72,7 @@ public class MyController extends HttpServlet {
 		
 		//처리를 마치고 이동함. 이동의 개념.(리다이렉트, 포워드)
 		// 1. actionForward != null : 리다이렉트 또는 포워드
-		// 2. actionForward == null : reponse로 응답한 경우 또는 ajax 처리
+		// 2. actionForward == null : response로 응답한 경우 또는 ajax 처리
 		if(actionForward != null) {
 			if(actionForward.isRedirect()) {
 				response.sendRedirect(actionForward.getView());
@@ -81,9 +80,7 @@ public class MyController extends HttpServlet {
 				request.getRequestDispatcher(actionForward.getView()).forward(request, response);				
 			}
 		}
-		
-		
-		request.getRequestDispatcher(actionForward.getView()).forward(request, response); // today를 보내는거임 
+		//request.getRequestDispatcher(actionForward.getView()).forward(request, response); // today를 보내는거임 
 		// "result.jsp"이동하고자 하는 view를 변수처리해보기 
 		//actionForward.getView() 는 변수처리 된 상태
 	}

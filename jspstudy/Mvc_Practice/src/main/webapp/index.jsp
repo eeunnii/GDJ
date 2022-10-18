@@ -9,6 +9,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1><a href="${contextPath}">도형의 크기 구하기</a></h1>
+	<h1><a href="${contextPath}/input.do">도형의 크기 구하기</a></h1>
 </body>
 </html>
