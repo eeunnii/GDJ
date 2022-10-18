@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import common.ActionForward;
 import service.BoardAddService;
 import service.BoardDetailService;
+import service.BoardEditService;
 import service.BoardListService;
+import service.BoardModifyService;
 import service.BoardService;
 
 
@@ -55,12 +57,19 @@ public class Boardcontroller extends HttpServlet {
 		case "board/add.do" : 
 			service = new BoardAddService();
 			break;
+		case "board/edit.do" : 
+			service = new BoardEditService();
+			break;
+		case "board/modify.do" : 
+			service = new BoardModifyService();
+			break;
 		// 비즈니스 로직이 없는 경우 단순이동한다. 
 		case "board/write.do" : 
 			af = new ActionForward();
 			af.setView("/board/write.jsp");
 			af.setRedirect(false);  //  단순이동은 forward
 			break;
+	
 		}
 		
 		// Service 실행

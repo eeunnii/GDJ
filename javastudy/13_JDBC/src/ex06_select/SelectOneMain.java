@@ -44,20 +44,14 @@ public class SelectOneMain {
 			
 			// 쿼리문 실행 
 			rs = ps.executeQuery();
-			
-			
-		
-			//rs.next() - 반환값이 트루아님 펄스 rs.next 호출하면 row를 선택한 상태가 됨, rs.getint, rs.getString 등으로 값 반환기 
-			//제일먼저 해야되는거 : rs한테 찾아보라고 시킴. rs.next를 해야 rs가 움직임. rs 아무것도 가리키지 ㄴ않다가 rs호출하면 움직임
-			
-			
-			
-			
+
 			//쿼리문의 조회결과를 행 단위로 스캔하는 rs 객체 
 			// rs.next() 메소드 호출로 조회 결과를 스캔할 수 있음
 			// rs.next() 메소드 호출 1건 = 1행 스캔
-			// rs.next() 메소드는 스캔 성공가혐 true를 반환, 스캔실패시 false를 반환 
+			// rs.next() 메소드는 스캔 성공 시 true, 스캔실패시 false를 반환 
 			
+			// rs.next() - 반환값이 트루아님 펄스 rs.next 호출하면 row를 선택한 상태가 됨, rs.getint, rs.getString 등으로 값 반환기 
+			// 제일먼저 해야되는거 : rs한테 찾아보라고 시킴. rs.next를 해야 rs가 움직임. rs 아무것도 가리키지 ㄴ않다가 rs호출하면 움직임
 			
 			// 조회결과 1 개인 경우 
 			// re.next() 메소드 호출은 1번
@@ -112,18 +106,10 @@ public class SelectOneMain {
 			board.setHit(hit);
 			board.setCreate_date(create_date);
 			
-			
-			
 			// 확인
 			System.out.println(board);  // Board 클래스의 toString() 메소드 동작
 			
-			
 			// Board 클래스의 toString() 메소든 입력 
-			
-			
-			//확인
-			
-		
 			
 			}else {
 				System.out.println("조회 결과가 없습니다");
@@ -133,8 +119,6 @@ public class SelectOneMain {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
-			
-			
 			try {
 				//con, ps, rs 닫기 
 		         // con, ps, rs 닫기/finally 안에서 close할 수 없어서 try/ 선언해 둔 데이터를 모두 닫는다
@@ -145,24 +129,7 @@ public class SelectOneMain {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-			}
-			
-			
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		}	
 
 	}
 

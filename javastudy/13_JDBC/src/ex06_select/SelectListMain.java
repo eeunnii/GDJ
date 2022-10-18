@@ -12,9 +12,7 @@ import domain.Board;
 public class SelectListMain {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
-		
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -43,11 +41,7 @@ public class SelectListMain {
 			
 			//다중행이 조회되기 때문에 while문을 이용하여 
 			//모든 행을 순차적으로 스캔
-			
-			
-			
 			while(rs.next()) {
-				
 				//rs가 가리키는 행 정보를 Board 객체로 생성
 				Board board = new Board();
 				board.setBoard_no(rs.getInt("BOARD_NO"));
@@ -55,8 +49,6 @@ public class SelectListMain {
 				board.setContent(rs.getString("CONTENT"));
 				board.setHit(rs.getInt("HIT"));
 				board.setCreate_date(rs.getDate("CREATE_DATE"));
-				
-				
 				
 				//Board 객체를  ArrayList 에 저장한다 
 				boards.add(board);
@@ -69,17 +61,9 @@ public class SelectListMain {
 			}
 			
 			/*
-			 * for(Board board : boards)
-			 * 	syso (board)
-			 */
-			
-			
-			
-			
-			
-			
-			
-			
+			for(Board board : boards)
+				System.out.println(board);
+			*/
 			
 		}catch(Exception e) {
 			e.printStackTrace();

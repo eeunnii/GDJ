@@ -12,16 +12,11 @@ import java.sql.ResultSet;
 public class SelectOneMain2 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		
-		
-		
+
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		
-		
+
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -48,11 +43,6 @@ public class SelectOneMain2 {
 				int count = rs.getInt("COUNT(*)");
 				System.out.println(count);
 			}  // 집계 함수의 결과 : count 집계함수의 결과는 else 처리할 필요가 없음 
-			
-			
-			
-			
-			
 			
 		
 		}catch(Exception e) {

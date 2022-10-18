@@ -12,6 +12,11 @@
 <script src="../assets/js/jquery-3.6.1.min.js"></script>
 <script>
 	$(document).ready(function(){
+		
+		$('#btn_edit').click(function(event){
+			location.href='${contextPath}/board/edit.do?board_no=${board.board_no}';	
+		});
+		
 		$('#btn_list').click(function(event){
 			location.href = '${contextPath}/board/list.do';											
 		});
@@ -35,7 +40,7 @@
 		<pre>${board.content} </pre>
 	</div>
 	<div>
-		<input type="button" value="수정" id="btn_modify">
+		<input type="button" value="편집 " id="btn_edit">
 		<input type="button" value="삭제" id="btn_remove">
 		<input type="button" value="목록" id="btn_list">
 	</div>

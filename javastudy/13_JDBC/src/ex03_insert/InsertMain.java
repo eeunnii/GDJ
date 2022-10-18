@@ -10,9 +10,6 @@ import domain.Board;
 public class InsertMain {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-		
 		// 게시판 정보 입력 받아서 BOARD 테이블에 저장하기 
 		
 		
@@ -43,16 +40,12 @@ public class InsertMain {
 		
 		Connection con = null;
 		PreparedStatement ps = null;
-		
-		
-		
-		
+
 		// OracleDriver 클래스 로드
 		// OracleDriver 클래스가 저장된 ojdbc.jar 파일을 Classpath에 등록
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
-			
-			
+	
 			//DB접속 - Connection 객체 생성
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";  //Thin 이 아니고 thin임	//////////데이터베이스마다 주소가 다름 쓰고 있는 오라클의 정확한 버전을 알면 구글링을 통해서 알 수 있음//xe(버전이름)
 			//cafe24 3개월 구매 추천 : 만이천원 안넘음 // 오라클은 비쌈 설치만 한달 해놔도 15만원나옴
@@ -60,14 +53,10 @@ public class InsertMain {
 			String user = "scott";
 			String password = "TIGER";
 			con = DriverManager.getConnection(url, user, password);
-			
-			
-			
+	
 			// 아래문장에서 ? 는 변수라는 뜻임// ? 로 안쓰고 바로 위에 선언한 변수명쓰면 보안에 취약해짐
 			String sql = "INSERT INTO BOARD(BOARD_NO, TITLE, CONTENT, HIT, CREATE_DATE) VALUES (BOARD_SEQ.NEXTVAL, ?, ?, 0, SYSDATE)";
-			
-			
-			
+		
 			// PreparedStatment 객체 생성  - Statement는 보안때문에 안씀 (로그인창의 아이디 비번칸에서 drop같은 쿼리문을 넘길 수 있어서 )
 			ps = con.prepareStatement(sql);
 			
@@ -88,18 +77,8 @@ public class InsertMain {
 			if(result > 0) {									// 1보다 큰거 아니고 0보다 큼 
 				System.out.println("성공");
 			}else {
-				System.out.println("실패");
-				
+				System.out.println("실패");	
 			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -109,10 +88,6 @@ public class InsertMain {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		}
-		
-		
-		
+		}	
 	}
-
 }

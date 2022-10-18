@@ -140,4 +140,22 @@ public class BoardDao {
 		}		//리절트 문은 셀렉트 문에서만 사용가능
 		return result;
 	}
+	
+	public int updateBoard(Board board) {
+		int result = 0;
+		try {
+			con = dataSouce.getConnection();
+			sql = "UPDATE BOARD SET TITLE=?, CONTENT=? WHERE BOARD_NO=?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, board.getTitle());
+			ps.setString(2, board.getContent());
+			ps.setInt(3, board.getBoard_no());
+			result = ps.executeUpdate();  // INSERT문은 executeUpdate() 메소드 사용
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(con, ps, null);
+		}
+		return result;
+	}
 }

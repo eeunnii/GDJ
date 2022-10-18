@@ -86,12 +86,6 @@ PreparedStatment의 로그인 상황
 
 
 
-
-
-
-
-
-
 -- SELECT (★)
 	1. 실행이 executeQuery() 메소드를 이용 
 	2. 실행 결과는 ResultSet 객체이다. 
