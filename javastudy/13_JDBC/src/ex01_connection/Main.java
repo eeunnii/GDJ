@@ -8,18 +8,10 @@ import java.sql.SQLException;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		
-		
+
 		// 1. oracle.jdbc.OracleDriver
 		// 2. oracle.jdbc.driver.OracleDriver 
 		// 둘 중에 하나 사용함 
-		
-		
-		
-		 
-		
 		
 		//oracleDriver 열기(메모리에 로드하기)
 		try {
@@ -44,11 +36,8 @@ public class Main {
 		
 		//DriverManager로부터 Connection 받아오기 드라이버 매니저가 디비접속을 해서 객체를 반환해줌.
 		
-	
-	
 	//connection 종료 
 	//jdbc에서는 connectrion을 닫는 것이 굉장히 중요함
-     
 		try {
 			if(con != null)
 				con.close();

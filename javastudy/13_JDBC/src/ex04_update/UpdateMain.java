@@ -10,10 +10,6 @@ import domain.Board;
 public class UpdateMain {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		
-		
 		
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -21,31 +17,23 @@ public class UpdateMain {
 		try {
 			Scanner sc = new Scanner(System.in);
 			
-			
 			//UPDATE할 게시글의 번호 입력받기 
-	
 			System.out.print("수정할 게시글의 번호를 입력하세요 >>> ");
 			int board_no = sc.nextInt();
 			sc.nextLine();
 			
 			//UPDATE할 게시글의 내용(CONTENT) 입력 받기 
-			
 			System.out.print("수정할 내용을 입력하세요 >>> ");
 			String content = sc.nextLine();
-			
-			
+	
 			sc.close();
 			
 			//UPDATE할 번호+내용을 가진 BOARD 객체 생성 
-			
-			
-			
 			Board board = new Board();
 			board.setBoard_no(board_no);
 			board.setContent(content);
 			
 			// Connection 생성
-			
 			Class.forName("oracle.jdbc.OracleDriver");
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 			String user = "scott";
@@ -67,12 +55,7 @@ public class UpdateMain {
 			ps.setString(1, board.getContent());
 			ps.setInt(2, board.getBoard_no());
 			
-			
-			
 			//쿼리문 실행
-			
-		
-			
 			int result = ps.executeUpdate();
 			
 			if(result >0) {
@@ -80,19 +63,9 @@ public class UpdateMain {
 			}else {
 				System.out.println("실패");
 			}
-			
-			
-			
-			
-			
 
-			
-			
-			
-			
-			
 			//실행 결과 
-			//업데이트 성공, 업데이트 실해 
+			//업데이트 성공, 업데이트 실패
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -104,14 +77,6 @@ public class UpdateMain {
 			}
 		}
 		
-		//UPDATE할 게시글의 번호 입력받기 
-		
-		//UPDATE할 게시글의 내용 입력 받기 
-		
-		
-		
-		
-
 	}
 
 }

@@ -1,7 +1,7 @@
 JDBC
 
 1. JAVA DATABASE CONNECTION
-2. 사용할 클래스 
+2. 사용할 클래스/인터페이스
 
 
 
@@ -36,9 +36,9 @@ JDBC
 		
 	3) CONNECTION : DB접속을 형상화한
 	
-	4)preparedStatment : 쿼리문 실행 (Statment는 보안에 취약해서 안배울거임)
+	4) preparedStatment : 쿼리문 실행 (Statment는 보안에 취약해서 안배울거임)
 	
-	5)ResultSet : select문의 실행결과를 처리하는 (select 의 값 : 1. 어떤 값이다. 2.테이블이다) 테이블 자체를 자바가 받아서 처리하기 위한 클래스
+	5) ResultSet : select문의 실행결과를 처리하는 (select 의 값 : 1. 어떤 값이다. 2.테이블이다) 테이블 자체를 자바가 받아서 처리하기 위한 클래스
 					insert, update, delet를 처리할 구문 X
 					insert, update, delet의 실행결과는 int라서 클래스가 따로 없음. 
 
@@ -50,11 +50,10 @@ JDBC
 1. 특정 쿼리문을 삽입하여 원하는 정보를 탈취하는 방법
 2. 로그인 상황
 	1)SELECT*FROM 회원 WHERE 아이디 = ID AND 비밀번호=PW
-	
-	2)"SELECT*FROM 회원 WHERE 아이디 = ' "+변수1+"AND비밀번호='"+PW+'"				//	STATMENT 버전. -- 보안에 문제 발생 ~*
+	2)"SELECT * FROM 회원 WHERE 아이디='" + id + " AND 비밀번호='" + pw + "'"				//	STATMENT 버전. -- 보안에 문제 발생 ~*
 	3)변수
-		(1) ID : EUN
-		(2)	PW : 'OR 1=1 -- 
+        (1) id : min
+        (2) pw : ' OR 1=1 --
 	4)쿼리에 변수값 대입
 		SELECT*FROM 회원 WHERE 아이디 = 'EUN' AND 비밀번호 = " 'OR 1=1 --'
 								>> FALSE와 TRUE를 AND로 묶이면.. ?FALSE임
@@ -84,12 +83,6 @@ PreparedStatment의 로그인 상황
 --INSERT, UPDATE, DELETE
 1. JDBC 코드가 동일하다. (실행이 EXECUTEUPDATE() 메소드)
 2. AUTO COMMIT 이기 때문에 코드로 COMMIT할 필요가 없다.
-
-
-
-
-
-
 
 
 
