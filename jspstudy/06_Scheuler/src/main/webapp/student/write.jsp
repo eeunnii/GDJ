@@ -9,34 +9,38 @@
 <title>신규학생 등록!</title>
 <script src="../assets/js/jquery-3.6.1.min.js"></script>
 <script>
-	$('#frm_write').submit(function(event){
-		
-		var kor = $('#kor');
-		var eng = $('#eng');
-		var math = $('#math');
-		
-		if(kor.val() == '' || isNaN(kor.val()) || kor.val() <0 || kor.val() >100){
-			alert('국어 점수를 확인하세요.');
-			kor.focus();
-			event.preventDefault();
-			return;
-		}
-		if(eng.val() == '' || isNaN(eng.val()) || eng.val() <0 || eng.val() >100){
-			alert('국어 점수를 확인하세요.');
-			eng.focus();
-			event.preventDefault();
-			return;
-		}else if(math.val() == '' || isNaN(math.val()) || math.val() < 0 || math.val() > 100){
-			alert('수학 점수를 확인하세요.');
-			math.focus();
-			event.preventDefault();
-			return;
-		}
+
+	$(document).ready(function(){
+		$('#frm_write').submit(function(event){
+			
+			var kor = $('#kor');
+			var eng = $('#eng');
+			var math = $('#math');
+			
+			/* NaN 는 Not a Number */
+			if(kor.val() == '' || isNaN(kor.val()) || kor.val() <0 || kor.val() >100){
+				alert('국어 점수를 확인하세요.');
+				kor.focus();
+				event.preventDefault();
+				return;
+			}
+			if(eng.val() == '' || isNaN(eng.val()) || eng.val() <0 || eng.val() >100){
+				alert('국어 점수를 확인하세요.');
+				eng.focus();
+				event.preventDefault();
+				return;
+			}else if(math.val() == '' || isNaN(math.val()) || math.val() < 0 || math.val() > 100){
+				alert('수학 점수를 확인하세요.');
+				math.focus();
+				event.preventDefault();
+				return;
+			}
+		});
+
 		$('#btn_list').click(function(event){
 			location.href = '${contextPath}/student/list.do';
 		});
-	});
-	
+	});	
 
 
 </script>

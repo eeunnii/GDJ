@@ -56,8 +56,6 @@ public class StudentController extends HttpServlet {
 		case "/student/remove.do" :
 			service = new StudentRemoveService();
 			break;
-			
-		
 		}
 		
 		// 선택된 Service 실행

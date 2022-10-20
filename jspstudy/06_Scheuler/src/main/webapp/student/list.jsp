@@ -28,17 +28,7 @@
 		});
 		$('#btn_list').click(function(event){
 			location.href='${contextPath}/student/list.do'
-		})
-		
-		
-		
-		
-
-		
-		
-		
-		
-		
+		})	
 	});
 </script>
 <link rel="stylesheet" href="../assets/css/student.css">
@@ -92,9 +82,8 @@
 							<td>${s.name}</td>
 							<td>${s.kor}</td>
 							<td>${s.eng}</td>
-							<td>${s.math}</td>
-							<td>${s.ave}</td><!-- 소수 두 자리 -->
-							<td><fmt:formatNumber value="${s.ave}" pattern="0.00"/></td>
+							<td>${s.math}</td>		
+							<td><fmt:formatNumber value="${s.ave}" pattern="0.00"/></td><!-- 소수 두 자리 -->
 							<td>${s.grade}</td>
 							<td>
 								<input type="button" value="상세" class="btn_primary" id="btn_primary"> 

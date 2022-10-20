@@ -7,7 +7,7 @@
 <mapper namespace="mybatis.mapper.student">
 
 	<!-- 1. 학생목록 -->
-	<select id="selectAllStudents" resultType="Student">
+	<select id="selectAllStudents" resultType="Student" >
 		SELECT STU_NO, NAME, KOR, ENG, MATH, AVE, GRADE
 			FROM STUDENT
 			ORDER BY STU_NO
