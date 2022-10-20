@@ -6,5 +6,68 @@
   <!-- namespace="mapper의 패키지 경로" -->
 <mapper namespace="mybatis.mapper.student">
 
-
+	<!-- 1. 학생목록 -->
+	<select id="selectAllStudents" resultType="Student">
+		SELECT STU_NO, NAME, KOR, ENG, MATH, AVE, GRADE
+			FROM STUDENT
+			ORDER BY STU_NO
+	</select>
+	
+	<!-- 2. 전체 학생 수  -->
+	<select id="selectAllStudentsCount" resultType="int">
+		SELECT COUNT(*)
+			FROM STUDENT
+	</select>
+	
+	<!-- 3. 전체평균, SELECT AVG(AVE)로 쿼리문을 짜면학생이 한 명도 없을 때 AVG칼럼은 NULL값 반환함, double로 지정한 타입 안맞음 -->
+	<select id="selectAllStudentsAverage" resultType="double">
+		SELECT NVL(AVG(AVE),0)
+		FROM STUDENT 
+	</select>
+	
+	<!-- 4. 학생 등록 -->
+	<insert id="insertStudent" parameterType="Student">
+		INSERT INTO STUDENT
+		    (STU_NO, NAME,KOR, ENG, MATH, AVE, GRADE)
+		 VALUES
+		 	(STUDENT_SEQ.NEXTVAL, #{name},#{kor},#{eng},#{math},#{ave},#{grade})
+	</insert>
+	
+	<!-- 5. 평균범위조회 -->
+	<select id="selectStudentsByAve" parameterType="Map" resultType="Student"> <!-- Map대문자소문자상관없음. 서드쿼리영역에선 객체=map --><!-- Map에는 begin과 end가 들어잇음 -->
+			<![CDATA[
+			SELECT STU_NO, NAME, KOR, ENG, MATH, AVE, GRADE
+			FROM STUDENT
+			WHERE AVE>=#{begin} AND AVE <= #{end} 
+			]]>
+	<!-- WHERE AVE>=#{begin} AND AVE <= #{end} 자바에서 이거 안됨. < 를 부등호로 인식하지 않고 태그여는걸로 인식
+		<![CDATA[]]>안에 넣어주면 문자로 인식함
+	 -->
+	</select>
+	
+	<!-- 6. 평균범위조회 : 개수-->
+	<select id="selectStudentsByAveCount" parameterType="Map" resultType="int">
+		SELECT COUNT(*)
+		FROM STUDENT
+		<![CDATA[
+		WHERE AVE>=#{begin} AND AVE <= #{end} ]]>
+	
+	
+	</select>
+	<!-- 7. 평균범위조회 : 평균-->
+	<select id="selectStudentsByAveAverage" parameterType="Map" resultType="double">
+		SELECT NVL(AVG(AVE),0)
+		FROM STUDENT
+		WHERE AVE>= #{begin} AND AVE <![CDATA[<= #{end} ]]>
+	</select>
+	
+	<!-- 8. 학생삭제 -->
+	<delete id="deleteStudent" parameterType="int">
+	DELETE
+		FROM STUDENT
+		WHERE STU_NO = #{stuNo}
+	</delete>
+	
+	
+	
 </mapper> 

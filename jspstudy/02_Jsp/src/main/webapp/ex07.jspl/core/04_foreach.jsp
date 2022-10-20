@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="domain.Board"%>
 <%@page import="java.util.List"%>
@@ -14,7 +15,7 @@
 </head>
 <body>
 
-	<%-- 1. 1 ~ 5 --%>
+	<%-- 1. 1 ~ 5 --%> 
 	<c:forEach var="n" begin="1" end="5" step="1">
 		${n}&nbsp;
 	</c:forEach>

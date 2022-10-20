@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.ActionForward;
+import service.StudentAddService;
+import service.StudentFindService;
+import service.StudentListService;
+import service.StudentRemoveService;
 import service.StudentService;
 
 
@@ -37,15 +41,23 @@ public class StudentController extends HttpServlet {
 		// 요청에 따른 service 선택
 		switch(urlMapping) {
 		// 비즈니스 로직
-
-		
-		
-		// 단순이동 (포워딩) 
-		case "/board/write.do" : 
-			af = new ActionForward();
-			af.setView("/board/write.jsp");
-			af.setRedirect(false);
+		case "/student/list.do" : 
+			service = new StudentListService();
 			break;
+		case "/student/add.do" : 
+			service = new StudentAddService();
+			break;	
+		case "/student/find.do" : 
+			service = new StudentFindService();
+			break;
+		case "/student/write.do" : 
+			af = new ActionForward("/student/write.jsp", false);
+			break;
+		case "/student/remove.do" :
+			service = new StudentRemoveService();
+			break;
+			
+		
 		}
 		
 		// 선택된 Service 실행
