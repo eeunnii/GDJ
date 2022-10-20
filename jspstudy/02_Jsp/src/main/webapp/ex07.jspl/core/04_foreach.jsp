@@ -39,8 +39,8 @@
 	
 	<%--4. 배열 // varStatues 배열의 인덱스를 꺼내서 선언하고 싶으면 써야함--%>
 	<%
-		String[] menus = {"튀김","떡볶이","순대"};
-		pageContext.setAttribute("menus", menus);
+	String[] menus = {"튀김","떡볶이","순대"};
+			pageContext.setAttribute("menus", menus);
 	%>
 	<c:forEach var="menu" items="${menues}" varStatus="vs">
 		인덱스 : ${vs.index},  순번 : ${vs.count}, 배열요소 : ${menu}<br>
@@ -51,8 +51,8 @@
 	
 	<%-- 5. 리스트 // jsp, 배열과 list를 동일하게 취급--%>
 	<%
-		List<String> seasons = Arrays.asList("봄","여름","가을","겨울");
-		pageContext.setAttribute("seasons", seasons);
+	List<String> seasons = Arrays.asList("봄","여름","가을","겨울");
+			pageContext.setAttribute("seasons", seasons);
 	%>
 	
 	<c:forEach var="season" items="${seasons }" varStatus="k">
@@ -63,20 +63,20 @@
 	
 	<%-- 6. Map(반복이 필요한건아님) , int라고 적으면 안됨. 왜..지 < >꺽새안은 제너릭타입이라서--%>
 	<%
-		Map<String, Integer> map = new HashMap<>();
-		map.put("begin",1);
-		map.put("end",10);
-		pageContext.setAttribute("map", map);
+	Map<String, Integer> map = new HashMap<>();
+			map.put("begin",1);
+			map.put("end",10);
+			pageContext.setAttribute("map", map);
 	%>
 	${map.begin}~${map.end}<br>
 	
 	<%-- 7. 객체(반복이 필요한 건 아님) --%>
 	<%
-		Board board = new Board();
-		board.setBoardNo(1);
-		board.setTitle("언제");
-		board.setHit(100);
-		pageContext.setAttribute("board", board);
+	Board board = new Board();
+			board.setBoardNo(1);
+			board.setTitle("언제");
+			board.setHit(100);
+			pageContext.setAttribute("board", board);
 	%>
 	${board.boardNo}, ${board.title}, ${board.hit}<br>
 	${board.getBoardNo()}, ${board.getTitle()}, ${board.getHit()}<br>
@@ -87,11 +87,11 @@
 		문제. 임의의 Board 객체를 3개 저장한 리스트 
 	 --%>
 	<%
-		List<Board> boards = new ArrayList<>();
-		boards.add(new Board(100, "질문입니다", 2));
-		boards.add(new Board(200, "  [Re] 저도 궁금해요", 1));
-		boards.add(new Board(300, "답변입니다", 5));
-		pageContext.setAttribute("boards", boards);
+	List<Board> boards = new ArrayList<>();
+			boards.add(new Board(100, "질문입니다", 2));
+			boards.add(new Board(200, "  [Re] 저도 궁금해요", 1));
+			boards.add(new Board(300, "답변입니다", 5));
+			pageContext.setAttribute("boards", boards);
 	%>
 	 <table border="1">
 	 	<thead>

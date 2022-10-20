@@ -10,12 +10,11 @@
 <body>
 
 	<%--너비/높이 입력 폼:삼각형 버튼, 사각형 버튼--%>
-	<form>
+	<form id="frm">
 	너비 : <input type="text" name="width"> <br>
 	높이 : <input type="text" name="height">
 	<button id="btn1" name="btn1" onclik="fn1()"></button>
 	<button id="btn2" name="btn2" onclik="fn2()"></button>
-	
 	</form>
 	
 	
@@ -30,7 +29,7 @@
 	
 	<script>
 	function fn1(){
-		$("#btn1").onclick = function{
+		
 			
 			
 			

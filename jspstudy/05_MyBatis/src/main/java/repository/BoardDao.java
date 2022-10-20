@@ -86,4 +86,15 @@ public class BoardDao {
 		ss.close();
 		return result;
 	}
+	
+	// 5. 게시글 수정
+	public int updatdBoard(Board board) {
+		SqlSession ss = factory.openSession(false); // UPDATE(커밋이필요한 경우)
+		int result = ss.update("mybatis.mapper.board.updatdBoard", board);
+		if(result>0) {
+			ss.commit();
+		}
+		ss.close();
+		return result;
+	}
 }

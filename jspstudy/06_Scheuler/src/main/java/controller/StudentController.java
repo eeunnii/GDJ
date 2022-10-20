@@ -9,17 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.ActionForward;
-import service.BoardAddService;
-import service.BoardDetailService;
-import service.BoardEditService;
-import service.BoardListService;
-import service.BoardRemoveService;
-import service.BoardService;
-import service.ModifyService;
+import service.StudentService;
 
 
 @WebServlet("*.do")
-public class BoardController extends HttpServlet {
+public class StudentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
@@ -34,8 +28,8 @@ public class BoardController extends HttpServlet {
 		String contextPath = request.getContextPath();
 		String urlMapping = requestURI.substring(contextPath.length());
 				
-		// BoardService 객체
-		BoardService service = null;
+		// StudentService 객체
+		StudentService service = null;
 		
 		// ActionForward 객체
 		ActionForward af = null;
@@ -43,24 +37,9 @@ public class BoardController extends HttpServlet {
 		// 요청에 따른 service 선택
 		switch(urlMapping) {
 		// 비즈니스 로직
-		case "/board/list.do":
-			service = new BoardListService();
-			break;
-		case "/board/detail.do" :
-			service = new BoardDetailService();
-			break;
-		case "/board/add.do" :
-			service = new BoardAddService();
-			break;
-		case "/board/remove.do" :
-			service = new BoardRemoveService();
-			break;
-		case "/board/edit.do" : 
-			service = new BoardEditService();
-			break;
-		case "/board/modify.do" : 
-			service = new ModifyService();
-			break;
+
+		
+		
 		// 단순이동 (포워딩) 
 		case "/board/write.do" : 
 			af = new ActionForward();
