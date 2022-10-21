@@ -86,9 +86,13 @@
 							<td><fmt:formatNumber value="${s.ave}" pattern="0.00"/></td><!-- 소수 두 자리 -->
 							<td>${s.grade}</td>
 							<td>
-								<input type="button" value="상세" class="btn_primary" id="btn_primary"> 
+								<input type="button" value="상세" class="btn_primary" onclick="fn_detail(${s.stuNo})"> 
 								<input type="button" value="삭제" class="btn_primary" onclick="fn_remove(${s.stuNo})"> 
 							<script>
+							
+							function fn_detail(stuNo) {
+								location.href = '${contextPath}/student/detail.do?stuNo=' + stuNo;
+							}
 							
 							function fn_remove(stuNo){
 								if(confirm('학생 정보를 삭제할까요?')){
@@ -96,7 +100,6 @@
 								}
 							}
 					
-							
 							</script>
 		
 							</td>

@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import domain.Student;
+import oracle.net.aso.s;
 
 public class StudentDao {
 	
@@ -103,5 +104,30 @@ public class StudentDao {
 		 }
 		 ss.close();
 		 return result;
+	 }
+	 // 9. 학생 상세 보기 
+	 public Student selectStudentByNo(int stuNo) {
+		 SqlSession ss = factory.openSession();
+		 Student student = ss.selectOne(mapper+"selectStudentByNo",stuNo);
+		 ss.close();
+		 return student;
+	 }
+	 
+	 // 10. 학생 정보 수정하기 
+	 public int updateStudent(Student student) {
+		  SqlSession ss=factory.openSession();
+		  int result = ss.update(mapper+"updateStudent", student);
+		  if(result>0){
+			  ss.commit();
+		  }
+		  	ss.close();
+		  	return result;
+	 }
+	 // ()안은 전달할 파라미터 타입
+	 public List<Student> selectStudentsTop3(){
+		 SqlSession ss = factory.openSession();
+		 List<Student> top3 = ss.selectList(mapper + "selectStudentsTop3");
+		 ss.close();
+		 return top3;
 	 }
 }

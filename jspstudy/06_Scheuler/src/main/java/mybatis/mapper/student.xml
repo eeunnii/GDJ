@@ -68,6 +68,29 @@
 		WHERE STU_NO = #{stuNo}
 	</delete>
 	
+	<!-- 9. 학생상세보기 -->
+	<select id="selectStudentByNo" parameterType="int" resultType="Student">
 	
+	SELECT STU_NO, NAME, KOR, ENG, MATH, AVE, GRADE
+		FROM STUDENT
+		WHERE STU_NO = #{stuNo}
+	</select>
+	
+	<!-- 10. 학생수정 -->
+	<update id="updateStudent" parameterType="student">
+	UPDATE STUDENT
+		SET NAME = #{name},KOR=#{kor}, ENG=#{eng}, MATH=#{math}, AVE=#{ave}, GRADE=#{grade}
+		WHERE STU_NO = #{stuNo}
+	</update>	
+		
+	<!-- 11. 평균 기준 상위 3명 ,  FROM문 실행되고 나중에 SELECT 실행됨. 실행순서 복습하기, 서브퀴리 먼저 실행.-->
+	<select id="selectStudentsTop3" resultType="Student">
+		SELECT A.RANK, A.STU_NO, A.NAME, A.KOR, A.ENG, A.MATH, A.AVE, A.GRADE
+			FROM (SELECT RANK() OVER(ORDER BY AVE DESC) AS RANK, STU_NO, NAME, KOR, ENG, MATH, AVE, GRADE
+					FROM STUDENT) A
+			WHERE A.RANK <![CDATA[<=]]>3
+	</select>
+	
+
 	
 </mapper> 

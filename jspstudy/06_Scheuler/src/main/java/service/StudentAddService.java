@@ -29,7 +29,6 @@ public class StudentAddService implements StudentService{
 		case 7: grade="D";break;
 		case 6: grade="E";break;
 		default: grade = "F";
-		
 		}
 		
 		//DB로 보낼 Student student객체생성
