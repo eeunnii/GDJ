@@ -12,7 +12,7 @@ public class TriangleService implements MyService{
 		
 		//TriangleService가 하는 일(넓이*높이/2)
 		
-		
+		return null;
 		
 		
 	};

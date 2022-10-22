@@ -10,7 +10,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import domain.Student;
-import oracle.net.aso.s;
 
 public class StudentDao {
 	

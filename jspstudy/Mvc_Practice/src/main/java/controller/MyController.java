@@ -43,7 +43,7 @@ public class MyController extends HttpServlet {
 		}
 		
 		if(myService!=null) {
-			actionForward = 
+			
 		}
 		
 		

@@ -16,7 +16,7 @@
 	boolean isRemember = false;
 	Cookie cookie=null;
 	if(chkRememberId!=null){
-		isRememberId
+		isRemember = true;
 		cookie = new Cookie("rememberId", id);
 		cookie.setMaxAge(60*60*24*30);
 		
