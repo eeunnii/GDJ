@@ -37,7 +37,7 @@ FROM DUAL;
 
 
 
----함수 func 정의 
+---함수 func2 정의 
 -- 사원번호를 전달하면 해당 사원의 full_name이 반환되는 함수 
 CREATE OR REPLACE FUNCTION FUNC2(EMP_ID EMPLOYEES.EMPLOYEE_ID%TYPE)
 RETURN VARCHAR2
@@ -65,20 +65,59 @@ FROM EMPLOYEES;
 --나머지 : C그룹
 CREATE OR REPLACE FUNCTION FUNC3(SAL EMPLOYEES.SALARY%TYPE)
 RETURN VARCHAR2
-ID 
- RESULT VARCHAR(10 BYTE)
+IS
+ RESULT VARCHAR(10 BYTE);
 BEGIN
-    IF 
-    IF SAL>=15000 THEN
-    RESULT :=
+    IF SAL >= 15000 THEN
+        RESULT := 'A그룹';
+    ELSIF SAL >= 8000 THEN
+        RESULT := 'B그룹';
+    ELSE
+        RESULT := 'C그룹';
+    END IF;
+    RETURN RESULT;
+END FUNC3;
     
-    
-    --함수 MY_CEIL정의 
-    CREATE OR REPLACE FUNCTION MY_CEIL(N NUMBER, DIGIT NUMBER)
-    RETURN NUMBER
-    IS 
-    RESULT NUMBER;
-    BIGIN 
-    RESULT
+ -- 함수 FUNC3 호출   
+ SELECT EMPLOYEE_ID
+     , FIRST_NAME
+     , SALARY
+     , FUNC3(SALARY)
+  FROM EMPLOYEES;
 
--- 함수 FUNC3 호출
+ 
+ -- 함수 MY_CEIL 정의
+CREATE OR REPLACE FUNCTION MY_CEIL(N NUMBER, DIGIT NUMBER)
+RETURN NUMBER
+IS
+BEGIN
+    RETURN CEIL(N * POWER(10, DIGIT)) / POWER(10, DIGIT);
+END MY_CEIL;
+
+-- 함수 MY_CEIL 호출
+SELECT CEIL(1.123)        -- 정수로 올림
+     , MY_CEIL(1.123, 2)  -- 소수2자리 올림
+     , MY_CEIL(1.123, 1)  -- 소수1자리 올림
+     , MY_CEIL(1.123, 0)  -- 정수로 올림
+     , MY_CEIL(1234, -1)  -- 일의자리 올림
+     , MY_CEIL(1234, -2)  -- 십의자리 올림
+  FROM DUAL;
+
+
+
+-- 함수 MY_FLOOR 정의
+CREATE OR REPLACE FUNCTION MY_FLOOR(N NUMBER, DIGIT NUMBER)
+RETURN NUMBER
+IS
+BEGIN
+    RETURN FLOOR(N * POWER(10, DIGIT)) / POWER(10, DIGIT);
+END MY_FLOOR;
+
+-- 함수 MY_FLOOR 호출
+SELECT FLOOR(1.123)        -- 정수로 내림
+     , MY_FLOOR(1.123, 2)  -- 소수2자리 내림
+     , MY_FLOOR(1.123, 1)  -- 소수1자리 내림
+     , MY_FLOOR(1.123, 0)  -- 정수로 내림
+     , MY_FLOOR(1234, -1)  -- 일의자리 내림
+     , MY_FLOOR(1234, -2)  -- 십의자리 내림
+  FROM DUAL;

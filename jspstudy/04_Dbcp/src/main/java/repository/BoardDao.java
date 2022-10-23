@@ -26,6 +26,9 @@ public class BoardDao {
 	// singleton - pattern (★연습많이해보기)
 	private static BoardDao dao = new BoardDao();
 	private BoardDao() {
+		// 연결생성 : DBCP 라이브러리(업체)를 고용하는 방뻐
+		// - 연결을 직접 수행하는 것이 아니라 연결을 관리하는 업체를 두고 렌탈하는 방식
+		// 연결을 생성하는 시간이 줄어들어 전체적인 성능과 안정성이 향상됨
 		try {
 			// DataSource 객체 생성
 			// context.xml에서 name="jdbc/oracle11g"
