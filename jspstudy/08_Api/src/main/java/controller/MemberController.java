@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,12 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.ActionForward;
-import service.MemberAddService;
-import service.MemberDetailService;
-import service.MemberListService;
-import service.MemberModifyService;
-import service.MemberRemoveService;
-import service.MemberService;
+import service.NaverCaptchaServiceimpl;
 
 
 @WebServlet("*.do")
@@ -23,6 +19,7 @@ public class MemberController extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 
 		// 요청 / 응답 리코딩
 		request.setCharacterEncoding("UTF-8");
@@ -33,43 +30,33 @@ public class MemberController extends HttpServlet {
 		String contextPath = request.getContextPath();
 		String urlMapping = requestURI.substring(contextPath.length());
 				
-		// StudentService 객체
-		MemberService service = null;
+		// NaverCaptchaServiceimpl 객체 생성
+		NaverCaptchaServiceimpl service = new NaverCaptchaServiceimpl();
 		
 		// ActionForward 객체
 		ActionForward af = null;
 		
-		// 요청에 따른 service 선택
+		// 요청에 따른 Service 선택 및 실행
 		switch(urlMapping) {
-		case "/member/manage.do" : 
-			af = new ActionForward("/member/manage.jsp", false);
+		case "/member/loginPage.do" : 
+			//캡차키 발급요청
+			String key = service.getChaptchakey();
+			System.out.println(key);
+			// 캡처 이미지 발급요청
+			Map<String, String> map = service.getChaptchaImage(request, key);
+			request.setAttribute("dirname", map.get("dirname"));
+			request.setAttribute("filename", map.get("filename"));
+			// ActionForward 생성
+			af = new ActionForward("/member/login.jsp", false);
 			break;
-		case "/member/list.do" :
-			service = new MemberListService();
+		case "/member/reflashCaptcha.do" :
+			service.refreshCaptcha(request, response);
 			break;
-		case "/member/detail.do" :
-			service = new MemberDetailService();
-			break;
-		case "/member/add.do" : 
-			service = new MemberAddService();
-			break;
-		case "/member/remove.do" : 
-			service = new MemberRemoveService();
-			break;
- 		case "/member/modify.do" : 
-			service = new MemberModifyService();
-			break;
+			// ajax이동임. 액션 포워드가 필요없음
+
 		}
 		
-		// 선택된 Service 실행
-		try {
-			if(service != null) {
-				service.execute(request, response);
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		// 어디로 어떻게 이동하는가?(ajax에서 단 한 번 사용)
+		// 어디로 어떻게 이동하는가?
 		if(af != null) {
 			if(af.isRedirect()) {
 				response.sendRedirect(af.getView());
@@ -77,6 +64,9 @@ public class MemberController extends HttpServlet {
 				request.getRequestDispatcher(af.getView()).forward(request, response);
 			}
 		}
+		
+		
+		
 		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

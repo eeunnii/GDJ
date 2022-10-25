@@ -35,4 +35,27 @@
 		(MEMBER_SEQ.NEXTVAL, #{id}, #{name}, #{gender}, #{grade}, #{address})
 	<!-- 컨트롤쉬프트엑스 :대문자 // 컨트롤쉬프트와이 : 소문자 -->
 	</insert>
+	
+	<!-- 5.회원 수정 -->
+	<update id="updateMember" parameterType="Member">
+	UPDATE Member 
+	SET NAME = #{name}, 
+		GENDER = #{gender},   <!-- 한 줄 없어도 실행됨. -->
+		GRADE = #{grade}, 
+		ADDRESS = #{address}
+	WHERE ID = #{id}
+	
+	<!--pk와 unipue 칼럼은 index를 탐-->
+	<!-- 만족하는 아이디 없으면 .. 실행안됨 -->
+	</update>
+	
+	<!-- 6.회원 삭제  -->
+	<delete id="deleteMember" parameterType="int">
+	DELETE
+		FROM MEMBER
+		WHERE MEMBER_NO = #{memberNo} <!-- memberNo 인트값으로 전달해줄 변수 이름 -->
+									  <!-- member_No 쿼리문 칼럼의 이름 -->
+	</delete>
+	
+	
 </mapper> 
