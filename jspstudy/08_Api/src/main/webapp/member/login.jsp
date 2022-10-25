@@ -42,7 +42,7 @@
 				<input type="text" name="id" id="id" placeholder="아이디">
 			</div>
 			<div>
-				<input type="password" name="pw" id="pw" placeholder="패스워드">
+				<input type="password" name="pw" id="pw" placeholder="패스워드"/>
 			</div>
 			<div>
 				<p>아래 이미지를 보이는 대로 입력해주세요</p>	

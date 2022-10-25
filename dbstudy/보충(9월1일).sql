@@ -125,16 +125,29 @@ AND L.CITY = 'Southlake';           --   SOUTHLAKE와 Southlake는 다르다
 --having절? where절?
 --답은 해빙인데... 왜? ★집계함수를 이용한 조건은  having 절만 가능함★
 
-select DEPARTMENT_ID, count(*)
-from employees
-where department_id is not null
-group by department_id                 -- 그룹대상으로 정렬됨. 
-HAVING COUNT(*) = (SELECT MAX(COUNT(*)
+SELECT COUNT(*), DEPARTMENT_ID
+FROM EMPLOYEES
+WHERE DEPARTMENT_ID IS NOT NULL
+GROUP BY DEPARTMENT_ID                  
+HAVING COUNT(*) = (SELECT MAX(COUNT(*))
                     FROM EMPLOYEES
                     GROUP BY DEPARTMENT_ID);
-
+                    
+SELECT DEPARTMENT_ID, COUNT(*)
+FROM EMPLOYEES
+WHERE DEPARTMENT_ID IS NOT NULL
+GROUP BY DEPARTMENT_ID                  
+HAVING COUNT(*) = (SELECT MAX(COUNT(*))
+                    FROM EMPLOYEES
+                    GROUP BY DEPARTMENT_ID);
+                    
 --PARTITION BY 를 활용 
-
+SELECT B.DEPARTMENT_ID, B.CNT
+  FROM (SELECT A.DEPARTMENT_ID, A.CNT
+          FROM (SELECT DISTINCT DEPARTMENT_ID, COUNT(*) OVER(PARTITION BY DEPARTMENT_ID) AS CNT
+                  FROM EMPLOYEES) A
+        ORDER BY CNT DESC) B
+ WHERE ROWNUM = 1;
 
 
 -- 9. 전체 사원 중 최대 연봉을 받는 사원의 EMPLOYEE_ID, FIRST_NAME, SALARY를 조회하시오.
