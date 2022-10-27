@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="member" class="com.gdu.app01.xml08.Member">
+	<constructor-arg value="김영철"/>
+	<constructor-arg ref="??"/>
+	<constructor-arg value="180"/>
+	<constructor-arg value="80"/>
+	<constructor-arg ref="?"/>
+
+</bean>
+
+<bean>
+	<id="bmiClac" class="com"
+
+</bean>
+
+
+
+
+
+
+
+
+</beans>
