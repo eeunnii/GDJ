@@ -9,8 +9,6 @@
 				<value>여행</value>		
 				<value>운동</value>		
 			</list>
-		
-		
 		</property>
 		<!-- Set  -->
 		<property name="contacts">

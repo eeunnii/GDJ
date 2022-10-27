@@ -15,6 +15,7 @@ public class Singer {
 		this.son = son;
 	}
 
+	// getter/setter
 	public String getName() {
 		return name;
 	}

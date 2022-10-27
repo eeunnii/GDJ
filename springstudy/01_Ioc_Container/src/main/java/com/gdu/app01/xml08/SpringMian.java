@@ -1,12 +1,15 @@
 package com.gdu.app01.xml08;
 
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+
 public class SpringMian {
 
 	public static void main(String[] args) {
+		AbstractApplicationContext ctx = new GenericXmlApplicationContext("xml08/appCtx.xml");
 		Member member = ctx.getBean("member", Member.class);
-		member.info(); 
-		
-
+		member.info();
+		ctx.close();
 	}
 
 }

@@ -1,28 +1,33 @@
 package com.gdu.app01.java01;
 
 public class Song {
-	private String Genre;
-	private String Title;
-	public String getGenre() {
-		return Genre;
+
+	// field
+	private String title;
+	private String genre;
+	
+	// constructor
+	public Song() {
+		
 	}
-	public void setGenre(String genre) {
-		Genre = genre;
-	}
-	public String getTitle() {
-		return Title;
-	}
-	public void setTitle(String title) {
-		Title = title;
+	public Song(String title, String genre) {
+		super();
+		this.title = title;
+		this.genre = genre;
 	}
 	
-	public Song() {
-		// TODO Auto-generated constructor stub
+	// getter/setter
+	public String getTitle() {
+		return title;
 	}
-	public Song(String genre, String title) {
-		super();
-		Genre = genre;
-		Title = title;
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
 	}
 	
 }
