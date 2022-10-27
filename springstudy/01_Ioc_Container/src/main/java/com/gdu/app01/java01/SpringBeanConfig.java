@@ -26,6 +26,14 @@ public class SpringBeanConfig {
 	반환타입이 Bean의 타입(class)야.
 	 */
 	
+	
+	/*
+	<bean id="song1" class="Song">
+		<property name="title" value="제목1" />
+		<property name="genre" value="장르1" />
+	</bean>
+	 */
+	
 	@Bean
 	public Song song1() {
 		Song song = new Song();
@@ -34,54 +42,65 @@ public class SpringBeanConfig {
 		return song;
 	}
 	
+	/*
+	<bean id="song2" class="Song">
+		<property name="title" value="제목2" />
+		<property name="genre" value="장르2" />
+	</bean>
+	*/
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public Student stud() {  // <bean id="stud" class="Student"
-		//List
-		List<Integer> scores = new ArraryList<Integer>();
-		for(int cnt=0; cnt<5; cnt++) {
-			scores.add((int)(Math.random()*101+0)); // 깃허브
-		}
-		
-		// Set
-		Set<String> awards = new HashSet<String>();
-		awards.add("개근상");
-		awards.add("장려상");
-		awards.add("우수상");
-		
-		// Map
-		Map<String, String> contact = new HashMap<String, Sting>();
-		contact.put("address", "서울");
-		contact.put("tel", "02-123-4567");
-
-		
+	@Bean(name="song2")        // @Bean에 name값을 지정하면 id로 사용된다.
+	public Song asdfghjkl() {  // 메소드이름은 아무거나 적어도 된다.
+		Song song = new Song();
+		song.setTitle("제목2");
+		song.setGenre("장르2");
+		return song;
 	}
 	
 	
+	/*
+		<bean id="song3" class="Song">
+			<constructor-arg value="제목3" />
+			<constructor-arg value="장르3" />
+		</bean>
+	*/
+	@Bean
+	public Song song3() {
+		return new Song("제목3", "장르3");
+	}
 	
 	
+	// 미션
 	
+	// song1를 가지는 singer1을 만들어 보자.
+	// setter injection
+	@Bean
+	public Singer singer1() {
+		Singer singer = new Singer();
+		singer.setName("가수1");
+		singer.setSong(song1());
+		return singer;
+	}
 	
+	// song2를 가지는 singer2를 name값으로 만드러 보자.
+	// setter injection
+	@Bean(name="singer2")
+	public Singer qwerty() {
+		Singer singer = new Singer();
+		singer.setName("가수2");
+		singer.setSong(asdfghjkl());
+		return singer;
+	}
 	
-	
-	
-	
+	// song3을 가지는 singer3을 만들어 보자.
+	// constructor injection
+	@Bean
+	public Singer singer3() {
+		return new Singer("가수3", song3());
+	}
+		
+
 	
 
 	
