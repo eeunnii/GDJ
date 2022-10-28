@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	<!-- 
+		Spring container : Bean을 만들어 두는 곳
+		root-context.xml에 bean태그를 추가해 두면 Bean이 만들어 집니다.
+	 -->
+	
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+	</context-param>
+	
+	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	
+
+	<!-- Processes application requests  : 요청을 처리하는 서블릿이 만들어져있음-->
+	<!-- 
+		<servlet-name>appServlet</servlet-name> : 서블릿을 appServlet으로 부르겠다.
+		<servlet-class> org..DispathcerServlet</servlet-class> : 실제 서블릿은 Dispathcer 서블릿기섷브 
+		<init-param>
+			<param-name>contextConfigLocation</param-name> 
+			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value> : DispatcherServlet은 servlet-context.xml의 내용을 읽어서 동작한다.
+		</init-param>
+	 -->
+	<servlet>
+		<servlet-name>appServlet</servlet-name>  <!-- DispatcherServlet인데 appServlet로 부른다고 별명을 준거임.  -->
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name> <!-- 환경설정 내용이 작성된 위치..  -->
+			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value> <!-- 디스패처서블릿이 context.xml를 읽어서 동작함 -->
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	
+	<!-- 
+		<servlet - mapping> 은 @webServlet 애너테이션을 의미한다. -- url매핑값을 작업하는 곳
+		이 서블릿은 어떤 서블릿이 어떤 매핑에서 동작하는지 정의하는 것을 의미한다.
+		
+		appServlet의 동작은 매핑 /(cotextPath 경로)에서 이루어진다. 
+		: DispatcherServlet은 http:localhost:9090/app02 경로(프로젝트=애플리케이션의 시작경로)에서 동작한다. 
+		
+		02_MVC에서 contextPath는 아티팩트아이디인 app02 임
+	 -->
+	
+		
+	<servlet-mapping>
+		<servlet-name>appServlet</servlet-name>  <!-- 별명준거 사용하는거임 -->
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+</web-app>

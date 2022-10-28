@@ -1,0 +1,42 @@
+mvc에서 m이 service임 비즈니스레이어
+
+스르핑 MVC 동작 원리 
+
+1. 클라이언트가 요청을 한다.
+	<a href="${contextPath}/list.do">
+	
+2. DispatcherServlet이 요청을 받는다. (DispatcherServlet은 servlet-context.xml로 봐도 된다.  ★servlet-context.xml에 있는 내용 알고 있어야함)
+
+3. Dispathcer이 요청을 처리할 Controller를 판단하는 HandlerMapping을 호출한다.
+
+4. HandlerMapping은 요청을 처리할 Controller를 호출한다. 
+
+인터셉터. 컨트롤러 이전에 들어가게할수잇는곳.
+
+5. Controller가 요청을 처리할 Service를 호출. (비즈니스 로직 처리) -- 목록보기를 하겠다하면은 목록 가져왔다 이 뜻임
+
+6. controller가 응답을 처리할 ModelAndView를 호출한다.
+	1) JSP : 값을 전달할 때 (forward) 할 때 requset를 사용
+	2) Spring : 값을 전달(forward)할 때 model을 사용 
+	
+	*model : 내부적으로 request를 사용하는 보안이 향상된 객체
+	*View : 응답할 JSP의 이름 
+	
+7. MedelAndView는 전달할 값은 Model에 저장하고, 응답할 뷰는 View에 저장해서 
+	DispatcherServlet에게 전달한다.
+ 
+    model이라고하는 spring에 도입된 아이 -- .. 
+    
+8. DispatcherServlet은 응답할 뷰 정보를 ViewResolver에게 전달한다.
+
+9. ViewResolver가 실제로 응답할 뷰의 전체 정보(경로를 포함한 JSP의 이름)를
+	DispatcherServlet에게 알려준다.
+	
+10. DispatcherServlet이 응답할 뷰로 이동한다.
+
+DispatcherServlet(servlet-context.xml)가 응답을 받아서 컨트롤러에 전달해주고, 컨트롤러에서 응답을 받아서 디스패처에 저장. 디스패처가 응답해줌.
+
+    
+    request는 요청이고 여기선 응답이 response가 아닌 model로 올거임
+    
+    반환할 데이터는 model에 실음
