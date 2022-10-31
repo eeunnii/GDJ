@@ -18,8 +18,7 @@ public class StudentDetailService implements StudentService{
 		int stuNo = Integer.parseInt(opt.orElse("0"));
 		
 		//stuNo에 해당하는 Student를 request에 저장하기 
-		request.setAttribute("student", Stu
-				dentDao.getInstance().selectStudentByNo(stuNo));
+		request.setAttribute("student", StudentDao.getInstance().selectStudentByNo(stuNo));
 		
 		// student/detail.jsp로 포워디
 		return new ActionForward("/student/detail.jsp",false);

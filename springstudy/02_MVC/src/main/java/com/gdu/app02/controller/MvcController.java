@@ -42,7 +42,7 @@ public class MvcController {
 	// 3. 매개변수 : 선택(요청이 있으면 request, 응답을 만들거면 response 등 
 	
 	public String welcom() { // 이 메소드 만들면 RequestMethod이 import 됨
-		return "index" ;    // jsp의 이름임 index이름이 아니여도 됨. 왜지. 왜요? index.jsp랑 이름만 맞춰주면 welcom파일이 됨
+		return "index" ;    // jsp의 이름임 꼭 index이름이 아니여도 됨. 왜지. 왜요? index.jsp랑 이름만 맞춰주면 welcom파일이 됨
 							// DispatcherServlet의 ViewResolver에 의해서 해석된다. 
 							// prefix="/WEB-INF/views/"
 							// suffix=".jsp"
