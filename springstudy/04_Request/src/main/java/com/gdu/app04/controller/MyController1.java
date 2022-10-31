@@ -86,6 +86,7 @@ public String detail(HttpServletRequest request) {
 		return "member/detail";
 	}
 	
+	
 	// <form action="${contextPath}/member/detail4" method="post">
 	@PostMapping("detail4") // 요청 : URLMapping+요청메소드  -- 메소드가 다르면 같은 요청이여도 상관없다?
 	public String postDetail4(@ModelAttribute(value="member") Member member) {   //(@ModelAttribute(value="member") 모델 속성의 이름은 멤버다

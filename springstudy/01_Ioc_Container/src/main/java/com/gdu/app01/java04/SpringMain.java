@@ -7,7 +7,7 @@ public class SpringMain {
 
 	public static void main(String[] args) {
 		
-		AbstractApplicationContext ctx = AnnotationConfigApplicationContext(SpringBeanConfig.class);
+		AbstractApplicationContext ctx = new AnnotationConfigApplicationContext(SpringBeanConfig.class);
 		
 		Soldier soldier = ctx.getBean("soldier", Soldier.class);
 		soldier.info();

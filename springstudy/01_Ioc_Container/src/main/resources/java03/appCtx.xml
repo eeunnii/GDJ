@@ -27,10 +27,6 @@
 	
 	<context:annotation-config>
 	<bean class="com.gdu.app01.java03.SpringBeanConfig"/>
-	
-	
-	
-	
 	</context:annotation-config>
 
 

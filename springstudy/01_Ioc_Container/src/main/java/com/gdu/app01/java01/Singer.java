@@ -2,20 +2,23 @@ package com.gdu.app01.java01;
 
 public class Singer {
 	private String name;
-	private Song son;
+	private Song song;
 	
 	//constructor
 	public Singer() {
 		
 	}
 
-	public Singer(String name, Song son) {
+
+
+	public Singer(String name, Song song) {
 		super();
 		this.name = name;
-		this.son = son;
+		this.song = song;
 	}
 
-	// getter/setter
+
+
 	public String getName() {
 		return name;
 	}
@@ -24,13 +27,16 @@ public class Singer {
 		this.name = name;
 	}
 
-	public Song getSon() {
-		return son;
+	public Song getSong() {
+		return song;
 	}
 
-	public void setSon(Song son) {
-		this.son = son;
+	public void setSong(Song song) {
+		this.song = song;
 	}
+
+	// getter/setter
+
 	
 	
 }
