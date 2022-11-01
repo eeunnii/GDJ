@@ -21,6 +21,8 @@
 		
 		$('#btn').click(function(){
 			//alert($('#targetDt').val()); 으로 확인해보기
+			
+			
 			$.ajax({
 				type: 'get',
 				url : '${contextPath}/movie/boxOfficeList',
