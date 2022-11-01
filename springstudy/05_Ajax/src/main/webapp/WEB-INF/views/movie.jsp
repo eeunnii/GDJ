@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${contextPah}/resources/css/jquery-ui.min.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/jquery-ui.min.css">
 <!-- t순서 중요. 제이쿼리가 먼저 와야함 -->
 <script src="${contextPath}/resources/js/jquery-3.6.1.min.js"></script>
 <script src="${contextPath}/resources/js/jquery-ui.min.js"></script>

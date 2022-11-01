@@ -12,7 +12,7 @@
 <body>
 
 	<div>
-		<a href=${contextPath}/member>회원관리</a>
+		<a href="${contextPath}/member">회원관리</a>
 	</div>
 		<hr>
 	

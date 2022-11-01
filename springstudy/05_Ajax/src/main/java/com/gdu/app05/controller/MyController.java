@@ -46,25 +46,29 @@ public class MyController {
 	 */
 	
 	@ResponseBody
-	@GetMapping(value ="member/detail1" 
+	@GetMapping(value ="member/detail1"   // @GetMapping : 요청을 인식하는 애너테이션.
 				,produces="text/plain; charset=UTF-8") // produces 뜻 : 이메소드가 무엇을 만드는가?? produces 응답 데이터 타입(MINE-TYPE)	
 	public String detail1(HttpServletRequest request,  HttpServletResponse response) {
 		String str = memberService.execute1(request,response);
 		return str; // 
 		//에이작스 통신은 데이터를 주고 받는 것 jsp의이동의어가없음
-		// 만약 @ResponseBody가 없고 @GetMapping만 되어있다면 (str에들어가있는데이터).jsp라고 인식
+		// 만약 @ResponseBody가 없고 @GetMapping만 되어있다면 (str에들어가있는데이터).jsp라고 인식(포워드니까)
 	}
 	
 	@ResponseBody
 	@GetMapping(value="member/detail2"
 				,produces = "application/josn; charset=UTF-8")
-	public Member detail2(@RequestParam(value="id") String id,@RequestParam(value="pw") String pw) {
+	public Member detail2(@RequestParam(value="id") String id, @RequestParam(value="pw") String pw) {  // @RequestParam = request.setAttribute
 		Member member = memberService.execute2(id,pw);
 		return member;  // jackson이 member객체를 {"id" : 아이디, "pw" : 패스워드}형식의 JSON으로 바꿔서 전달합니다
 		
 		//jackson 관련된 코드가 없음!! jackson이 알아서 해줌!!
 		
-		// 깃허브
+		/* 
+		추억의 코드
+		JSONObject obj = new JSONObject(member);
+		return obj.toString();
+		 */
 	}
 	
 	@ResponseBody
@@ -87,9 +91,9 @@ public class MyController {
 	@ResponseBody
 	@PostMapping(value="member/detail4"
 					,produces=MediaType.APPLICATION_JSON_VALUE)			
-	public Member detail4(@RequestBody Member member) { // Memeber member 이름없이 와서 이렇게 동작이 안됨?
+	public Member detail4(@RequestBody Member member) { // @RequestBody가 없을 때 Memeber member 이름없이 와서 이렇게 동작이 안됨?
 		
-		return member;
+		return memberService.execute4(member);
 		
 		//깃허브깃허브깃허브깃허브
 	}
