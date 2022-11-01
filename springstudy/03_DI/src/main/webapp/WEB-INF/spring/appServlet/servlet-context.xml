@@ -12,14 +12,44 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
+	<!--
+		 ** : 하위디렉터리 몇개든 상관없음.
+		정적자원을 관리하는 디렉터리를 미리 정해둔다.
+		images, audios, videos, css, js 등
+		원하는 디렉터리를 추가할 수 있다.
+	 -->
+
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- 컨트롤러에서 return "index";가 넘어오면 
+		prefix(앞에 붙이는 말) "/WEB-INF/views/"를 에 붙이고, 
+		suffix(뒤에 붙이는 말) ".jsp"를 "index"에 붙인다.
+		최종적으로 응답할 뷰의 경로는
+		"/WEB-INF/views/index.jsp"로 처리된다. -->
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
+	
+	<!-- 
+		1. component-scan에 등록된 패키지에 있는 @Component를 Bean으로 자동으로 등록한다.
+			@Component의 종류 : @Controller, @Service, @Repositroy
+		2. 모든 구성요소는 base-package 내부에 작성한다.
+			com.gdu.app02.controller 
+			com.gdu.app02.repository 
+			com.gdu.app02.domain 
+			com.gdu.app02.common
+			com.gdu.app02.service
+		※ 주의사항
+			com.gdu.app02 패키지 controller 패키지를 추가한다. (0)
+			com.gdu.app02 패키지의 이름을 com.gdu.app02.controller 패키지로 바꾼다 (X)
+			-> 이름을 바꾸면 base-package가 바뀐다.
+			
+		<context:component-scan base-package="com.gdu.myapp" /> 에서 base-package의 이름이 controller로 바뀜 그러면 모든 파일을 controller 밑에 둬야함
+	 -->
 	
 	<context:component-scan base-package="com.gdu.app03" />
 	
