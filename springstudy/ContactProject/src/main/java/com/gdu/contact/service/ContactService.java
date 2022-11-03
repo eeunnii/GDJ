@@ -6,4 +6,8 @@ import com.gdu.contact.domain.ContactDTO;
 
 public interface ContactService {
 	public List<ContactDTO> findAllContacts();
+	public ContactDTO findContactNo(int no);
+	public int saveContact(ContactDTO contact);
+	public int modifyContact(ContactDTO contact);
+	public int removeContact(int no);
 }

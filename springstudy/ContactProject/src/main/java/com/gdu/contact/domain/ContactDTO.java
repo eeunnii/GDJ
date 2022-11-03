@@ -14,4 +14,6 @@ public class ContactDTO {
 	String adder;
 	String email;
 	String note;
+	
+	
 }

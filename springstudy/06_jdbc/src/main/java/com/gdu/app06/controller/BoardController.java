@@ -29,7 +29,6 @@ public String index() {
 public String list(Model model) {  // Model은 forward할 속성(attr)을 저장할 때 사용한다.  -- 목록 가지고 가야되니까 포워ㄷ 기본!!
 	model.addAttribute("boards", boardService.findAllBoards());
 	return "board/list"; // board폴더의 list.jsp로 forward
-	
 }
 
 @GetMapping("brd/write")

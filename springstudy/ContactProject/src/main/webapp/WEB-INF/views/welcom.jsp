@@ -10,8 +10,6 @@
 <script src="${contextPath}/resources/js/jquery-3.6.1.min.js"></script>
 </head>
 <body>
-	
-	
 	<table border="1">
 		<thead>
 			<tr>
@@ -23,13 +21,26 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="" var="">
-			
-			</c:forEach>
+			<c:if test="${empty contacts}">
+				<tr>
+					<td colspan="5">없음</td>
+				</tr>			
+			</c:if>
+			<c:if test="${not empty contact}">
+				<c:forEach items="${contacts}" var="contact">
+					<tr>
+						<td>${contact.no}</td>
+						<td>${contact.tel}</td>
+						<td>${contact.adder}</td>
+						<td>${contact.email}</td>
+						<td>${contact.note}</td>
+					</tr>
+				</c:forEach>
+			</c:if>
 		</tbody>
 		<tfoot>
 			<tr>
-				<td colspan="4"><a href="${contextPath}/con/add">신규 연락처 등록하기</a></td>
+				<td colspan="5"><a href="${contextPath}/con/move">신규 연락처 등록하기</a></td>
 			</tr>
 		</tfoot>
 	</table>
