@@ -58,7 +58,6 @@
 					/* a링크의 기본Default 동작(href로 이동)을 막는다. */
 					event.preventDefault();  // 
 					return;
-					
 				}
 			})
 		</script>

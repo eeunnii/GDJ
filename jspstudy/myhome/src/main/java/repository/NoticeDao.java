@@ -47,6 +47,7 @@ public class NoticeDao {
 	public List<Notice> selectAllNotices(Map<String, Object> map){
 		SqlSession ss = factory.openSession();
 		List<Notice> notices = ss.selectList(mapper+"selectAllNotices", map);
+		System.out.println(map);
 		ss.close();
 		return notices;
 	}

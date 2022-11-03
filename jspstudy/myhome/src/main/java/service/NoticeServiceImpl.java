@@ -44,8 +44,7 @@ public class NoticeServiceImpl implements NoticeService {
 			
 			int begin = (page - 1) * recordPerPage + 1;
 			int end = begin+recordPerPage-1;
-			if(end>totalRecordCnt) {
-				end=totalRecordCnt; }
+			if(end>totalRecordCnt) { end=totalRecordCnt; }
 			
 			// begin+end를 Map으로 만들어서 NoticeDao에게 전달해야함
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -58,10 +57,54 @@ public class NoticeServiceImpl implements NoticeService {
 			// 목록을 forward하기 위해서 request에 저장
 			request.setAttribute("notices", notices);
 			
-			// board 폴더의 list.jsp로 forward
-			return new ActionForward("/notice/list.jsp", false);
+			// block개념 이해하기 
+			// 1 block 당 3 page가 표시되는 상황  // 변수 선언해서 정해야함
+			// 전체 7페이지가 있는 상황   // 계산해야함
+			
+			//           beginPage  endPage	  page
+			// 1 block : 1          3          1  2  3 
+			// 2 block : 4          6          4  5  6
+			// 3 block : 7          7          7
+			
+			
+			// beginPage페이지를 구하고 end페이지를 구한다.
+			// 비긴과 엔드를 비교해서 7보다 더 작은 값을 엔드페이지로 쓴다 
+			
+			// 각 block의 beginPage와 endPage를 알아내기 위한 과정
+			// 1) 전체 page의 개수를 구한다.  (전체페이지를 totalpage라고 할거임)
+			// 2) 1 block 당 표시할 page의 개수를 임의로 정한다. (pagePerBlock)
+			// 3) 현재 page와 전체 page 개수와 1 block당 표시할 page 개수로 beginPage를 구한다.
+			// 4) beginPage를 이용해서 endPage를 구한다
+			// 5) endPage와 전체 page 개수를 비교해서 작은 값을 endPage로 확정한다.
+			int totalPgeCnt = totalRecordCnt/recordPerPage;  // totalRecordCnt=전체 //recordPerPage : 10 // 60나누기10인상태
+			
+			if(totalRecordCnt % recordPerPage >0) {
+				totalPgeCnt++;
+			}
+			
+			int pagePerBlock = 3;
+			
+			int beginPage=((page-1)/pagePerBlock)*pagePerBlock+1;
+			
+			int endPage = beginPage + pagePerBlock-1;
+			
+			if(endPage>totalPgeCnt) {
+				endPage=totalPgeCnt;
+			}
+			
+			
+			// 페이징 처리에 필요한 정보를 list.jsp로 전달.
+			request.setAttribute("page", page);
+			request.setAttribute("beginPage", beginPage);
+			request.setAttribute("endPage", endPage);
+			request.setAttribute("totalPgeCnt", totalPgeCnt);
+			request.setAttribute("pagePerBlock", pagePerBlock);
 			
 		
+			
+		
+			// board 폴더의 list.jsp로 forward
+			return new ActionForward("/notice/list.jsp", false);
 		}
 }
 
