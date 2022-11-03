@@ -7,9 +7,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.gdu.app05.domain.Member;
 
 public class MemberServiceimpl implements MemberService {
@@ -51,11 +48,11 @@ public class MemberServiceimpl implements MemberService {
 		return map;		
 	}
 	
-	@Override
-	public Member execute4(Member member) {
-		
-		return member;
-	}
+	/*
+	 * @Override public Member execute4(Member member) {
+	 * 
+	 * return member; }
+	 */
 	
 
 

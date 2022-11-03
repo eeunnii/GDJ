@@ -1,5 +1,5 @@
 <%@page import="java.sql.Date"%>
-<%@page import="domain.Post"%>
+<%@page import="domain.Board"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
 	<%
 	request.setCharacterEncoding("UTF-8");
 		
-		Post board = new Post();
+		Board board = new Board();
 		board.setTitle(request.getParameter("title"));
 		board.setWriter(request.getParameter("writer"));
 		board.setContent(request.getParameter("content"));

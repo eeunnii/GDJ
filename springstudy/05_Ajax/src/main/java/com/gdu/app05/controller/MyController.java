@@ -87,7 +87,7 @@ public class MyController {
 	 * 요청 파라미터에서는 사용할 수 없고, 
 	 * post 방식으로 파라미터 없이 데이터가 전달 될 때 사용할 수 잇음
 	 */
-	
+/*	
 	@ResponseBody
 	@PostMapping(value="member/detail4"
 					,produces=MediaType.APPLICATION_JSON_VALUE)			
@@ -96,7 +96,7 @@ public class MyController {
 		return memberService.execute4(member);
 		
 		//깃허브깃허브깃허브깃허브
-	}
+	}*/
 	
 	
 }

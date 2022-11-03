@@ -144,7 +144,7 @@ label {
 			<input type="button" value="전송1" id="btn1">
 			<input type="button" value="전송2" id="btn2">
 			<input type="button" value="전송3" id="btn3">
-			<input type="button" value="전송4" id="btn4">
+			<!-- <input type="button" value="전송4" id="btn4"> -->
 		</div>
 		
 		</form>

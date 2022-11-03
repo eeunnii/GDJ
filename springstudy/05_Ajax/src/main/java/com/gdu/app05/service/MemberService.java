@@ -16,7 +16,7 @@ public interface MemberService {
 
 	
 	//jacson이 json을 member형태로 바꿔줌
-	public Member execute4(Member member);
+	//public Member execute4(Member member);
 	
 	
 }
