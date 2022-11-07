@@ -64,17 +64,19 @@ public class DBConfig {
 	
 	@Bean 
 	public TransactionManager transactionManager() {
-		new DataSourceTransactionManager(dataSource());  // 트랜잭션할 때도 dataSource() 가 필요함
+		return new DataSourceTransactionManager(dataSource());  // 트랜잭션할 때도 dataSource() 가 필요함
 	}
 	
 	// 트랜잭션 인터셉터 Bean으로 등록한다.  -- 가로채기  -- 인터셉터 : 정상적인 흐름을 깨고 다시 돌아가기
 	@Bean
 	public TransactionInterceptor transactionInterceptor() {
-		// 모든 Exception이 발생하면 Rollback을 수행하시오
-		MatchAlwaysTransactionAttributeSource source = new MatchAlwaysTransactionAttributeSource();
+		
+		// 모든 Exception이 발생하면 Rollback을 수행하시오.
+		RuleBasedTransactionAttribute attribute = new RuleBasedTransactionAttribute();
 		attribute.setName("*");
 		attribute.setRollbackRules(Collections.singletonList(new RollbackRuleAttribute(Exception.class)));
-		RuleBasedTransactionAttribute attribute = new RuleBasedTransactionAttribute();
+		
+		MatchAlwaysTransactionAttributeSource source = new MatchAlwaysTransactionAttributeSource();
 		source.setTransactionAttribute(attribute);
 		
 		return new TransactionInterceptor(transactionManager(), source);
@@ -105,7 +107,7 @@ public class DBConfig {
 		
 		AspectJExpressionPointcut pointCut = new AspectJExpressionPointcut();
 		pointCut.setExpression("execution(*com.gdu.app08.service.*Impl.*Transaction(..))"); // 모든 트랜잭션으로 끝나는 메소드
-		return new DefaultPointcutAdvisor(pointCut, transactionInterceptor);       //  
+		return new DefaultPointcutAdvisor(pointCut, transactionInterceptor());       //  
 		
 		
 		
