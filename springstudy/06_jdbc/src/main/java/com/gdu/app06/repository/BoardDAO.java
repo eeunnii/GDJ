@@ -20,8 +20,8 @@ import com.gdu.app06.domain.BoardDTO;
  * root-context.xml이나 @configuration에 @Bean으로 등록하지 않아도 컨테이너에 만들어짐
  */
 
-
-@Component   // 이걸 bean으로 만들어 두란 뜻! // root content, config작업 안함.
+  
+//@Component   //(이 코드 없어도됨)) 이걸 bean으로 만들어 두란 뜻! // root content, config작업 안함.
 			// servlet-context.xml 에 context:component-scan가 있어서 가능함!
 
 
@@ -71,7 +71,7 @@ public class BoardDAO {         // DAO객체는 싱글톤 객체!! 컨테이너�
 			// next 한 행마다 한번씩 10줄이면 10번 . 위에서부터아래로 순서대로 검색함
 			// 순서는 쿼리문에서 지정한대로
 			while(rs.next()) {
-				BoardDTO board = new BoardDTO(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
+				BoardDTO board = new BoardDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
 				boards.add(board);
 			}
 		}catch(Exception e) {

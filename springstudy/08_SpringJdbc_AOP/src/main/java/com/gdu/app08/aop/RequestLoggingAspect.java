@@ -45,7 +45,6 @@ public class RequestLoggingAspect {
 		
 		// httpservletRequest를 Map으로 바꾸기
 		// 파라미터 Map의 Key가 되고, 값은 ..... Map의 value가 된다.
-		
 		Map<String,String[]> map = request.getParameterMap();
 		String params="";
 		if(map.isEmpty()) {

@@ -1,18 +1,17 @@
 package com.gdu.app01.java01;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import com.gdu.app01.java02.Student;
 
 /*
  * 	@Congigration
  * 	안녕. 난 Bean을 만드는 Java파일이야.
  * 	Spring Bean Configuration File하고 하는 일이 같지.
+ * 
+ * 	@Congigration 어노테이션을 사용함으로써 이 자바클래스는 Spring의 환경설정과 관련된 파일이다라는 식으로
+ *  알려주게 됨. 요것만 있음 빈껍데기 상태고 @Bean을 설정하면 객체 생성됨
+ *  
+ *  @Congigration 어노테이션으로 설정한 클래스는 Spring에서 사용하는 Bean자체로도 인식이 왼다.
 */
 @Configuration
 public class SpringBeanConfig {
