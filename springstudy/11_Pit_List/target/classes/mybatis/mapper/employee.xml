@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mapper의 namespace를 Mapper Interface로 지정해 준다. -->
+
+<mapper namespace="com.gdu.app10.mapper.EmpMapper">
+
+
+	<!-- employees와 departments의 조인을 위한 resultMap  -->
+	<resultMap type="DeptDTO" id="DeptMap">
+		<result column="DEPARTMENT_ID" property="departmentId"/>
+		<result column="DEPARTMENT_NAME" property="departmentName"/>
+		<result column="MANAGER_ID" property="managerId"/>
+		<result column="LOCATION_ID" property="locationId"/>
+	</resultMap>
+	<resultMap type="EmpDTO" id="EmpMap">
+		<result column="EMPLOYEE_ID" property="employeeID"/>
+		<result column="FIRST_NAME" property="firstName"/>
+		<result column="LAST_NAME" property="lastName"/>
+		<result column="EMAIL" property="email"/>
+		<result column="PHONE_NUMBER" property="phoneNumber"/>
+		<result column="HIRE_DATE" property="hireDate"/>
+		<result column="JOB_ID" property="jobID"/>
+		<result column="SALARY" property="salary"/>
+		<result column="COMMISSION_PCT" property="commissionPct"/>
+		<result column="MANAGER_ID" property="managerID"/>
+		<result column="DEPARTMENT_ID" property="departmentID"/>
+		<collection property="DeptMap" resultMap="deptDTO"></collection>
+	</resultMap>
+
+
+	<select id="selectAllEmployeesCount" resultMap="int">   <!-- 아이디는 추상메소드 이름이 된다. -->
+		SELECT COUNT(*)
+			FROM EMPLOYEES
+	</select>
+	
+	<select id="selectEmployeesByPage" resultMap="EmpMap"><!-- 파라미터타입 생략함 public List<empdto> selectEmployeesByPage(int begin, int end);  --><!-- EmpDTO 이거 alias값 -->
+	<!-- 파라미터 생략하는 대신, 파라미터 순서대로 #{param1} #{param2} 로 표현가능함 -->
+	<!-- <resultMap type="EmpDTO" id="EmpMap">의 id를 resultMap타입에 적어줌 -->
+	<!-- resultType -->
+
+	
+
+        SELECT B.RN, B.*
+		FROM (		SELECT ROWNUM AS RN, A.*			<!-- ROWNUM은 별명붙이는게 좋음 -->	
+					FROM(	SELECT E.*, D.DEPARTMENT_NAME, D.LOCATION_ID
+                                FROM EMPLOYEES E INNER JOIN DEPARTMENTS D
+                                ON E.DEPARTMENT_ID = D.DEPARTMENT_ID
+                                ORDER BY HIRE_DATE DESC) A) B
+		WHERE B.RN BETWEEN 1 AND 10
+
+		
+	
+	</select>
+
+</mapper>

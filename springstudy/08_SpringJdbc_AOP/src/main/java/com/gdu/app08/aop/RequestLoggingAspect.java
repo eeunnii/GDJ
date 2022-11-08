@@ -1,7 +1,7 @@
 package com.gdu.app08.aop;
 
 import java.util.Map;
-import java.util.logging.Logger;
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,6 +9,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -46,7 +47,7 @@ public class RequestLoggingAspect {
 		// 파라미터 Map의 Key가 되고, 값은 ..... Map의 value가 된다.
 		
 		Map<String,String[]> map = request.getParameterMap();
-		String Prams="";
+		String params="";
 		if(map.isEmpty()) {
 			params += "[No Parameter]";
 		} else {

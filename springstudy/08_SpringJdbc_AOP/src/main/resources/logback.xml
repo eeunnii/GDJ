@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
+<configuration>
 	<!-- Appenders -->
 	<!-- 
 		%date{패턴} : 로그기록시간(simpledateFormate과 동일한 패턴)
@@ -12,14 +14,9 @@
 	
 	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
 		<layout class="ch.qos.logback.classic.PatternLayout">
-			<pattern>%date{HH:mm:ss.SSS, Asia/Seoul} [%thread] %-5level %logger{36} - %msg%n</pattern> <!-- 5자리로 글자 폭을 맞춘 level // logback홈페이지의 tutorial보면된다고하심 -->
+			<pattern>%date{HH:mm:ss.SSS, Asia/Seoul} [%thread] %-5level %logger{36} - %msg%n</pattern>
 		</layout>
 	</appender>
-	
-	<!-- Application Loggers -->
-	<logger name="com.gdu.app08">
-		<level value="info" />
-	</logger>
 	
 	<!-- 
 		로그레벨 
@@ -36,4 +33,4 @@
 		<appender-ref ref="console" />   <!-- 위쪽의 <appender name="console" class="ch.qos.logback.core.ConsoleAppender"> 의 name임 -->
 	</root>
 	
-</log4j:configuration>
+</configuration>

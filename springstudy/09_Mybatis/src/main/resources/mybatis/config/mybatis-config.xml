@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+
+	
+	<!-- snake_case(DB) to camelCase(Java)  -->
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+		<!-- 
+			https://mybatis.org/mybatis-3/ko/configuration.html#settings
+			위 name은 해당 홈페이지의 settings 참고
+		 -->
+	</settings>
+	
+	<!-- domain.Board to Board  // 일종의 import같은 느낌 -->
+	<!-- alias:별명.  type에 있는걸 alias라고 부르겠다! -->
+	<typeAliases>
+		<typeAlias type="com.gdu.app09.domain.BoardDTO" alias="Board"/>
+	</typeAliases>
+
+
+</configuration>

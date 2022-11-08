@@ -37,8 +37,9 @@ import org.springframework.transaction.interceptor.TransactionInterceptor;
 /*
  * @EnableAspectAutoProxy
  * 
- *  깃허브 .. 
+ * 	안녕 난 Aspect를 자동으로 동작시키는 애너테이션이야
  */
+
 
 @Configuration
 public class DBConfig {
