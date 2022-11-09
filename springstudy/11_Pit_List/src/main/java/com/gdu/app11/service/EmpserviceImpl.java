@@ -36,29 +36,49 @@ public class EmpserviceImpl implements EmpService {
 		// 전체 레코드(직원) 개수 구하기 
 		int totalRecord = empMapper.selectAllEmployeesCount();
 		
-		// PageUtil 계산하기
+		// PageUtil 계산하기 ---- 페이지별로 10개씩 뽑기 --  rownum기준으로 뽑는다 . 그냥 사원번호로 하면 나중에 사원이 퇴사했을 때 곤란한 상황발생함
 		pageUtil.setPageUtil(page, totalRecord);
 		
-		// Map 만들기(begin, end)
+		// Map 만들기(begin, end) -- 각각의 변수로 파라미터를 전달해도 되지만 샘은 일케 하신댓음
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("begin", pageUtil.getBegin());
 		map.put("end", pageUtil.getEnd());
-		
-		// 페이지별로 10개씩 뽑기 --  rownum기준으로 뽑는다 . 그냥 사원번호로 하면 나중에 사원이 퇴사했을 때 곤란한 상황발생함
-		pageUtil.setPageUtil(page,  totalRecord);
-
 		
 		// begin ~ end 목록 가져오기 
 		List<EmpDTO> employees = empMapper.selectEmployeesByPage(map);		
 
 		
 		model.addAttribute("employees", employees); 
-		model.addAttribute("pageUtil", pageUtil); 
+		model.addAttribute("paing", pageUtil.getPaging(request.getContextPath()+"/emp/list")); 
+		model.addAttribute("beginNo", totalRecord-(page-1)*pageUtil.getRecordPerPage()); 
+
+	}
+	
+	@Override
+	public void findEmployees(HttpServletRequest request, Model model) {
 		
 		
+		Optional<String, Object> opt = new HashMap<String, Object>();
+		int page = Integer.parseInt(opt.orElse("1"));
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("column",request.getParameter("column"));
+		map.put("query", request.getParameter("query"));
+		map.put("start", request.getParameter("start"));
+		map.put("stop", request.getParameter("stop"));
+		
+		int totalRecord = empMapper.selectFindEmployeesCount(map);
+		
+		pageUtil.setPageUtil(page, totalRecord);
+		map.put("begin", pageUtil.getBegin());
+		map.put("end", pageUtil.getEnd());
 		
 		
+		System.out.println("검색 결과 갯수" + empMapper.selectFindEmployeesCount(map));  // ??  널?
 		
+		model.addAllAttributes("employees", employees);
+		model.addAllAttributes("beginNo", totalRecord-(page-1)*PageUtil.getRecordPerPage);
+		model.addAllAttributes("paging", pageUtil.getContextPath()+"/emp/");
 		
 		
 	}

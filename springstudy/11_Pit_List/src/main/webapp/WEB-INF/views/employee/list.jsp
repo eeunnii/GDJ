@@ -7,8 +7,61 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="${contextPath}/resources/js/jqery-3.6.1.min.js">
+	$(document).ready(function(){
+		// area1, area2 표시
+		// 초기 상태 : area1, area2 둘 다 숨김
+		$('#area1, #area2').css('display', 'none');
+		// column 선택에 따른 area1, area2 표시
+		$('#column').change(function(){  /* 이벤트 대상이 되는건 this,제이쿼리에서쓸려면 달러{}붙임 */
+			let combo = $(this);
+			if(combo.val() == ''){
+				$('#area1, #area2').css('display', 'none');
+			} else if(combo.val() == 'HIRE_DATE' || combo.val() == 'SALARY'){
+				$('#area1').css('display', 'none');
+				$('#area2').css('display', 'inline');
+			} else {
+				$('#area1').css('display', 'inline');
+				$('#area2').css('display', 'none');
+			}
+				
+		});
+	});
+
+</script>
 </head>
 <body>
+	<div>
+		<form id="frm_search" action="${contextpath}/emp/search">
+			<select id="column" name="column">
+				<!-- 일치해야 검색하기 -->
+				<option value="">:::선택</option>
+				<option value="EMPLOYEE_ID">사원번호</option>
+				<!-- -->
+				<option value="E.DEPARTMENT_ID">부서번호</option>
+				<option value="LAST_NAME">성</option>
+				<option value="FIRST_NAME">이름</option>
+				<option value="PHONE_NUMBER">연락처</option>
+				<!-- 범위 -->
+				<option value="HIRE_DATE">입사일</option>
+				<option value="SALARY">연봉</option>
+			</select>
+			<span id="area1">
+				<input type="text" name="query" id="query">
+			</span>
+			<span id="area2">
+				<input type="text" id="begin" name="begin">
+				~
+				<input type="text" id="end" name="end">
+ 			</span>
+ 			<span>
+ 				<input type="submit" value="검색">
+ 				<input type="button" value="전체사원조회" id="btn_all">
+ 			</span>
+		</form>
+	</div>
+	
+	<hr>
 
 	<div>
 		<table>
@@ -27,60 +80,32 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${employees}" var=emp>
+				<c:forEach items="${employees}" var="emp" varStatus="vs">
 					<tr>	
-						<td></td>
-						<td>${emp.employeeID}</td>
+						<td>${beginNo-vs.index}</td>
+						<td>${emp.employeeId}</td>
 						<td>${emp.firstName}  ${emp.lastName}</td>
 						<td>${emp.email}</td>
 						<td>${emp.phoneNumber}</td>
 						<td>${emp.hireDate}</td>
-						<td>${emp.jobID}</td>
+						<td>${emp.jobId}</td>
 						<td>${emp.salary}</td>
 						<td>${emp.commissionPct}</td>  <!-- 여기있는모든것들은 getter를 참고함 -->
-						<td>${emp.deptDTO.departmentID}</td>
+						<td>${emp.deptDTO.departmentId}</td>
 						<td>${emp.deptDTO.departmentName}</td>
 					</tr>
 				</c:forEach>
-			
-			
 			</tbody>
 			<tfoot>
 				<tr>
-					<!-- 이전 블록 : 1block이 아니면 이전 블록이 있다 -->
-					<c:if test="${pageUtil.beginPage != 1}">
-						<a href="${contextPath}/emp/list?page=${pageUtil.beginPage-1}">◀</a>
-					</c:if>
-					
-					
-					<!-- 페이지번호 : 현재 페이지는 링크가 없다 . -->
-					<c:forEach var="p" begin=${pageUtil.beginPage} end="${pageUtil.endPage}" step="1">
-						<c:if test="${p==pageUtil.page }">
-						 ${p}
-						</c:if>
-						<c:if test="${p!=pageUtil.page}">
-							<a href= "${contextPath}/emp/list?page${p}"></a>
-						</c:if>
-					</c:forEach>
-					
-					
-					
-					<!-- 다음블록 : 마지막 블록이 아니면 다음블록이 있다.-->
-					<c:if test="${pageUtil.endPage != pageUtil.totalPage}">
-						<a href="${contextPath}/emp/list?page=${pageUtil.endPage +1}">▶</a>
-					</c:if>
+					<td colspan="10">
+						${paging}
+					</td>
 				</tr>
-			
-			
 			</tfoot>
-			
 		</table>
 	</div>
 
-
-
-
-<a href="${contextPath}/emp/list">사원목록</a>
 
 </body>
 </html>

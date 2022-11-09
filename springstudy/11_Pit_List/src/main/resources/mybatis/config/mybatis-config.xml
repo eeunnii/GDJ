@@ -13,8 +13,8 @@
 	
 	<!-- com.gdu.app11.domain.BoardDTO to Board -->
 	<typeAliases>
-		<typeAlias type="com.gdu.app10.domain.EmpDTO" alias="EmpDTO" />
-		<typeAlias type="com.gdu.app10.domain.DeptDTO" alias="DeptDTO" />
+		<typeAlias type="com.gdu.app11.domain.EmpDTO" alias="EmpDTO" />
+		<typeAlias type="com.gdu.app11.domain.DeptDTO" alias="DeptDTO" />
 	</typeAliases>
 
 </configuration>

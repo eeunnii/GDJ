@@ -15,6 +15,8 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 
+// 애스터리스크가 똑같은 이름 있으면 오류남
+
 @Component  // RequestLoggingAspect 클래스를 Bean으로 만들어 두시오.
 @Aspect     // 안녕. 난 Aspect야. AOP 동작하려면 내가 필요해.
 public class RequestLoggingAspect {

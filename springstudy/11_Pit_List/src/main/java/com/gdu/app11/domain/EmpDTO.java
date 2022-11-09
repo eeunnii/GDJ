@@ -11,15 +11,15 @@ import lombok.NoArgsConstructor;
 @Data
 
 public class EmpDTO {
-	private int employeeID;
+	private int employeeId;
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String phoneNumber;
 	private Date hireDate;
-	private String jobID;
+	private String jobId;
 	private int salary;
 	private int commissionPct;
-	private int managerID;
+	private int managerId;
 	private DeptDTO deptDTO;
 }

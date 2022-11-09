@@ -8,7 +8,7 @@ public interface EmpService {
 	
 	
 	public void findAllEmployees(HttpServletRequest request,Model model);// page라는 파라미터가 필요해서 request를 넣음
-	
+	public void findEmployees(HttpServletRequest request,Model model);
 	
 	
 	// 보통 서비스가 컨트롤러로 목록을 넘겨주고 서비스에서 model을 저장해서 포워딩했었다.

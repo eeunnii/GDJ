@@ -27,5 +27,11 @@ public class EmpController {
 		return "employee/list";
 	}
 	
+	@GetMapping("/emp/search")
+	public String search(HttpServletRequest request, Model model) {
+		empService.findEmployeesCount(request, model);
+		return "employee/list";
+	}
+	
 
 }
