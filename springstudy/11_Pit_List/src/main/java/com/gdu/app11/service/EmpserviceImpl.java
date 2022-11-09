@@ -58,7 +58,7 @@ public class EmpserviceImpl implements EmpService {
 	public void findEmployees(HttpServletRequest request, Model model) {
 		
 		
-		Optional<String, Object> opt = new HashMap<String, Object>();
+		Optional<String> opt = Optional.ofNullable(request.getParameter("page"));
 		int page = Integer.parseInt(opt.orElse("1"));
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -73,12 +73,13 @@ public class EmpserviceImpl implements EmpService {
 		map.put("begin", pageUtil.getBegin());
 		map.put("end", pageUtil.getEnd());
 		
+		List<EmpDTO> employees = empMapper.selectFindEmployees(map);
 		
 		System.out.println("검색 결과 갯수" + empMapper.selectFindEmployeesCount(map));  // ??  널?
 		
-		model.addAllAttributes("employees", employees);
-		model.addAllAttributes("beginNo", totalRecord-(page-1)*PageUtil.getRecordPerPage);
-		model.addAllAttributes("paging", pageUtil.getContextPath()+"/emp/");
+		model.addAttribute("employees", employees);
+		model.addAttribute("beginNo", totalRecord - (page - 1) * pageUtil.getRecordPerPage());
+		model.addAttribute("paging", pageUtil.getPaging(request.getContextPath() + "/emp/search"));
 		
 		
 	}

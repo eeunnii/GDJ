@@ -67,39 +67,40 @@
 	</select>
 	<select id="selectFindEmployeesCount" parameterType="Map" resultType="int"><!-- Map엔 칼럼과 쿼리가 들어가있음 -->
 		SELECT COUNT(*)
-		FROM EMPLOYEES
-		<!-- c: 와 비슷해보이는 if -->
-		<if test="column=='EMPLOYEE_ID' or olumn=='DEPARTMENT_ID'">WHERE ${column} = #{query}</if> 
-		<if test="column=='DEPARTMENT_ID'" or>WHERE "DEPARTMENT_ID==column=='FIRST_NAME'" = #{query}</if>
-		<if test="column=='LAST_NAME'">WHERE LAST_NAME LIKE '%' || #{query} || '%'</if>
-		<if test=">WHERE FIRST_NAME LIKE '%' || #{query} || '%'</if>
-		<if test="column=='PHONE_NUMBER'">WHERE PHONE_NUMBER LIKE '%' || #{query} || '%'</if>
-		<if test="column=='HIRE_DATE'">WHERE HIRE_DATE BETWEEN TO_DATE(#{start}, 'YYYY-MM-DD') AND TO_DATE(#{end}, 'YYYY-MM-DD')</if>
-		<if test="column=='SALARY'">WHERE SALARY BETWEEN #{start} and #{end}</if>
-	
-	
-	</select>
+		  FROM EMPLOYEES E
+		<where>
+		  <if test="column=='EMPLOYEE_ID' or column=='E.DEPARTMENT_ID'">${column} = #{query}</if>
+		  <if test="column=='LAST_NAME' or column=='FIRST_NAME' or column=='PHONE_NUMBER'">${column} LIKE '%' || #{query} || '%'</if>
+		  <if test="column=='HIRE_DATE'">${column} BETWEEN TO_DATE(#{start}, 'YYYY-MM-DD') AND TO_DATE(#{stop}, 'YYYY-MM-DD')</if>
+		  <if test="column=='SALARY'">${column} BETWEEN #{start} AND #{stop}</if>
+		</where>
+		<!--
+			WHERE #{column} = #{query}   #{}는 작은 따옴표(')로 묶어서 값을 치환
+	     	WHERE 'EMPLOYEE_ID' = '150'  잘못된 사용
+	     	
+	     	WHERE ${column} = #{query}   ${}는 그냥 치환
+			WHERE EMPLOYEE_ID = '150'    정상 동작
+		-->
+		</select>
 	
 	
 	<!-- 애스터리스크 : 칼럼명이 동일하면 오류남.. ambig..어쩌고 -->
 	
-	
-	
 	<select id="selectFindEmployees" parameterType="Map" resultType="EmpMap">
 	<!-- EmpMap로 반환해야 이름 주소 등등이 EmpMap 포함됨 -->
 		SELECT B.*
-		FROM(	SELECT ROWNUM AR RN, A.*
-				FROM (	SELECT *
-						FROM EMPLOYEES E LEFT OUTER JOIN DEPARTMENTS D
-						ON E.DEPARTMENT_ID = E.DEPARTMENT_ID
-						ORDER BY HIRE_DATE DESC) A) B
-		WHERE B.RN BETWEEN #{begin} AND #{end}
-		
+		  FROM (SELECT ROWNUM AS RN, A.*
+		          FROM (SELECT E.*, D.DEPARTMENT_NAME, D.LOCATION_ID
+		                  FROM DEPARTMENTS D RIGHT OUTER JOIN EMPLOYEES E
+		                    ON D.DEPARTMENT_ID = E.DEPARTMENT_ID
+		               <where>
+		                   <if test="column=='EMPLOYEE_ID' or column=='E.DEPARTMENT_ID'">${column} = #{query}</if>
+		                   <if test="column=='LAST_NAME' or column=='FIRST_NAME' or column=='PHONE_NUMBER'">${column} LIKE '%' || #{query} || '%'</if>
+		                   <if test="column=='HIRE_DATE'">${column} BETWEEN TO_DATE(#{start}, 'YYYY-MM-DD') AND TO_DATE(#{stop}, 'YYYY-MM-DD')</if>
+		                   <if test="column=='SALARY'">${column} BETWEEN #{start} AND #{stop}</if>
+		               </where>
+		                 ORDER BY HIRE_DATE DESC) A) B
+		 WHERE B.RN BETWEEN #{begin} AND #{end}
 		<!-- 미리 다 조인해 놓고 찾는 것 보단 미리 WHERE절로 결과 짤라서 JOIN하는게 성능에 더 좋음 -->
-		
-
-	
-	
 	</select>
-
 </mapper>

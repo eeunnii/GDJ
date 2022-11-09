@@ -18,7 +18,7 @@ public class MyController2 {
 	/*
 	 * 까먹으면 죽음뿐..
 	 * 
-	 * 1. forward. --  
+	 *  1. forward. --  
 	 *  return "board/detail";
 	 *  board폴더 아래 detail.jsp로 forward하시오.
 	 *  

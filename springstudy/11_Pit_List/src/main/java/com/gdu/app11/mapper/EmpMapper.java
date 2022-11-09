@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.gdu.app11.domain.EmpDTO;
 
-@Mapper
+
 
 /*
 @Mapper
@@ -17,7 +17,7 @@ import com.gdu.app11.domain.EmpDTO;
 내 메소드 이름은 쿼리문의 id와 같아야 해.
 날 찾으려면 @MapperScan이 필요해. (DBConfig에 추가할거야.)
 */
-
+@Mapper
 public interface EmpMapper {
 	public int selectAllEmployeesCount();
 	public List<EmpDTO> selectEmployeesByPage(Map<String, Object> map);  // 여태까지 ()안에 전달하는 값이 하나였음, 2개 전달할 때는! employee.xml 이동해서 확인하기

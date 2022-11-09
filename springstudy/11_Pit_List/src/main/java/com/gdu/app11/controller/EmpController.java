@@ -15,7 +15,6 @@ public class EmpController {
 	@Autowired
 	private EmpService empService;
 	
-	
 	@GetMapping("/")
 	public String welcom() {
 		return "index";
@@ -29,7 +28,7 @@ public class EmpController {
 	
 	@GetMapping("/emp/search")
 	public String search(HttpServletRequest request, Model model) {
-		empService.findEmployeesCount(request, model);
+		empService.findEmployees(request, model);
 		return "employee/list";
 	}
 	
