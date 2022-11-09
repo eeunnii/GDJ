@@ -1,6 +1,8 @@
 package com.gdu.app11.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +13,7 @@ import org.springframework.ui.Model;
 
 import com.gdu.app11.domain.EmpDTO;
 import com.gdu.app11.mapper.EmpMapper;
+import com.gdu.app11.util.PageUtil;
 
 
 @Service
@@ -18,6 +21,9 @@ public class EmpserviceImpl implements EmpService {
 	
 	@Autowired
 	private EmpMapper empMapper;
+	
+	@Autowired
+	private PageUtil pageUtil;
 	
 	@Override 
 	public void findAllEmployees(HttpServletRequest request, Model model) {  // request --> 파라미터 page를 받아옴, model-->리스트를 받아옴
@@ -27,26 +33,27 @@ public class EmpserviceImpl implements EmpService {
 		Optional<String> opt = Optional.ofNullable(request.getParameter("page"));
 		int page = Integer.parseInt(opt.orElse("1"));   
 		
-		
-		
-		// 페이지별로 10개씩 뽑기 --  rownum기준으로 뽑는다 . 그냥 사원번호로 하면 나중에 사원이 퇴사했을 때 곤란한 상황발생함
-		
-		// 한 페이지에 몇 개의 목록을 표시할 것인가 ? -- 전체페이지수 
+		// 전체 레코드(직원) 개수 구하기 
 		int totalRecord = empMapper.selectAllEmployeesCount();
 		
-		int recordPerPage = 10;
-		int begin = (page-1) * recordPerPage + 1;
-		int end = begin+recordPerPage-1;
-		if(end> totalRecord) {
-			end = totalRecord;
-		}else {
-			end = totalRecord;
-		}
+		// PageUtil 계산하기
+		pageUtil.setPageUtil(page, totalRecord);
 		
-		List<EmpDTO> employees = empMapper.selectEmployeesByPage(begin, end);
-		System.out.println(employees);
+		// Map 만들기(begin, end)
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("begin", pageUtil.getBegin());
+		map.put("end", pageUtil.getEnd());
+		
+		// 페이지별로 10개씩 뽑기 --  rownum기준으로 뽑는다 . 그냥 사원번호로 하면 나중에 사원이 퇴사했을 때 곤란한 상황발생함
+		pageUtil.setPageUtil(page,  totalRecord);
+
+		
+		// begin ~ end 목록 가져오기 
+		List<EmpDTO> employees = empMapper.selectEmployeesByPage(map);		
+
 		
 		model.addAttribute("employees", employees); 
+		model.addAttribute("pageUtil", pageUtil); 
 		
 		
 		

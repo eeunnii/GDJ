@@ -37,23 +37,18 @@
 			FROM EMPLOYEES
 	</select>
 	
-	<select id="selectEmployeesByPage" resultMap="EmpMap"><!-- 파라미터타입 생략함 public List<empdto> selectEmployeesByPage(int begin, int end);  --><!-- EmpDTO 이거 alias값 -->
+	<select id="selectEmployeesByPage" parameterType="map" resultMap="EmpMap"><!-- 파라미터타입 생략함 public List<empdto> selectEmployeesByPage(int begin, int end);  --><!-- EmpDTO 이거 alias값 -->
+	<!-- parameterType="Map" map 도 상관없음 마이바티스가 해석함 -->
 	<!-- 파라미터 생략하는 대신, 파라미터 순서대로 #{param1} #{param2} 로 표현가능함 -->
 	<!-- <resultMap type="EmpDTO" id="EmpMap">의 id를 resultMap타입에 적어줌 -->
 	<!-- resultType -->
-
-	
-
         SELECT B.RN, B.*
 		FROM (		SELECT ROWNUM AS RN, A.*			<!-- ROWNUM은 별명붙이는게 좋음 -->	
 					FROM(	SELECT E.*, D.DEPARTMENT_NAME, D.LOCATION_ID
                                 FROM EMPLOYEES E INNER JOIN DEPARTMENTS D
                                 ON E.DEPARTMENT_ID = D.DEPARTMENT_ID
                                 ORDER BY HIRE_DATE DESC) A) B
-		WHERE B.RN BETWEEN 1 AND 10
-
-		
-	
+		WHERE B.RN BETWEEN #{begin} AND #{end}
 	</select>
 
 </mapper>
