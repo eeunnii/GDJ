@@ -103,4 +103,10 @@
 		 WHERE B.RN BETWEEN #{begin} AND #{end}
 		<!-- 미리 다 조인해 놓고 찾는 것 보단 미리 WHERE절로 결과 짤라서 JOIN하는게 성능에 더 좋음 -->
 	</select>
+	
+	<select id="selectAutoCompleteList" parameterType="String" resultMap="EmpDTO"> <!-- resultMap="EmpDTO" String이 아님을 주의 -->
+		SELECT *
+			FROM EMPLOYEES
+			WHERE EMAIL LIKE #{param} || '%'    <!--mysql에서 문자열 연결은 CONCAT(#{param},%) 주의 : CONCAT안에는 인수3개 안됨 ㅈ무조건 2개임 -->		
+	</select>
 </mapper>

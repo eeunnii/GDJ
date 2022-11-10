@@ -23,4 +23,5 @@ public interface EmpMapper {
 	public List<EmpDTO> selectEmployeesByPage(Map<String, Object> map);  // 여태까지 ()안에 전달하는 값이 하나였음, 2개 전달할 때는! employee.xml 이동해서 확인하기
 	public int selectFindEmployeesCount(Map<String,Object> map);
 	public List<EmpDTO> selectFindEmployees(Map<String,Object> map);
+	public List<EmpDTO> selectAutoCompleteList(Map<String, Object> map);
 }

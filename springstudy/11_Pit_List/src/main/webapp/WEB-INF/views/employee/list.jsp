@@ -26,6 +26,31 @@
 				$('#area2').css('display', 'none');
 			}
 		});
+		
+		// 자동 완성
+		$('#email').keyup(function(){
+			$('auto_complete').empty();
+			/// ajax 써야함.  왜지.. db갔다와서?
+					$.ajax({
+						/*요청*/
+						type:'get',
+						url : '${contextPath}/emp/autoComplete'.
+						data : 'param=' + $(this).val()  /* this는 $('#email')임 */
+						/*응답*/
+						dataType : 'json'
+						success : function(resData){
+							if(resData.status == 200){
+								//	$.each(배열, 함수, 인덱스, 배열 요소)
+								// $.each(response.list, function(i, emp))
+								#('#auto_complete')
+								.append(('<option').val(emp, email));
+							}
+						}
+						
+					});
+		});
+		
+		
 	});
 
 </script>
@@ -56,6 +81,12 @@
 				<input type="button" value="전체사원조회" id="btn_all">
 			</span>
 		</form>
+	</div>
+	
+	<div>
+		<label for="eamil">이메일</label>
+		<input type="text" name="email" id="email" list="auto_complete">	
+		<datalist id="auto_complete"></datalist>
 	</div>
 	
 	<hr>

@@ -155,6 +155,15 @@ public class Ex01_for {
 		//star += "★";
 
 		
+		for(int i=1; i<200; i++) {
+			
+			System.out.println(
+					"INSERT INTO BBS VALUES(BBS_SEQ.NEXTVAL, '작성자"+i+"', '제목"+i+"', '0:0:0:0:0:0:0:1', SYSDATE,1,0, BBS_SEQ.CURRVAL,0);"
+					);
+			
+		}
+		
+		
 		
 	}
 
