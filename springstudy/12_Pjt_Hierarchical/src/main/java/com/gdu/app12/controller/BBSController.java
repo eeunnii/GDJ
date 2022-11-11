@@ -21,7 +21,8 @@ public class BBSController {
 	// 삭제버튼이 뜰 수 있게 구현...
 
 	@Autowired
-	private BbsService bbsService;
+	private BbsService bbsService;  
+	// 인터페이스 공학.. 사용하는 이유.. 소프트웨어 개발론.. 업무지시서가 인터페이스로 나옴.. 
 	
 	@GetMapping("/")
 	public String welcome() {
@@ -48,7 +49,13 @@ public class BBSController {
 	@PostMapping("/bbs/remove")
 	public String remove(@RequestParam("bbsNo") int bbsNo) {
 		//System.out.println(bbsNo);
-		
+		bbsService.removeBbs(bbsNo);
+		return "redirect:/bbs/list";
+	}
+	
+	@PostMapping("/bbs/reply/add")
+	public String replyadd(HttpServletRequest request) {
+		bbsService.addReply(request);
 		return "redirect:/bbs/list";
 	}
 	

@@ -19,7 +19,7 @@
 	
 	<select id="selectAllBbsList" parameterType="Map" resultType="BbsDTO">
 		SELECT A.RN, A.BBS_NO, A.WRITER ,A.TITLE ,A.IP ,A.CREATE_DATE ,A.STATE ,A.DEPTH ,A.GROUP_NO ,A.GROUP_ORDER
-		FROM(	SELECT ROW_NUMBER() OVER(ORDER BY BBS_NO DESC) AS RN, BBS_NO, WRITER ,TITLE ,IP ,CREATE_DATE ,STATE ,DEPTH ,GROUP_NO ,GROUP_ORDER
+		FROM(	SELECT ROW_NUMBER() OVER(ORDER BY GROUP_NO DESC, GROUP_ORDER ASC) AS RN, BBS_NO, WRITER ,TITLE ,IP ,CREATE_DATE ,STATE ,DEPTH ,GROUP_NO ,GROUP_ORDER
 				FROM BBS	) A
 		WHERE A.RN BETWEEN #{begin} AND #{end}
 	</select>
@@ -27,35 +27,49 @@
 	
 	
 	<insert id="insertBbs" parameterType="BbsDTO" >
-	INSERT INTO BBS (BBS_NO, WRITER ,TITLE ,IP ,CREATE_DATE ,STATE ,DEPTH ,GROUP_NO ,GROUP_ORDER)
-			VALUES (BBS_SEQ.NEXTVAL, #{title}, #{writer}, #{ip}, SYSDATE, 1, 0, BBS_SEQ.CURRVAL, 0)
+	INSERT INTO BBS 
+			(BBS_NO, WRITER ,TITLE ,IP ,CREATE_DATE ,STATE ,DEPTH ,GROUP_NO ,GROUP_ORDER)
+	VALUES 
+			(BBS_SEQ.NEXTVAL, #{writer}, #{title}, #{ip}, SYSDATE, 1, 0, BBS_SEQ.CURRVAL, 0)
 	</insert>
 	
 	
 	
-	<insert id="insertReply" parameterType="BbsDTO">
 	
 	
-	
-	
-	</insert>
-	
-	
+	<!-- updatePreviousReply 쿼리의 parameterType="BbsDTO"는 원글을 의미한다. -->
+	<!-- 2. parameterType="BbsDTO"는 원글을 의미한다. -->
+	<!--  -->
 	<update id="updatePreviousReply" parameterType="BbsDTO">
-	
+		UPDATE BBS
+		SET GROUP_ORDER = GROUP_ORDER+1
+		WHERE GROUP_NO = #{groupNo}  
+		AND GROUP_ORDER > #{groupOrder}
 	</update>
 	
+<!-- 	<update id="updatePreviousReply" parameterType="BbsDTO">
+		UPDATE BBS
+		SET GROUP_ORDER = GROUP_ORDER+1
+		WHERE GROUP_NO = #{groupNo}  	원글의 group_no를 의미함
+		AND GROUP_ORDER > #{groupOrder}
+	</update> -->
+
+	
+	<insert id="insertReply" parameterType="BbsDTO">
+		INSERT INTO BBS 
+			(BBS_NO, WRITER ,TITLE ,IP ,CREATE_DATE ,STATE ,DEPTH ,GROUP_NO ,GROUP_ORDER)
+		VALUES 
+			(BBS_SEQ.NEXTVAL,#{writer}, #{title}, #{ip}, SYSDATE, 1, #{depth}, #{groupNo}, #{groupOrder})
+	</insert>
 	
 	
 	<!--태그 delete말고 update로 해야함 -->
 	<update id="deleteBbs" parameterType="int">
 		UPDATE BBS
 			SET STATE = 0
-			WHERE BBS_NO = #{bbsNo};
-			
-	
-	
+			WHERE BBS_NO = #{bbsNo}
 	</update>
+	
 	
 
 </mapper>

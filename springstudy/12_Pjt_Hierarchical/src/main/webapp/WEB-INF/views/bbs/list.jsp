@@ -20,6 +20,17 @@
 		});
 	});
 </script>
+<style>
+	.lnk_remove {
+		cursor: pointer;
+	}
+	.blind {
+		display: none;
+	}
+</style>
+
+<!-- d -->
+
 </head>
 <body>
 	<div>
@@ -48,54 +59,87 @@
 			</thead>
 			<tbody>
 				<c:forEach var="bbs" items="${bbsList}" varStatus="vs">
+				<c:if test="${bbs.state==1}">
 					<tr>
 						<td>${beginNo - vs.index}</td>
 						<td>${bbs.writer}</td>
 						
 						<td>
-							<c:if test="${bbs.state==0}">
-							삭제된 게시글 입니다.
+							<!-- DEPTH에 따른 들여쓰기 -->
+							<c:forEach begin="1" end="${bbs.depth}" step="1">
+								&nbsp;&nbsp;
+							</c:forEach>
+							
+							<!-- 답글은 [RE] 표시 -->
+							<c:if test="${bbs.depth>0}">
+							[RE]	
 							</c:if>
-							<c:if test="${bbs.state==1}">
+							
+							<!-- 제목 -->
 							${bbs.title}
+							
+							<!-- 답글달기 버튼, 이렇게하면 1단으로 운영가능함 -->
+							<%-- 
+							<c:if test="${bbs.depth}==0">
+								<input type="button" value="답글달기" class="btn_reply_write">
 							</c:if>
-						</td>
-						<td>${bbs.ip}</td>
-						<td>${bbs.createDate}</td>
-						<td>
-							<form method="post" action="${contextPath}/bbs/remove">
-								<input type="hidden" name="bbsNo" value="${bbs.bbsNo}">
-								<a id="lnk_remove${bbs.bbsNo}">X</a>
-								<!-- 삭제할 수 있는 방법 만들기  -->
-							</form>
-							<script type="text/javascript">
-								$('#lnk_remove${bbs.bbsNo}').click(function(){
-									if(confirm('삭제할까요?')){
-										$(this).parent().submit();
-										//alert($(this).parent().data('aaa'));   /* data-aaa에서 aaa를 빼온거임 */
-									}
+							--%>
+							
+							<input type="button" value="답글달기" class="btn_reply_write">
+							
+							<script>
+								$('.btn_reply_write').click(function(){
+									$('.reply_wirte_tr').addClass('blind');
+									$(this).parent().parent().next().removeClass('blind');
 								});
-								/* 클래스로 지정하는 이유 : foreach 로 돌리면 id가 여러개 만들어지기 때문이다 */
 							</script>
-						</td>
+							</td>
+								<td>${bbs.ip}</td>
+								<td>${bbs.createDate}</td>
+							<td>
+								<form method="post" action="${contextPath}/bbs/remove">
+									<input type="hidden" name="bbsNo" value="${bbs.bbsNo}">
+									<a id="lnk_remove${bbs.bbsNo}">X</a>
+									<!-- 삭제할 수 있는 방법 만들기  -->
+								</form>
+								<script>
+									$('#lnk_remove${bbs.bbsNo}').click(function(){
+										if(confirm('삭제할까요?')){
+											$(this).parent().submit();
+											//alert($(this).parent().data('aaa'));   /* data-aaa에서 aaa를 빼온거임 */
+										}
+									});
+									/* 클래스로 지정하는 이유 : foreach 로 돌리면 id가 여러개 만들어지기 때문이다 */
+								</script>
+							</td>
+						</tr>
+						<tr class="reply_write_tr blind">  <!-- 클래스는 공백으로 구분해서 띄어쓰기만 -->
+							<td colspan="6">
+								<form action="${contextPath}/bbs/reply/add" method="post">
+									<div><input type="text" name="writer" placeholder="작성자"></div>
+									<div><input type="text" name="title" placeholder="제목"></div>
+									<div><button>답글달기</button></div>
+									<input type="hidden" name="depth" value="${bbs.depth}">
+									<input type="hidden" name="groupNo" value="${bbs.groupNo}">
+									<input type="hidden" name="groupOrder" value="${bbs.groupOrder}">
+								</form>
+							</td>
+						</tr>
+					</c:if>
+					<c:if test="${bbs.state == 0}">
+						<tr>
+							<td>${beginNo - vs.index}</td>
+							<td colspan="5">삭제된 게시글입니다</td>
+						</tr>
+					</c:if>
+					</c:forEach>		
+					</tbody>		
+				<tfoot>
+					<tr>
+						<td colspan="6">${paging}</td>
 					</tr>
-				</c:forEach>
-
-			</tbody>
-			<tfoot>
-				<tr>
-					<td colspan="6">${paging}</td>
-				</tr>
-				
-			</tfoot>
+				</tfoot>				
 		</table>
 	</div>
-	
-	
-	
-	
-	
-	
-
 </body>
 </html>
