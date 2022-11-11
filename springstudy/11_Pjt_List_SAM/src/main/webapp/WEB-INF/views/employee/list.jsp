@@ -91,8 +91,6 @@
 </script>
 </head>
 <body>
-	
-
 
 	<div>
 		<form id="frm_search" action="${contextPath}/emp/search">

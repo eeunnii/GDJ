@@ -41,9 +41,4 @@ public class EmpController {
 		return empService.findAutoCompleteList(request);
 	}
 	
-	@GetMapping("/bbs/write")
-	public String write() {
-		return "bbs/write";
-	}
-	
 }

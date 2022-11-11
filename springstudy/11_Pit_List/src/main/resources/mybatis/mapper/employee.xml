@@ -36,19 +36,21 @@
 			FROM EMPLOYEES
 	</select>
 	
-	<select id="selectEmployeesByPage" parameterType="map" resultMap="EmpMap"><!-- 파라미터타입 생략함 public List<empdto> selectEmployeesByPage(int start, int end);  --><!-- EmpDTO 이거 alias값 -->
 	<!-- parameterType="Map" map 도 상관없음 마이바티스가 해석함 -->
 	<!-- 파라미터 생략하는 대신, 파라미터 순서대로 #{param1} #{param2} 로 표현가능함 -->
 	<!-- <resultMap type="EmpDTO" id="EmpMap">의 id를 resultMap타입에 적어줌 -->
 	<!-- resultType -->
-        SELECT B.RN, B.*
-		FROM (		SELECT ROWNUM AS RN, A.*			<!-- ROWNUM은 별명붙이는게 좋음 -->	
-					FROM(	SELECT E.*, D.DEPARTMENT_NAME, D.LOCATION_ID
-                                FROM EMPLOYEES E LEFT JOIN DEPARTMENTS D
-                                ON E.DEPARTMENT_ID = D.DEPARTMENT_ID
-                                ORDER BY HIRE_DATE DESC) A) B
-		WHERE B.RN BETWEEN #{start} AND #{end}
-		
+	<!-- ROWNUM은 별명붙이는게 좋음 -->
+	<!-- 파라미터타입 생략함 public List<empdto> selectEmployeesByPage(int start, int end);  --><!-- EmpDTO 이거 alias값 -->
+	<select id="selectEmployeesByPage" parameterType="Map" resultMap="EmpMap">
+		SELECT B.*
+		  FROM (SELECT ROWNUM AS RN, A.*
+		          FROM (SELECT E.*, D.DEPARTMENT_NAME, D.LOCATION_ID
+		                  FROM DEPARTMENTS D RIGHT OUTER JOIN EMPLOYEES E
+		                    ON D.DEPARTMENT_ID = E.DEPARTMENT_ID
+		                  ORDER BY HIRE_DATE DESC) A) B
+		 WHERE B.RN BETWEEN #{begin} AND #{end}		
+	</select>
 		<!-- WHERE B.RN BETWEEN '1' AND '10'   #{start} 은 문자갑으로 치환됨.-->
 		<!-- WHERE B.RN BETWEEN 1 AND 0 ${start} 은 숫자로 치환됨.-->
 		
@@ -63,17 +65,17 @@
 		 -->
 		 
 		 <!-- 테이블이 다르면 쿼리를 따로 짬 -->
-		
-	</select>
-	<select id="selectFindEmployeesCount" parameterType="Map" resultType="int"><!-- Map엔 칼럼과 쿼리가 들어가있음 -->
+		 <!-- Map엔 칼럼과 쿼리가 들어가있음 -->
+	<select id="selectFindEmployeesCount" parameterType="Map" resultType="int">
 		SELECT COUNT(*)
 		  FROM EMPLOYEES E
 		<where>
 		  <if test="column=='EMPLOYEE_ID' or column=='E.DEPARTMENT_ID'">${column} = #{query}</if>
 		  <if test="column=='LAST_NAME' or column=='FIRST_NAME' or column=='PHONE_NUMBER'">${column} LIKE '%' || #{query} || '%'</if>
-		  <if test="column=='HIRE_DATE'">${column} BETWEEN TO_DATE(#{start}, 'YYYY-MM-DD') AND TO_DATE(#{stop}, 'YYYY-MM-DD')</if>
+		  <if test="column=='HIRE_DATE'">${column} BETWEEN TO_DATE(#{start}, 'yyyy-mm-dd') AND TO_DATE(#{stop}, 'yyyy-mm-dd')</if>
 		  <if test="column=='SALARY'">${column} BETWEEN #{start} AND #{stop}</if>
-		</where>
+			</where>
+		</select>
 		<!--
 			WHERE #{column} = #{query}   #{}는 작은 따옴표(')로 묶어서 값을 치환
 	     	WHERE 'EMPLOYEE_ID' = '150'  잘못된 사용
@@ -81,13 +83,12 @@
 	     	WHERE ${column} = #{query}   ${}는 그냥 치환
 			WHERE EMPLOYEE_ID = '150'    정상 동작
 		-->
-		</select>
 	
 	
 	<!-- 애스터리스크 : 칼럼명이 동일하면 오류남.. ambig..어쩌고 -->
 	
-	<select id="selectFindEmployees" parameterType="Map" resultType="EmpMap">
 	<!-- EmpMap로 반환해야 이름 주소 등등이 EmpMap 포함됨 -->
+	<select id="selectFindEmployees" parameterType="Map" resultMap="EmpMap">
 		SELECT B.*
 		  FROM (SELECT ROWNUM AS RN, A.*
 		          FROM (SELECT E.*, D.DEPARTMENT_NAME, D.LOCATION_ID
@@ -96,17 +97,20 @@
 		               <where>
 		                   <if test="column=='EMPLOYEE_ID' or column=='E.DEPARTMENT_ID'">${column} = #{query}</if>
 		                   <if test="column=='LAST_NAME' or column=='FIRST_NAME' or column=='PHONE_NUMBER'">${column} LIKE '%' || #{query} || '%'</if>
-		                   <if test="column=='HIRE_DATE'">${column} BETWEEN TO_DATE(#{start}, 'YYYY-MM-DD') AND TO_DATE(#{stop}, 'YYYY-MM-DD')</if>
+		                   <if test="column=='HIRE_DATE'">${column} BETWEEN TO_DATE(#{start}, 'yyyy-mm-dd') AND TO_DATE(#{stop}, 'yyyy-mm-dd')</if>
 		                   <if test="column=='SALARY'">${column} BETWEEN #{start} AND #{stop}</if>
 		               </where>
 		                 ORDER BY HIRE_DATE DESC) A) B
 		 WHERE B.RN BETWEEN #{begin} AND #{end}
+	</select>
 		<!-- 미리 다 조인해 놓고 찾는 것 보단 미리 WHERE절로 결과 짤라서 JOIN하는게 성능에 더 좋음 -->
-	</select>
 	
-	<select id="selectAutoCompleteList" parameterType="String" resultMap="EmpDTO"> <!-- resultMap="EmpDTO" String이 아님을 주의 -->
-		SELECT *
-			FROM EMPLOYEES
-			WHERE EMAIL LIKE #{param} || '%'    <!--mysql에서 문자열 연결은 CONCAT(#{param},%) 주의 : CONCAT안에는 인수3개 안됨 ㅈ무조건 2개임 -->		
+	
+	<!-- resultMap="EmpDTO" String이 아님을 주의 -->
+	<select id="selectAutoCompleteList" parameterType="String" resultType="EmpDTO"> 
+	SELECT DISTINCT ${target}
+		  FROM EMPLOYEES
+		 WHERE ${target} LIKE CONCAT(#{param}, '%')
 	</select>
+	<!--mysql에서 문자열 연결은 CONCAT(#{param},%) 주의 : CONCAT안에는 인수3개 안됨 ㅈ무조건 2개임 -->	
 </mapper>
