@@ -17,7 +17,6 @@
 	function fn_ajax1(){
 		$('#btn1').click(function(){
 			$('#result').empty();
-			
 			$.ajax({
 				/*요청*/
 				type : 'get',
@@ -29,20 +28,11 @@
 					$('<ul>')
 					.append( $('<li>').text(resData.title) )
 					.append( $('<li>').text(resData.content) )  // 자식 들어가는 자리
-					.appendTo('#result')  // 부모 들어가는자리
-					
 				},
 				error : function(jqXHR){
 					$('#result').text(jqXHR.status);
 				}
-				
-				
-				/*응답*/
-				
 			});
-			
-			
-			
 		});
 	}
 	function fn_ajax2(){  /* 제목 입력 안하면 실패 */
@@ -86,21 +76,19 @@
 				/*응답*/
 				dataType : 'json',
 				success : funtion(resData){
-					
+					$('<ul>')
+					.append($('<li>').text(resData.title))
+					.append($('<li>').text(resData.content))
+					.appendTo('#result');
 				}
-				
-				
-				/*응답*/
-				
+				error: function(jqXHR){
+					if(jqXHR.status == 500){
+						alert('제목은 필수입니다.');
+					}
+				}
 			});
-			
-			
-			
 		});
 	}
-	
-
-
 </script>
 </head>
 <body>

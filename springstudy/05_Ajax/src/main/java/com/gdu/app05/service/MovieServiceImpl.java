@@ -12,59 +12,46 @@ public class MovieServiceImpl implements MovieService {
 	
 	
 	
-	
-	
 	@Override
-	public String getBoxOffice(String targerDt) {
+	public String getBoxOffice(String targetDt) {
 		
-		String key = "3162521e5cdc63f914f0403d8b7bbec3";
-		String apiURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key="+key+"&targetDt="+targerDt;
+		// key
+		String key = "e246df0435b84d071abad3ce5355e26e";
 		
-		
-		// 영화홈페이지에 GET으로 하라고 명시되어있음
+		// ApiURL
+		String apiURL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json";
+		apiURL += "?key=" + key + "&targetDt=" + targetDt;
 		
 		// API 요청
 		URL url = null;
 		HttpURLConnection con = null;
 		try {
-			url = new URL(apiURL); // malformedURLException
-			con = (HttpURLConnection)url.openConnection();  // IOException 발생가능
-			con.setRequestMethod("GET"); // get 대문자로 지정해야함
-			
-			
-			
-			
-			
-		}catch(MalformedURLException e) {
+			url = new URL(apiURL);  // MalformedURLException
+			con = (HttpURLConnection) url.openConnection();  // IOException
+			con.setRequestMethod("GET");  // "GET"을 대문자로 지정
+		} catch (MalformedURLException e) {
 			e.printStackTrace();
-		}catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 		
 		// API 응답
 		StringBuilder sb = new StringBuilder();
-		try(BufferedInputStream reader = new BufferedReader(new InputStreamReader(con.getInputStream()))){ // try -catch-resources문은 자원의 close를 생략할 수 있다..
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()))) {  // try-catch-resources문은 자원의 close를 생략할 수 있다.
 			String line = null;
-			while((line=reader.readLine())!=null) {
-				
-				
+			while((line = reader.readLine()) != null) {
+				sb.append(line);
 			}
-		}catch(Exception e) {
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		
-		// con 닫기 
+		// con 닫기
 		con.disconnect();
 		
 		// 반환 (API로부터 가져온 모든 텍스트 정보)
 		return sb.toString();
 		
-		
-		
-		
-		return null;
 	}
-	
 
 }

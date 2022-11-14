@@ -40,17 +40,14 @@
 						dataType : 'json'
 						success : function(resData){
 							if(resData.status == 200){
-								//	$.each(배열, 함수, 인덱스, 배열 요소)
+								//	$.each(배열, 함수(인덱스, 배열 요소))
 								// $.each(response.list, function(i, emp))
 								#('#auto_complete')
 								.append(('<option').val(emp, email));
 							}
 						}
-						
 					});
 		});
-		
-		
 	});
 
 </script>
@@ -84,8 +81,12 @@
 	</div>
 	
 	<div>
-		<label for="eamil">이메일</label>
-		<input type="text" name="email" id="email" list="auto_complete">	
+		<select name="target" id="target">
+			<option value="FIRST_NAME">이름</option>
+			<option value="LAST_NAME">성</option>
+			<option value="EMAIL">이메일</option>
+		</select>
+		<input type="text" id="param" name="param" list="auto_complete">
 		<datalist id="auto_complete"></datalist>
 	</div>
 	
@@ -116,7 +117,6 @@
 						<td>${emp.email}</td>
 						<td>${emp.phoneNumber}</td>
 						<td>${emp.hireDate}</td>
-						<td>${emp.jobId}</td>
 						<td>${emp.salary}</td>
 						<td>${emp.commissionPct}</td>  <!-- 여기있는모든것들은 getter를 참고함 -->
 						<td>${emp.deptDTO.departmentId}</td>

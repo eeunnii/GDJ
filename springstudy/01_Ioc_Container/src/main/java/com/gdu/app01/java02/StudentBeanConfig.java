@@ -39,7 +39,7 @@ public class StudentBeanConfig {
 		student.setAwards(awards);
 		student.setContact(contact);
 		return student;
-		
+
 	}
 
 }
