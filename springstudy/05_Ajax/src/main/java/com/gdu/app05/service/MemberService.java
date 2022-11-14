@@ -15,7 +15,7 @@ public interface MemberService {
 	public Map<String, Object> execute3(Member member);
 
 	
-	//jacson이 json을 member형태로 바꿔줌
+	//jackson이 json을 member형태로 바꿔줌
 	//public Member execute4(Member member);
 	
 	
