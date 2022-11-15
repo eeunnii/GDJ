@@ -30,7 +30,7 @@ CREATE TABLE USERS
 );
 
 -- 회원접속기록 (최근 접속 기록 1개만 유지)
-CREATE TABLE ACCESS_LOG
+CREATE TABLE ACCESS_LOG   -- 최초 기록 넣을 때 update가 안됨. 초기 데이터가 없어서. 그래서 insert해야됨
 (
     ACCESS_LOG_NO NUMBER NOT NULL,
     ID VARCHAR2(45 BYTE) NOT NULL UNIQUE,

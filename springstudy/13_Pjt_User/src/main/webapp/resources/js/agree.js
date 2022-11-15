@@ -1,14 +1,19 @@
-
-	$(document).ready(function(){
-		fn_checkALl();
-		fn_checkOne();
-		fn_toggleCheck();
-	});
+/**
+ * 
+ */
+ 
+ 
+$(function(){
+	fn_checkAll();
+	fn_checkOne();
+	fn_toggleCheck();
+	fn_submit();
+});
 	
 	
 
 // 모두 동의(모두 동의의 체크 상태를 개별 선택들의 체크 상태)
-	function fn_checkALl(){
+	function fn_checkAll(){
 		// 체크상태 변경
 		$('#check_all').click(function(){
 			$('.check_one').prop('checked', $('check_all').prop('checked'));
@@ -30,7 +35,7 @@
 				checkCount += $($('.check_one')[i]).prop('checked'); //인덱스는 일반변수라 $()제이쿼리로 감싸줌//true는 1이고 false 0이다
 			}
 			// 체크박수개수vs체크된박수개수  가 같으면 true
-			$('#check_all').prop('checked', $('.check_one').lengh == checkCount);
+			$('#check_all').prop('checked', $('.check_one').length == checkCount);
 			// 체크 이미지 변경
 			if($('#check_all').is(':checked')){
 				$('lbl_all').addClass('lbl_checked')
@@ -45,16 +50,13 @@
 			});
 		}
 	
+	// 서브밋 (필수 체크 여부 확인)
 	function fn_submit(){
-		
-		
 		$('#frm_agree').submit(function(event){
 			if($('#service').is(':checked')==false || $('#privacy').is(':checked')==false){
 				alert('필수약관에 동의하세요');
 				event.prevent();
 				return;
 			}
-			
 		});
-		
 	}

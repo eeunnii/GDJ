@@ -12,14 +12,21 @@ $(function(){
 // 모두 동의 (모두 동의의 체크 상태 = 개별 선택들의 체크 상태)
 function fn_checkAll(){
 	$('#check_all').click(function(){
+	
 		// 체크 상태 변경
-		$('.check_one').prop('checked', $(this).prop('checked'));
+		$('.check_one').prop('checked', $(this).prop('checked'));  
+		//  $().prop('className', 'box')    DOM.className = 'box' // js에서 checked는 false 속성을 가짐
+		//  $().prop('className')           DOM.className
+		
+		
 		// 체크 이미지 변경
 		if($(this).is(':checked')){  // 모두 동의가 체크되었다면
 			$('.lbl_one').addClass('lbl_checked');
 		} else {
 			$('.lbl_one').removeClass('lbl_checked');
 		}
+		
+		
 	});
 }
 
@@ -43,6 +50,7 @@ function fn_checkOne(){
 }
 
 // 체크할때마다 lbl_checked 클래스를 줬다 뺐었다 하기
+// .toggleClass()로 선택한 요소에 클래스(Class) 값을 넣었다 뺐다 할 수 있습니다
 function fn_toggleCheck(){
 	$('.lbl_all, .lbl_one').click(function(){
 		$(this).toggleClass('lbl_checked');
