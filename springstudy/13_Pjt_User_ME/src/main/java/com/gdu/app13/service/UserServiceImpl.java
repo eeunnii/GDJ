@@ -369,7 +369,7 @@ public class UserServiceImpl implements UserService {
 			// session_id를 쿠키에 저장하기 
 			Cookie cookie = new Cookie("keepLogin", request.getSession().getId());
 			cookie.setMaxAge(60 * 60 * 24 * 15); // 15일 
-			cookie.setPath(request.getContextPath());
+			cookie.setPath(request.getContextPath()); // 쿠키의 적용 범위를 설정함
 			response.addCookie(cookie);
 			
 			// session_id를 DB에 저장하기

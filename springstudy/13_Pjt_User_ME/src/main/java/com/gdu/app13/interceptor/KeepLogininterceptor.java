@@ -39,8 +39,6 @@ public class KeepLogininterceptor implements HandlerInterceptor {
 		   Cookie cookie = WebUtils.getCookie(request, "keepLogin");
 		   if(cookie!=null) {
 			   
-			   String sessionId = cookie.getValue();
-			   
 			   Map<String, Object> map = new HashMap<String, Object>();
 			   map.put("sessionId", cookie.getValue());
 			   

@@ -103,6 +103,7 @@
 				</label>
 				<label for="keepLogin">
 					<input type="checkbox" name="keepLogin" id="keepLogin">  <!-- value전달X, 값이 있는지 없는지를 판단할거임  -->
+					<!-- 체크박스에 name이 있어도 체크 안하고 보내면 파라미터 전달도 안감 -->
 					로그인 유지
 				</label>
 			</div>
