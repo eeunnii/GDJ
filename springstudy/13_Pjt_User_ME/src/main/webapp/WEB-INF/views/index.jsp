@@ -23,7 +23,7 @@
 			<a href="${contextPath}/user/check/form">${loginUser.name}</a>	님 반갑습니다.
 		</div>
 		<a href="${contextPath}/user/logout">로그아웃</a>
-		<a id="lnk_retire" href="${contextPath}/user/retire">회원탈퇴</a> 
+		<a id="lnk_retire" href="${contextPath}/user/retire" method="post">회원탈퇴</a> 
 		
 		<%-- #{userNo},#{id},#{joinDate}의 값은 session에 담겨있음 --%>
 		
