@@ -11,7 +11,7 @@
 			예를들면 isReduceCheck 이런거. 이 쿼리문은 다양한 곳에 쓰이기 때문에 
 			갑자기 중복체크해버리는 이름이 나오면 이상해지니까 ... -->
 	
-	<!-- 아이디 중복체크, 이메일 중복체크, 로그인...깃허브 -->
+	<!-- 아이디 중복체크1, 이메일 중복체크, 로그인, 로그인 유지를 이용한 로그인, 마이페이지 가기 전 비번 확인 -->
 	<select id="selectUserByMap" parameterType="Map" resultType="UserDTO">
 		SELECT USER_NO, ID, PW, NAME, GENDER, EMAIL, MOBILE, BIRTHYEAR, BIRTHDAY, POSTCODE, ROAD_ADDRESS, JIBUN_ADDRESS, DETAIL_ADDRESS, EXTRA_ADDRESS, AGREE_CODE, SNS_TYPE, JOIN_DATE, PW_MODIFY_DATE, INFO_MODIFY_DATE, SESSION_ID, SESSION_LIMIT_DATE
 		  FROM USERS
@@ -111,12 +111,79 @@
 			WHERE ID=#{id}	
 	</update>
 	
+	
 	<!-- 마이페이지 : 비밀번호 수정 -->
-	<update id="updateUserPassword "parameterMap="UersDTO">
-	
-	
-	
+	<update id="updateUserPassword" parameterMap="UersDTO">
+		UPDATE USERS
+		   SET PW = #{pw}
+		     , PW_MODIFY_DATE = SYSDATE
+		 WHERE USER_NO = #{userNo}
 	</update>
+	
+	
+	<!-- 
+		select 회원.칼럼 , 접속기록.칼럽
+		form 회원 left outer join 접속기록
+		on 회원.아이디 = 접속기록.아이디 
+		where months_between(sysdate, 접속기록,last_login_date) >= 12 :접속기록이 있는 회원
+		or months_between(sysdate, 회원.join_date) >= 12 and 접속기록_last_login_date is null) : 접속기록이 없는 회원
+	 -->
+	<!-- 
+		휴면계정처리하기  
+		
+		지금 프로젝트에서는 접속한 기록이 없는 회원이 하나도 없음 : 왜냐면 가입하자마자 로그인되게 만들었기 때문
+		회원 - 접속기록 
+		접속한 기록이 없는 회원도 조회할 수 있는 방법 : 아우터조인사용(외부조인)
+	-->
+	<!-- 휴면처리1 : 1년이상 로그인 기록이 없으면 휴면테이블에 저장 -->
+	<insert id="insertSleepUser">
+   INSERT INTO SLEEP_USERS (USER_NO, ID, PW, NAME, GENDER, EMAIL, MOBILE, BIRTHYEAR, BIRTHDAY, POSTCODE, ROAD_ADDRESS, JIBUN_ADDRESS, DETAIL_ADDRESS, EXTRA_ADDRESS, AGREE_CODE, SNS_TYPE, JOIN_DATE, LAST_LOGIN_DATE, SLEEP_DATE)
+	   (SELECT U.USER_NO, U.ID, U.PW, U.NAME, U.GENDER, U.EMAIL, U.MOBILE, U.BIRTHYEAR, U.BIRTHDAY, U.POSTCODE, U.ROAD_ADDRESS, U.JIBUN_ADDRESS, U.DETAIL_ADDRESS, U.EXTRA_ADDRESS, U.AGREE_CODE, U.SNS_TYPE, U.JOIN_DATE, A.LAST_LOGIN_DATE, SYSDATE
+		  FROM USERS U LEFT OUTER JOIN ACCESS_LOG A
+		    ON U.ID = A.ID
+		 WHERE MONTHS_BETWEEN(SYSDATE, A.LAST_LOGIN_DATE) >= 12 
+		    OR (MONTHS_BETWEEN(SYSDATE, U.JOIN_DATE) >= 12 AND A.LAST_LOGIN_DATE IS NULL)) 
+	</insert>
+	
+	
+	
+	<!-- 휴먼처리2 : 1년 이상 로그인 기록이 없으면 회원테이블에서 삭제 -->
+	<delete id="deleteSleepForUser">
+		DELETE
+		  FROM USERS
+		 WHERE ID IN (SELECT U.ID
+		                FROM USERS U LEFT OUTER JOIN ACCESS_LOG A
+		                  ON U.ID = A.ID
+		               WHERE MONTHS_BETWEEN(SYSDATE, A.LAST_LOGIN_DATE) >= 12
+		                  OR (MONTHS_BETWEEN(SYSDATE, U.JOIN_DATE) >= 12 AND A.LAST_LOGIN_DATE IS NULL))
+	</delete>
+	
+	
+	<!-- 로그인 이전에 휴면회원인지 확인 -->
+	<select id="selectSleepUserById" parameterType="String" resultType="SleepUserDTO">
+		SELECT ID, PW, JOIN_DATE, LAST_LOGIN_DATE, SLEEP_DATE
+			FROM SLEEP_USERS
+			WHERE ID=#{id}
+	</select>
 
+
+	<!-- 아이디가 파라미터로 제공됨, sleep_user => users
+		sleep_users => users
+		sleep_users delete
+		 -->
+		 
+	<!-- 휴면복원1 : 복원할 회원을 USERS테이블에 삽입 -->	 
+		 <insert id="insertRestoreUser" parameterType="String">
+			INSERT INTO USERS(USER_NO, ID, PW, NAME, GENDER, EMAIL, MOBILE, BIRTHYEAR, BIRTHDAY, POSTCODE, ROAD_ADDRESS, JIBUN_ADDRESS, DETAIL_ADDRESS, EXTRA_ADDRESS, AGREE_CODE, SNS_TYPE, JOIN_DATE)
+				(SELECT USER_NO, ID, PW, NAME, GENDER, EMAIL, MOBILE, BIRTHYEAR, BIRTHDAY, POSTCODE, ROAD_ADDRESS, JIBUN_ADDRESS, DETAIL_ADDRESS, EXTRA_ADDRESS, AGREE_CODE, SNS_TYPE, JOIN_DATE
+				   FROM SLEEP_USERS
+				  WHERE ID = #{id})
+		 </insert>
+	<!-- 휴면복원1 : 복원할 회원을 sleep_users테이블에 삽입 -->		 
+		 <delete id="ddeleteSleepUser" parameterType="String">
+			DELETE
+			  FROM SLEEP_USERS
+			 WHERE ID = #{id}
+		 </delete>
 	
 </mapper>

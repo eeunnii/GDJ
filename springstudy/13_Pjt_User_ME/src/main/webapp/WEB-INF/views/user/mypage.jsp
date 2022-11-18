@@ -128,16 +128,17 @@
 		</div>
 		
 		<!-- 패스워드 재확인 -->
-		<div>
-			<label for="re_pw">패스워드 확인*</label>
-			<input type="password" id="re_pw">
-			<span id="msg_re_pw"></span>
-		</div>
 		
 		<div>
 			<button>비밀번호 변경하기 </button>
 			<input type="button" value="취소하기" id="btn_edit_pw_cancel">
 		</div>
+		
+		<!-- 로그인을 해야만 정상적으로 사용가능. 복구 안하면 새벽 1시에..? 무슨말씀이시지
+			그게 싫으면.. 로그인한걸로 가져가고 날짜를 강제로 넣음..?
+			복구를 했는데 로그인안하면 휴먼계정으로 보냄
+		 -->
+		
 	</form>
 	</div>
 	

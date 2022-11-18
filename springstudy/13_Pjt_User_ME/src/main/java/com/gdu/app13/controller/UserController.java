@@ -77,12 +77,35 @@ public class UserController {
 	public String loginFrom(HttpServletRequest request, Model model) {
 		//요청헤더 referer 이전 페이지가 저장
 		model.addAttribute("url", request.getHeader("referer")); // 로그인 후 되돌아 갈 주소 url
+		
+		// 네이버 로그인
+		model.addAttribute("apiURL",userService.getNaverLoginApiURL(request));
+		
+		
 		return "user/login";
 	}
 	
-	@PostMapping("member/login")  // 왜  post일까
+	@PostMapping("user/login")  // 왜  post일까
 	public void login(HttpServletRequest request, HttpServletResponse response) {
 		userService.login(request,response);
+	}
+	
+	
+	// 네이버 화면에서 네이버로그인클릭
+	/*
+	(response_type, client_id, redirect_urk, state 전송)
+	->
+	네이버로그인 동의화면(제공 정보 선택)
+	이전 화면에서 보낸 redirect_uri 주소로 code, state 값을 전송
+	redirect_urk가 /user/naver/login이므로
+	관련 매핑을 컨트롤러에 만들고, code, state 처리하는 서비스 구현 
+	
+	callback url
+	*/
+	
+	@GetMapping("/user/naver/login")
+	public void naverLogin(HttpServletRequest request) {
+		userService.getNaverLoginTokenNProfile(request);
 	}
 	
 	@GetMapping("user/logout")
@@ -104,7 +127,7 @@ public class UserController {
 	}
 	
 	@ResponseBody
-	@PostMapping(value="/user/check/pw")
+	@PostMapping(value="/user/check/pw", produces="application/json")
 	public Map<String, Object> requiredLogin_checkPw(HttpServletRequest request) {
 		return userService.confirmPassWord(request);
 	}
@@ -119,5 +142,18 @@ public class UserController {
 		userService.modifyPassword(request, response);
 	}
 	
+	@GetMapping("/user/sleep/dsiplay")
+	public String sleepDisplay() {
+		return "user/sleep";
+	}
+	
+	@PostMapping("/user/restore")
+	public void restore(HttpServletRequest request, HttpServletResponse response) {
+		userService.restore(request, response);
+	}
+	
+	
+	
+
 	
 }

@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-
 @Component
 @EnableAspectJAutoProxy
 @Aspect
@@ -27,12 +26,11 @@ public class RequiredLoginAspect {
 	@Before("requiredLogin()")  // 포인트컷 실행 전에 requiredLogin() 메소드 수행
 	public void requiredLoginHandler(JoinPoint joinPoint) throws Throwable {
 		
-		// 로그인이 되어 있는지 확인하기 위해서 session이 필요하므로,
-		// request가 필요하다.
+		// 로그인이 되어 있는지 확인하기 위해서 session이 필요하므로 request가 필요하다.
 		// 응답을 만들기 위해서 response도 필요하다.
-		ServletRequestAttributes servletWebRequest = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
-		HttpServletRequest request = servletWebRequest.getRequest();
-		HttpServletResponse response = servletWebRequest.getResponse();
+		ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
+		HttpServletRequest request = servletRequestAttributes.getRequest();
+		HttpServletResponse response = servletRequestAttributes.getResponse();
 		
 		// 세션
 		HttpSession session = request.getSession();

@@ -40,7 +40,11 @@
 			<mapping path="/user/login/agree"/>
 			<beans:ref bean="PreventLoginIntercepter"/>
 		</interceptor>
+	<!-- SleepUserCheckingInterceptor : @Component로 컨테이너에 등록 -->
+		<interceptor>
+			<mapping path="/user/login"/>
+			<beans:bean class="com.gdu.app13.interceptor.SleepUserCheckingInterceptor"/>
+		</interceptor>
 	</interceptors>
-	
 	
 </beans:beans>

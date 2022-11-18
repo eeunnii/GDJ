@@ -72,12 +72,12 @@
 		
 	}  // fn_idCheck
 	
-	// 2. 패스워드
+	// 2. 비밀번호
 	function fn_pwCheck(){
 		
 		$('#pw').keyup(function(){
 			
-			// 입력한 패스워드
+			// 입력한 비밀번호
 			let pwValue = $(this).val();
 			
 			// 정규식(8~20자, 소문자+대문자+숫자+특수문자8종(!@#$%^&*) 3개 이상 조합)
@@ -102,15 +102,15 @@
 		
 	}  // fn_pwCheck
 	
-	// 3. 패스워드 확인
+	// 3. 비밀번호 확인
 	function fn_pwCheckAgain(){
 		
 		$('#re_pw').keyup(function(){
 			
-			// 입력한 패스워드 확인
+			// 입력한 비밀번호 확인
 			let rePwValue = $(this).val();
 			
-			// 패스워드와 패스워드 재입력 검사
+			// 비밀번호와 비밀번호 재입력 검사
 			if(rePwValue != '' && rePwValue != $('#pw').val()){
 				$('#msg_re_pw').text('비밀번호를 확인하세요.');
 				rePwPass = false;
@@ -376,16 +376,16 @@
 				<span id="msg_id"></span>
 			</div>
 			
-			<!-- 패스워드 -->
+			<!-- 비밀번호 -->
 			<div>
-				<label for="pw">패스워드*</label>
+				<label for="pw">비밀번호*</label>
 				<input type="password" name="pw" id="pw">
 				<span id="msg_pw"></span>
 			</div>
 			
-			<!-- 패스워드 재확인 -->
+			<!-- 비밀번호 재확인 -->
 			<div>
-				<label for="re_pw">패스워드 확인*</label>
+				<label for="re_pw">비밀번호 확인*</label>
 				<input type="password" id="re_pw">
 				<span id="msg_re_pw"></span>
 			</div>

@@ -1,6 +1,14 @@
 package com.gdu.app13.service;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.security.SecureRandom;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -25,6 +34,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gdu.app13.domain.RetireUserDTO;
+import com.gdu.app13.domain.SleepUserDTO;
 import com.gdu.app13.domain.UserDTO;
 import com.gdu.app13.mapper.UserMapper;
 import com.gdu.app13.util.SecurityUtil;
@@ -48,21 +58,44 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public Map<String, Object> isReduceId(String id) {
+		
+		// 조회조건으로 사용할 Map
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id",id);
+		
+		
 		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("isUser", userMapper.selectUserById(id) != null);
+		result.put("isUser", userMapper.selectUserByMap(map) != null);
 		result.put("isRetireUser", userMapper.selectRetireUserById(id) != null);
 		return result;
 	}
 	
 	@Override
 	public Map<String, Object> isReduceEmail(String email) {
+		
+		// 조회 조건으로 사용할 Map
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("email", email);
+		
 		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("isUser", userMapper.selectUserByEmail(email) != null);
+		result.put("isUser", userMapper.selectUserByMap(map) != null);
 		return result;
 	}
 	
 	@Override
 	public Map<String, Object> sendAuthCode(String email) {
+		
+		/*
+		이메일 보내기 API 사용을 위한 사전 작업
+		
+		1. 구글 로그인
+		2. [Google 계정] - [보안]
+		    1) [2단계 인증]  - [사용]
+		    2) [앱 비밀번호]
+		        (1) 앱 선택   : 기타
+		        (2) 기기 선택 : Windows 컴퓨터
+		        (3) 생성 버튼 : 16자리 앱 비밀번호를 생성해 줌(이 비밀번호를 이메일 보낼 때 사용)
+		 */
 			
 		// 인증코드 만들기
 		String authCode = securityUtil.getAuthCode(6);  // String authCode = securityUtil.generateRandomString(6);
@@ -75,17 +108,7 @@ public class UserServiceImpl implements UserService {
 		properties.put("mail.smtp.auth", "true");            // 인증된 메일
 		properties.put("mail.smtp.starttls.enable", "true"); // TLS 허용
 		
-		/*
-			이메일 보내기 API 사용을 위한 사전 작업
-			
-			1. 구글 로그인
-			2. [Google 계정] - [보안]
-			    1) [2단계 인증]  - [사용]
-			    2) [앱 비밀번호]
-			        (1) 앱 선택   : 기타
-			        (2) 기기 선택 : Windows 컴퓨터
-			        (3) 생성 버튼 : 16자리 앱 비밀번호를 생성해 줌(이 비밀번호를 이메일 보낼 때 사용)
-		*/
+
 		
 		// 사용자 정보를 javax.mail.Session에 저장
 		Session session = Session.getInstance(properties, new Authenticator() {
@@ -332,6 +355,14 @@ public class UserServiceImpl implements UserService {
 		
 	}
 	
+
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public void keeplogin(HttpServletRequest request, HttpServletResponse response) {
 		/*
@@ -487,7 +518,196 @@ public class UserServiceImpl implements UserService {
 			// TODO Auto-generated method stub
 			return 0;
 		}
+		
+		
+		
+		@Transactional
+		@Override
+		public void sleepUserHandle() {
+			int insertCount = userMapper.insertSleepUser();
+			if(insertCount>0) {
+				userMapper.deleteSleepForUser();
+			}
+			
+		}
+		
+		
+		@Override
+		public SleepUserDTO getSleepUserById(String id) {
+			return userMapper.selectSleepUserById(id);
+		}
+		
+		
+		@Transactional
+		@Override
+		public void restoreUser(HttpServletRequest request, HttpServletResponse response) {
+			// 계정 복원을 위해서 사용자가 입력한 비밀번호
+			String pw = securityUtil.sha256(request.getParameter("pw"));
+			
+			// 계정 복원을 원하는 사용자의 아이디 (request의 파라미터에 없음. session에 들어있으니까 jsp에서 파라미터 전송 안해도됨)
+			HttpSession session = request.getSession();
+			SleepUserDTO sleepUser = (SleepUserDTO)session.getAttribute("sleepUser");
+			String id = sleepUser.getId();
+			
+			// 조회 조건으로 사용할 Map
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("id", id);
+			map.put("pw", pw);
+			
+			// pw가 일치하는 정보 확인
+			if(pw.equals(sleepUser.getPw())) {
+				
+				
+				int insertCount = userMapper.insertres(id);
+				int deleteCount = userMapper.ddeleteSleepUser(id);
+				if(insertCount>0) {
+					userMapper.ddeleteSleepUser(id);
+				}
+				
+				
+				try {
+					// 응답
+					response.setContentType("text/html; charset=UTF-8");
+					PrintWriter out = response.getWriter();
+					if(insertCount> 0 && deleteCount>0) {
+						out.println("<script>");
+						out.println("alert('휴면 계정이 복구되었습니다. 휴면 계정 활성화를 위해 곧바로 로그인을 해 주세요');");
+						out.println("location.href='" + request.getContextPath() + "/users/login/form';");
+						out.println("</script>");
+					
+					}else {
+						out.println("<script>");
+						out.println("alert('휴면 계정이 복구되지않았습니다.');");
+						out.println("history.back();");
+						out.println("</script>");
+					}
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			// 1분마다 스케줄러를 돌려서 빼갈꺼임.. 복붙한 데이터가 로그인을 안하면 스케줄러가 돌면서 다시 휴먼으로 빠짐
+		}
+		
 	
-	
+		
 
+}
+
+		
+		
+		@Override
+		public String getNaverLoginApiURL(HttpServletRequest request) {
+			
+			// 네이버 개발자 센터에서 가져온 코드
+			
+			String apiURL = null;
+			try {
+				String clientId = "_48qz3Z7EcTkgD6lEtVx";//애플리케이션 클라이언트 아이디값";
+				String redirectURI = URLEncoder.encode("http://localhost:9090/"+request.getContextPath()+"/user/naver/login", "UTF-8");
+				SecureRandom random = new SecureRandom();
+				String state = new BigInteger(130, random).toString();
+				apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+				apiURL += "&client_id=" + clientId;
+				apiURL += "&redirect_uri=" + redirectURI;
+				apiURL += "&state=" + state;
+				HttpSession session = request.getSession();
+				session.setAttribute("state", state);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			return apiURL;
+			
+			
+
+		}
+		
+		
+		@Override
+		public UserDTO getNaverLoginTokenNProfile(HttpServletRequest request) {
+
+			// access_token받기 
+		    String clientId = "_48qz3Z7EcTkgD6lEtVx";//애플리케이션 클라이언트 아이디값";
+		    String clientSecret = "_fp9SsfDX0";//애플리케이션 클라이언트 시크릿값";
+		    String code = request.getParameter("code");
+		    String state = request.getParameter("state");
+		    String redirectURI = null;
+		    
+		    
+		    
+		    
+		    
+		    
+		    try {
+		    	redirectURI = URLEncoder.encode("YOUR_CALLBACK_URL", "UTF-8");   // 네이버 로그인할거니가 필요한 정보 여기로 주십시오 
+		    	String apiURL;
+		    	apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&"; //옛다 주소 
+		    	apiURL += "client_id=" + clientId;
+		    	apiURL += "&client_secret=" + clientSecret;
+		    	apiURL += "&redirect_uri=" + redirectURI;
+		    	apiURL += "&code=" + code;
+		    	apiURL += "&state=" + state;
+		    	
+		    	//access_token
+		    	
+		    }catch(UnsupportedEncodingException e) {
+		    	e.printStackTrace();
+		    }
+		    System.out.println("apiURL="+apiURL);
+		    try {
+		      URL url = new URL(apiURL);
+		      HttpURLConnection con = (HttpURLConnection)url.openConnection();
+		      con.setRequestMethod("GET");
+		      int responseCode = con.getResponseCode();
+		      BufferedReader br;
+		      System.out.print("responseCode="+responseCode);
+		      if(responseCode==200) { // 정상 호출
+		        br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		      } else {  // 에러 발생
+		        br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+		      }
+		      String inputLine;
+		     
+		      while (((inputLine = br.readLine()) != null) {
+		        res.append(inputLine);
+		      }
+		      br.close();
+		      con.System.out.println(res.toString());
+		      
+		      /*
+		       * 
+		       * 	res.toString()
+		       * {
+		       * 	"access_token  // 
+		       * 
+		       */
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      JSONObject obj = new JSONObject(res.toString());  // 꺼낼 때 .. json이 필요해서 라이브러리 추가했음
+		      obj.getString("access_token");
+		      refresh_token = obj.getString("refresh_token");
+		    		  
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		    } catch (Exception e) {
+		    	e.printStackTrace();
+		    }
+			
+		    // 받아온 profile을 UserDTO로 만들어서 반환
+		    
+		    
+		    
+			
+			return null;
+		}
 }
