@@ -41,14 +41,14 @@
 				</div>
 			</div>
 			<div>
-				<input type="checkbox" id="location" class="check_one blind" name="location" value="">  <!-- (체크시)value값 없이 넘기면 location=on으로 넘어감 (체크없이)넘기면 파라미터값없이 넘어감-->
+				<input type="checkbox" id="location" class="check_one blind" name="location">  <!-- (체크시)value값 없이 넘기면 location=on으로 넘어감 (체크없이)넘기면 파라미터값없이 넘어감-->
 				<label for="location" class="lbl_one">위치정보수집 동의(선택)</label>
 				<div>
 					<textarea>위치정보 ...</textarea>
 				</div>
 			</div>
 			<div>
-				<input type="checkbox" id="promotion" class="check_one blind" name="promotion" value="">
+				<input type="checkbox" id="promotion" class="check_one blind" name="promotion">
 				<label for="promotion" class="lbl_one">마케팅 동의(선택)</label>
 				<div>
 					<textarea>이벤트 ...</textarea>

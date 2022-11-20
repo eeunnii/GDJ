@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
 		map.put("id",id);
 		
 		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("isUser", userMapper.selectUserByMap(map) != null);
+		result.put("isUser", userMapper.selectUserByMap(map) != null); // value의 값이 true, false로 들어감.
 		result.put("isRetireUser", userMapper.selectRetireUserById(id) != null);
 		return result;
 	}
@@ -173,7 +173,32 @@ public class UserServiceImpl implements UserService {
 		detailAddress = securityUtil.preventXSS(extraAddress);
 		
 		int agreeCode = 0;  // 필수 동의
-		if(location != null && promotion == null) {  //만약 name잇으면 location != null로 하면 안됨  // null이라는 건 안온다는 이야기고, name속성이 들어가있는데 값 없이 전달되면 name만 전달
+		
+		if(!location.isEmpty() && promotion.isEmpty()) {
+			agreeCode = 1;  // 필수 + 위치
+		} else if(location.isEmpty() && !promotion.isEmpty()) {
+			agreeCode = 2;  // 필수 + 프로모션
+		} else if(!location.isEmpty() && !promotion.isEmpty()) {
+			agreeCode = 3;  // 필수 + 위치 + 프로모션
+		}
+		
+		
+		/*
+		-- 예전코드 . 
+		agree.jsp에서의 위치태그 이랬음, 
+		<input type="checkbox" id="location" class="check_one blind" name="location">
+		<input type="checkbox" id="promotion" class="check_one blind" name="promotion">
+		
+		체크시 파라미터 넘어가고(value=on), 체크안하면 파라미터가 아예안넘어감
+		
+		근데 이 데이터를 받은 join.jsp에서 name으로 고정해버렸기 때문에, 파라미터는 무조건 전달됨
+			<input type="hidden" name="location" value="${location}">
+			<input type="hidden" name="promotion" value="${promotion}"> 
+		agree.jsp에서 파라미터가 아예 안넘어 왔다면 아래 태그에서 value="${location}는 ''이 됨
+		*/	
+		/* 
+		if(location != null && promotion == null) { 
+		    //name잇으면 location != null로 하면 안됨  // null이라는 건 안온다는 이야기고, name속성이 들어가있는데 값 없이 전달되면 name만 전달
 			// null -- 택배가 갔는데 내용물이 없다. 빈문자열 -- 택배가 안갔다
 			agreeCode = 1;  // 필수 + 위치
 		} else if(location == null && promotion != null) {
@@ -181,9 +206,9 @@ public class UserServiceImpl implements UserService {
 		} else if(location != null && promotion != null) {
 			agreeCode = 3;  // 필수 + 위치 + 프로모션
 		}
+		*/
 		
-		
-		//db로 보낼 userDTOㅠ만들기
+		// DB로 보낼 userDTOㅠ만들기
 		UserDTO user = UserDTO.builder()
 				.id(id)
 				.pw(pw)
@@ -205,14 +230,21 @@ public class UserServiceImpl implements UserService {
 		int result = userMapper.insertUser(user);
 		
 		try {
+			
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
+			
 			if(result>0) {
+				
+				// 조회 조건으로 사용할 Map
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("id", id);
+				
 				
 				// 로그인 처리를 위해서 session에 로그인 된 사용자 정보를 올려둠
 				// 모든 페이지 위에 session이 있어서 어떤 페이지든 session에 있는걸 꺼내서 쓸 수 있음
 				// 모든 jsp위에는 session이 있다. ${} 속성이름 그대로 써서 사용할 수 있음
-				request.getSession().setAttribute("loginUser", userMapper.selectUserById(id));
+				request.getSession().setAttribute("loginUser", userMapper.selectUserByMap(map));
 				
 				// 로그인 기록 남기기 
 				int updateResult = userMapper.updateAccessLog(id);
@@ -315,8 +347,7 @@ public class UserServiceImpl implements UserService {
 		UserDTO loginUser = userMapper.selectUserByIdPw(user);
 		
 		// id, pw가 일치하는 회원이 있다 : 로그인 기록 남기기 + session에 loginUser 저장
-		if(loginUser
-				!= null) {
+		if(loginUser!= null) {
 			// 로그인 기록 남기기
 			int updateResult = userMapper.updateAccessLog(id);
 			if(updateResult == 0) {

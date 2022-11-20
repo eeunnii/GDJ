@@ -169,6 +169,8 @@ public class UserServiceImpl implements UserService {
 		String birthday = birthmonth + birthdate;
 		detailAddress = securityUtil.preventXSS(detailAddress);
 		int agreeCode = 0;  // 필수 동의
+		
+		
 		if(!location.isEmpty() && promotion.isEmpty()) {
 			agreeCode = 1;  // 필수 + 위치
 		} else if(location.isEmpty() && !promotion.isEmpty()) {
