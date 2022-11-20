@@ -9,6 +9,7 @@ import com.gdu.app13.domain.SleepUserDTO;
 import com.gdu.app13.domain.UserDTO;
 
 public interface UserService {
+	
 	public Map<String, Object> isReduceId(String id);    //jackson이 반환해줌?
 	public Map<String, Object> isReduceEmail(String email);    //jackson이 반환해줌?
 	public Map<String, Object> sendAuthCode(String email);    //jackson이 반환해줌?
@@ -23,9 +24,13 @@ public interface UserService {
 	public void sleepUserHandle(); // SleepUserScheduler에서 호출
 	public SleepUserDTO getSleepUserById(String id);
 	public void restoreUser(HttpServletRequest request, HttpServletResponse response);
-	public void restore(HttpServletRequest request, HttpServletResponse response);
-	public String getNaverLoginApiURL(HttpServletRequest request); // 네이버로그인-1
-	public UserDTO getNaverLoginTokenNProfile(HttpServletRequest request); // 네이버로그인-2
+	
+	public String getNaverLoginApiURL(HttpServletRequest request);			 // 네이버로그인-1
+	public UserDTO getNaverLoginTokenNProfile(HttpServletRequest request);   // 네이버로그인-2
+	public UserDTO getNaverLoginProfile(String access_token);                // 네이버로그인-3
+	public UserDTO getNaverUserById(String id);
+	public void naverLogin(HttpServletRequest request, UserDTO naverUser);
+	public void naverJoin(HttpServletRequest request, HttpServletResponse response);
 }
 
 

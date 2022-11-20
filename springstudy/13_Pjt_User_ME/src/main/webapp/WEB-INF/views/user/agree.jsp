@@ -21,7 +21,7 @@
 		
 			<div>
 				<input type="checkbox" id="check_all" class="blind">
-				<label for="check_all" class="lbl_all lbl_checked">모두 동의</label>  <!-- lbl_check 이게 들어있으면 체크 이미지   -->
+				<label for="check_all" class="lbl_all">모두 동의</label>  <!-- lbl_check 이게 들어있으면 체크 이미지   -->
 			</div>
 			
 			<hr>
@@ -54,6 +54,8 @@
 					<textarea>이벤트 ...</textarea>
 				</div>
 			</div>
+			
+			<!-- check박스에 name속성이 있어도 unchecked 상태로 보내면 파라미터 조차도 안감 -->
 			
 			<hr>
 			

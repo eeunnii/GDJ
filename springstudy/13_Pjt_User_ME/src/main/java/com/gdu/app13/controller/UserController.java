@@ -149,7 +149,7 @@ public class UserController {
 	
 	@PostMapping("/user/restore")
 	public void restore(HttpServletRequest request, HttpServletResponse response) {
-		userService.restore(request, response);
+		userService.restoreUser(request, response);
 	}
 	
 	

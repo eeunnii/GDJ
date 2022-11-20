@@ -63,7 +63,6 @@ public class UserServiceImpl implements UserService {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id",id);
 		
-		
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("isUser", userMapper.selectUserByMap(map) != null);
 		result.put("isRetireUser", userMapper.selectRetireUserById(id) != null);
@@ -111,7 +110,7 @@ public class UserServiceImpl implements UserService {
 
 		
 		// 사용자 정보를 javax.mail.Session에 저장
-		Session session = Session.getInstance(properties, new Authenticator() {
+		Session session = Session.getInstance(properties, new Authenticator(){
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(username, password);
@@ -172,8 +171,9 @@ public class UserServiceImpl implements UserService {
 		//birthmonth +birthday 하나로 합쳐서 재구성해야함
 		String birthday = birthmonth + birthdate;
 		detailAddress = securityUtil.preventXSS(extraAddress);
+		
 		int agreeCode = 0;  // 필수 동의
-		if(location != null && promotion == null) {  //location != null로 하면 안됨 name잇으면? // null이라는 건 안온다는 이야기고, name속성이 들어가있는데 값 없이 전달되면 name만 전달
+		if(location != null && promotion == null) {  //만약 name잇으면 location != null로 하면 안됨  // null이라는 건 안온다는 이야기고, name속성이 들어가있는데 값 없이 전달되면 name만 전달
 			// null -- 택배가 갔는데 내용물이 없다. 빈문자열 -- 택배가 안갔다
 			agreeCode = 1;  // 필수 + 위치
 		} else if(location == null && promotion != null) {

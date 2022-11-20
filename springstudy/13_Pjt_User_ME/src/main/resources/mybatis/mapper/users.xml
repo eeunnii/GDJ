@@ -37,13 +37,15 @@
 		
 		<!-- <는 c데이터 써야되는데 >는 안써도됨? -->
 	
-	
-	
-	<select id="selectUserByEmail" parameterType="String" resultType="RetireUserDTO">
+	<!-- 아이디 중복체크2 -->
+	<select id="selectRetireUserById" parameterType="String" resultType="RetireUserDTO">
 		SELECT ID
-			FROM RETIRE_USERS
-			WHERE ID=#{id}
+		  FROM RETIRE_USERS
+		 WHERE ID = #{id}
 	</select>
+	
+	
+
 	
 		<!-- 로그인 -->
 	<select id="selectUserByIdPw" parameterType="UserDTO" resultType="UserDTO">

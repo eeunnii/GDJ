@@ -89,7 +89,7 @@
 			               + /[A-Z]/.test(pwValue)        // 대문자가 있으면 true, 없으면 false
 			               + /[!@#$%^&*]/.test(pwValue);  // 특수문자8종이 있으면 true, 없으면 false
 			
-			// 정규식 및 3개 이상 조합 검사
+			// 정규식 및 3개 이상 조합 검사ㅜ
 			if(regPw.test(pwValue) == false || validatePw < 3){
 				$('#msg_pw').text('8~20자의 소문자, 대문자, 숫자, 특수문자(!@#$%^&*)를 3개 이상 조합해야 합니다.');
 				pwPass = false;
@@ -132,7 +132,7 @@
 			let nameValue = $(this).val();
 			
 			// 공백 검사
-			namePass = (nameValue != '');
+			namePass = (nameValue != '');  // 공백이면 false, 공백이 아니면 true
 			
 		});  // keyup
 		
@@ -164,12 +164,14 @@
 	
 	// 6. 생년월일(년도)
 	function fn_birthyear(){
-		let year = new Date().getFullYear();
+		let year = new Date().getFullYear();  // 년도 출력
 		let strYear = '<option value="">년도</option>';
-		for(let y = year - 100; y <= year + 1; y++){
+		for(let y = year - 100; y <= year + 1; y++){   // y <= year + 1은 왜 한거지??
 			strYear += '<option value="' + y + '">' + y + '</option>';
 		}
 		$('#birthyear').append(strYear);
+		// 선택된 요소 내부의 끝부분에 삽입
+		
 	}  // fn_birthyear
 	
 	// 7. 생년월일(월)
@@ -190,14 +192,14 @@
 		$('#birthdate').append('<option value="">일</option>');
 		let endDay = 0;
 		let strDay = '';
-		$('#birthmonth').on('change', function(){
+		$('#birthmonth').on('change', function(){ // 선택값이 변경된 직후에 이벤트발생
 			switch($('#birthmonth').val()){
-			case 2:
+			case '02':
 				endDay = 29; break;
-			case 4:
-			case 6:
-			case 9:
-			case 11:
+			case '04':
+			case '06':
+			case '09':
+			case '11':
 				endDay = 30; break;
 			default:
 				endDay = 31; break;
@@ -282,7 +284,7 @@
 						});
 					},
 					error: function(jqXHR){
-						alert('인증번호 발송이 실패했습니다.');
+						alert('인증번호 발송이 실패했습니다.');   // 이런 경우는 언제?
 						authCodePass = false;
 					}
 				});  // ajax
@@ -487,7 +489,7 @@
 				<input type="text" name="email" id="email">
 				<input type="button" value="인증번호받기" id="btn_getAuthCode">
 				<span id="msg_email"></span><br>
-				<input type="text" name="authCode" id="authCode" placeholder="인증코드 입력">
+				<input type="text" id="authCode" placeholder="인증코드 입력">
 				<input type="button" value="인증하기" id="btn_verifyAuthCode">
 			</div>
 			
