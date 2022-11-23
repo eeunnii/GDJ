@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gdu.app15.mapper.BlogMapper">
+
+	<select id="selectBlogListCount" resultType="int">
+		SELECT COUNT(*)
+		FROM BLOG
+	
+	</select>
+	
+		<!-- 블로그가 있고 블로그 작성자가 있음. 블로그 작성할 때 사용자 정보를 가져가야함 조인해야함 문제는 담아갈 변수가 없다 -->
+	<select id="selectBlogListByMap" parameterType="Map" resultType="BlogDTO"> 
+	SELECT A.ROW_NUM, A.BLOG_NO, A.TITLE, A.CONTENT, A.HIT, A.IP, A.CREATE_DATE, A.MODIFY_DATE
+		FROM (SELECT ROW_NUMBER() OVER(ORDER BY BLOG_NO DESC) AS ROW_NUM, BLOG_NO, TITLE, CONTENT, HIT, IP, CREATE_DATE, MODIFY_DATE
+				FROM BLOG ) A    
+		WHERE A.ROW_NUM BETWEEN #{begin} AND #{end}
+		
+		
+			
+	
+	</select>
+		<!-- 최신 블로그 글이 위로 올라옴 -->
+		<!-- A_ROW_NUM BETWEEN #{begin} AND #{end}   :     페이징 처리를 위한 쿼리문 -->
+	
+	
+</mapper>
+
