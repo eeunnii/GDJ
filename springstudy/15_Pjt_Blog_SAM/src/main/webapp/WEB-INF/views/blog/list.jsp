@@ -13,7 +13,7 @@
 	<h1>블로그 목록(전체 ${totalRecord}개)</h1>
 	
 	<div>
-		<input type="button" value="블로그 작성하기" onclick="${contextPath}/blog/write">
+		<input type="button" value="블로그 작성하기" onclick="location.href='${contextPath}/blog/write'">
 	</div>
 	
 	<div>
@@ -30,7 +30,7 @@
 				<c:forEach items="${blogList}" var="blog" varStatus="vs">
 					<tr>
 						<td>${beginNo - vs.index}</td>
-						<td>${blog.title}</td>
+						<td><a href="${contextPath}/blog/increse/hit?blogNo=${blog.blogNo}">${blog.title}</a></td>
 						<td>${blog.hit}</td>
 						<td>${blog.createDate}</td>
 					</tr>

@@ -18,6 +18,13 @@
 <script src="${contextPath}/resources/js/moment-with-locales.js"></script>
 <script src="${contextPath}/resources/summernote-0.8.18-dist/summernote-lite.js"></script>
 <script src="${contextPath}/resources/summernote-0.8.18-dist/lang/summernote-ko-KR.min.js"></script>
+
+<!--  
+	/resources/ 뒤는 경로를 표시한게 아니라 매핑값을 표시한 것이다. 관련된 내용은 servlet-context.xml에 적혀져 있음.!
+	
+	
+	<resources mapping="/resources/**" location="/resources/" />
+-->
 <link rel="stylesheet" href="${contextPath}/resources/summernote-0.8.18-dist/summernote-lite.css">
 
 </head>

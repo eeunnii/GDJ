@@ -39,7 +39,50 @@
 			    ['para', ['ul', 'ol', 'paragraph']],
 			    ['height', ['height']],
 			    ['insert', ['link', 'picture', 'video']]
-			]
+			],
+			callback: {
+				// 편집기에 이미지를 로드할 때 이미지는 function의 매개변수 files로 전달됨
+				
+				onImageUpload : function(files){
+					// 이미지를 ajax를 이용해서 서버로 보낼 때 가상 form 데이터를 사용함
+					var formData = new FormData();
+					formData.append('file', files[0]); // 파라미터 file, 서머노트 편집기에 추가된 이미지가 files[0]임
+					// 에이작스 처리로 이미지를 하드로 보내고 그 경로를 받아올거임
+					
+					// 이미지를 HDD에 저장하고 경로를 받아오는
+					$.ajax({
+						type: 'post',
+						url : getContextPath() + '/blog/uploadImage', 
+						data : formData,
+						contentType : false, // ajax이미지 첨부용
+						processData : false, // ajax이미지 첨부용
+						dataType: 'json', // HDD에 저장된 이미지의 경로를 json으로 받아옴
+						success : function(resData){
+							$('#content').summernote('insertImage', 이미지경로);
+							
+							/*
+								src=${contextPath}/load/image/aaa.jpg값이 넘어온 경우
+								 summernote는
+								 <img scr="${contextPath}/load/image/aaa.jpg"> 태그를 만든다
+								 
+								 스프링에서 정적 자원을 표시하는 방법은  servlet-context.xml에 있다.
+								 mapping=${contextpath}/load/image/aaa.jpg인 파일의 
+								 location=C:\\upload\\aaa.jpg
+								 
+								  스프링에서 정적 자원 표시하는 방법은 servlet-context.xml에 있다.
+								  이미지(정적자원_)의 mapping과 location을 servlet-context.xml에 작성해야한다
+							*/
+							
+							/* 업로드가 톰캣옆에 생김?????? */
+							
+						}
+						
+						
+						
+					}); // ajax
+				} // onImageUpload
+			}  // callbacks
+			
 		});
 		
 		// 목록

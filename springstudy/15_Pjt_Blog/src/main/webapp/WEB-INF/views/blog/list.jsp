@@ -36,7 +36,7 @@
 				<c:forEach items="${blogList}" var="blog" varStatus="vs">
 					<tr>
 						<td>${beginNo - vs.index}</td>  <!-- -0, -1, -2로 index 값 사용함 -->
-						<td>${blog.title}</td>
+						<td><a href="${contextPath}/blog/increase/hit">${blog.title}</a></td>
 						<td>${blog.hit}</td>
 						<td>${blog.createDate}</td>
 					</tr>	

@@ -12,5 +12,11 @@ public interface BlogMapper {
 	
 	public int selectBlogListCount();
 	public List<BlogDTO> selectBlogListByMap(Map<String, Object> map);
+	public int insertBlog(BlogDTO blog);
+	public int updateHit(int blogNo);
+	public BlogDTO selectBlogByNo(int blogNo);
+	public int editBlogByNo(BlogDTO blog);
+	public int deleteBlogByNo(int blogNo);
+	
 
 }
