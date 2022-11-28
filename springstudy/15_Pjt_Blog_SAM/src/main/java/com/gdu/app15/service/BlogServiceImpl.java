@@ -162,16 +162,81 @@ public class BlogServiceImpl implements BlogService {
 	}
 	
 	@Override
-	public void getBlogByNo(int blogNo, Model model) {
-		model.addAttribute("blog", blogMapper.selectBlogByNo(blogNo));		
+	public BlogDTO getBlogByNo(int blogNo) {
+		return blogMapper.selectBlogByNo(blogNo);		
 	}
 	
+	@Override
+	public void modifyBlog(HttpServletRequest request, HttpServletResponse response) {
+		
+		// 파라미터 title, content, blogNo
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		int blogNo = Integer.parseInt(request.getParameter("blogNo"));
+		
+		// DB로 보낼 BlogDTO
+		BlogDTO blog = BlogDTO.builder()
+				.title(title)
+				.content(content)
+				.blogNo(blogNo)
+				.build();
+		
+		// DB 수정
+		int result = blogMapper.updateBlog(blog);
+		
+		// 응답
+		try {
+			
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			
+			out.println("<script>");
+			if(result > 0) {			
+				out.println("alert('수정 성공');");
+				out.println("location.href='" + request.getContextPath() + "/blog/detail?blogNo=" + blogNo + "';");
+			} else {
+				out.println("alert('수정 실패');");
+				out.println("history.back();");
+			}
+			out.println("</script>");			
+			out.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
-	
-	
-	
-	
-	
-	
+	@Override
+	public void removeBlog(HttpServletRequest request, HttpServletResponse response) {
+		
+		// 파라미터 blogNo
+		int blogNo = Integer.parseInt(request.getParameter("blogNo"));
+		
+		// DB 삭제
+		int result = blogMapper.deleteBlog(blogNo);
+		
+		// 응답
+		try {
+			
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			
+			out.println("<script>");
+			if(result > 0) {			
+				out.println("alert('삭제 성공');");
+				out.println("location.href='" + request.getContextPath() + "/blog/list';");
+			} else {
+				out.println("alert('삭제 실패');");
+				out.println("history.back();");
+			}
+			out.println("</script>");			
+			out.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 }

@@ -62,9 +62,24 @@ public class BlogController {
 	
 	@GetMapping("/blog/detail")
 	public String detail(@RequestParam(value="blogNo", required=false, defaultValue="0") int blogNo, Model model) {
-		blogService.getBlogByNo(blogNo, model);
+		model.addAttribute("blog", blogService.getBlogByNo(blogNo));
 		return "blog/detail";
 	}
 	
+	@PostMapping("/blog/edit")
+	public String edit(int blogNo, Model model) {
+		model.addAttribute("blog", blogService.getBlogByNo(blogNo));
+		return "blog/edit";
+	}
+	
+	@PostMapping("/blog/modify")
+	public void modify(HttpServletRequest request, HttpServletResponse response) {
+		blogService.modifyBlog(request, response);
+	}
+	
+	@PostMapping("/blog/remove")
+	public void remove(HttpServletRequest request, HttpServletResponse response) {
+		blogService.removeBlog(request, response);
+	}
 	
 }

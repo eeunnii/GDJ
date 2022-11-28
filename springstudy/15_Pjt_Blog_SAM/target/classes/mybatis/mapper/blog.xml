@@ -37,13 +37,18 @@
 		 WHERE BLOG_NO = #{blogNo}
 	</select>
 	
+	<update id="updateBlog" parameterType="BlogDTO">
+		UPDATE BLOG
+		   SET TITLE = #{title}
+		     , CONTENT = #{content}
+		     , MODIFY_DATE = SYSDATE
+		 WHERE BLOG_NO = #{blogNo}
+	</update>
 	
-	
-	
-	
-	
-	
-	
-	
+	<delete id="deleteBlog" parameterType="int">
+		DELETE
+		  FROM BLOG
+		 WHERE BLOG_NO = #{blogNo}
+	</delete>
 	
 </mapper>
