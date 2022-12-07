@@ -23,7 +23,7 @@
 	
 	<select id="selectCommentList" parameterMap="Map" resultType="CommentDTO">
 			SELECT A.ROW_NUM, A.COMMENT_NO, A.BLOG_NO, A.
-			FROM (SELECT ROW_NUMBER() OVER(ORDER BY GROUP_NO DESC, DEPTH ASC) AS ROW_NUM, 
+			FROM (SELECT ROW_NUMBER() OVER(ORDER BY GROUP_NO DESC, DEPTH ASC, CREATE_DATE DESC) AS ROW_NUM, 
 					FROM COMMENTS
 					WHERE BLOG_NO = #{blogNo} A
 			
@@ -34,6 +34,19 @@
 	
 	</select>
 	<!-- A.ROW_NUM 정렬 후에 행번호 붙이기 -->
+	
+	
+	
+	<update id="delectComment" parameterType="int">
+		UPDATE COMMENTS
+		SET STATE = -1
+		WHERE COMMENT_NO = #{commentNo}
+	</update>
+	
+	<insert id="insertReply" parameterType="CommentDTO">
+		
+	
+	</insert>
 	
 	
 	

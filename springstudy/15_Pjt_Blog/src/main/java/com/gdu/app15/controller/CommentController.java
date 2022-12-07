@@ -2,6 +2,8 @@ package com.gdu.app15.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,13 +28,28 @@ public class CommentController {
 	}
 	
 	
-	@ResponseBody
-	@PostMapping(value="comment/add", produces = "application/json")
-	public Map<String, Object> add(CommentDTO comment){
-		return commentService.addco
+	@PostMapping(value="/comment/add", produces="application/json")
+	public Map<String, Object> add(CommentDTO comment) {
+		return commentService.addComment(comment);
 	}
 	
 	@ResponseBody
-	@GetMapping(value="/comment/list", produces = "application/json")
-	public Map<String, Object>
+	@GetMapping(value="/comment/list", produces="application/json")
+	public Map<String, Object> list(HttpServletRequest request) {
+		return commentService.getCommentList(request);
+	}
+	
+	
+	@ResponseBody
+	@PostMapping(value="/comment/remove", produces="application/json")
+	public Map<String, Object> remove(@RequestParam("commentNo") int commentNo){
+		return commentService.removeComment(commentNo);
+	}
+	
+	
+	@ResponseBody
+	@PostMapping(value="/comment/reply/add", produces="application/json")
+	public Map<String, Object> replyAdd(CommentDTO reply){
+		return commentService.addReply(reply);
+	}
 }

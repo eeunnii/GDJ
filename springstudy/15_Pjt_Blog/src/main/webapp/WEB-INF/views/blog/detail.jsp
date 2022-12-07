@@ -80,6 +80,9 @@
 	</div>
 	
 	
+	
+	<!-- 댓글 다는 곳은 정적(?)으로 만들어줬음. 답글은 입력창이 별도로 나오게 만들어야함 -->
+	
 	<div>
 		<form id="frm_add_comment">
 			<div class="add_comment">
@@ -105,6 +108,8 @@
 		fn_commentList();
 		fn_changePage();
 		fn_switchCommentList();
+		fn_removeComment();
+		fn_switchReplyArea();
 		
 		
 		// 전역 변수 page(모든 함수에서 사용가능)
@@ -191,6 +196,14 @@
 						if(comment.stat == 1){
 							/* 1이면 정상 */
 							div += '<div>'+comment.content+'</div>';
+							// 작성자만 삭제할 수 있도록 if 처리 필요
+							div += '<input type="button" value="삭제" class="btn_comment_remove" data-comment_no="' + comment.commentNo + '">';
+							// 댓글만 답글을 달 수 있도록 if문처리 필요함
+							div += '<input type="button" value="답글" class="btn_reply_area" data-group_no="' + comment.commentNo + '">';
+							
+							// 그룹의 No을 알아야 댓글을 달 수 있다 ????
+							
+							// dept 0 이면 댓글이고 1이면 답글입
 							
 							
 						}else {
@@ -200,10 +213,20 @@
 								div += '<div>삭제된 답글입니다.</div>';
 							}
 						}
-					
+						/* 반복문에서 id사용은...금지! */
 						div +='<div>';
 						moment.locale('ko-KR');
 						div += '<span style="font-size:12px; color: silver;">' + moment(comment.createDate).format('YYYY.MM.DD hh:mm') + '</span>';
+						div += '</div>';
+						div += '<div class="relpy_area blind">'; 
+						/* blind클래스 값을 toggle로 줘서 들어갔다 나왔다하게 만들기 */
+						div += '<form class="frm_reply">'; 
+						div += '<input type="hidden" name="blogNo" value="' + comment.blogNo + '">';
+						div += '<input type="hidden" name="groupNo" value="' + comment.commentNo + '">';
+						div += '<input type="text" name="content" placeholder="답글을 작성하려면 로그인을 해주세요">';
+						// 로그인한 사용자만 볼 수 있도록 if 처리
+						div += '<input type="button" value="답글작성완료" class="btn_reply_add_form">'
+						div += '</form>';
 						div += '</div>';
 						div += '</div>';
 						$('#comment_list').append(div);
@@ -247,14 +270,90 @@
 	function fn_chacgePage(){//만들어져 있었던 부모, on 
 			// 동적요소 우리가 만든 이벤트는 신경써서 해줘야함(?)
 			// 동적요소여서 일반 이벤트가 안걸림
-			$('enable_link').on('click', '')) // 깃허브 
-			$('#page').val($(this).val}) //페이지번호로 바꿔서 이동하기?
-			 	
-			})
+			$(document).on('click', '.enable_link', function(){
+				$('#page').val( $(this).data('page') );//페이지번호로 바꿔서 이동하기?
+				fn_commentList();
+			});
+		}
+		
+		function fn_removeComment(){
+			/* 원래 있는 버튼이 아니고 자바스크립트로 만든 동적 버튼이라 이벤트가 안걸림 */
+			$(document).on('click', '.enable_link', function(){
+				if(confirm('삭제된 댓글은 복구할 수 없습니다. 댓글을 삭제할까요?')){
+					$.ajax({
+						type : 'post',
+						url : '${contextPath}/comment/remove',
+						data : 'commentNo=' + $(this).data('comment_no'),
+						dataType : 'json',
+						success: function(resData){  // resData={ "isRemove" : true }
+							if(resData.isRemove){
+								alert('댓글이 삭제되었습니다.');
+								fn_commentList();
+								fn_commentCount();
+							}
+						}
+					});
+					
+					
+				}
+			}
+			
 		}
 		
 		
+		
+		
+		
+ 		/* 삭제버튼은 작성자만 삭제할 수 있게 구현해야함 session에 isUser올려두기 */
+ 		/* 갤러리 구현의 쿼리문은 사용자 테이블과의 조인이 필요할 수 있음 */
+ 		
+ 		
+ 		function fn_switchReplyArea(){
+ 			$(document).con('click', .'.btn_reply_area', function(){
+ 				$(this).parent().next().next().toggleClass('blind');
+ 			});
+ 			
+ 			
+ 			
+ 			
+ 			
+ 		}
+ 		
+ 		function fn_addReply(){
+ 			$(document).on('click', '.btn_reply_add', function(){
+ 				if($(this).prev().val() == ''){
+ 					alert('답글 내용을 입력하세요');
+ 					 return;
+ 				}
+ 				$.ajax({
+ 					type : 'post',
+ 					url : '${contextPath}/comment/reply/add',
+ 					data : $(this).closeat('.frm_reply').serialize(),  // 이건 안됨 $('.frm_reply')
+ 					dataType: 'json',
+ 					success: function(resData){  // resData = {"isAdd", true}
+ 						if(resData.isAdd){
+ 							alert('답글이 등록되었습니다.');
+							fn_commentList(); // 목록갱신
+							fn_commentCount();	// 갯수갱신				
+ 						}
+ 						
+ 					}
+ 				
+ 				});
+ 			}
+ 		}
+ 		
+ 		
+ 		
+ 		/* 댓글은 commentNo랑 groupNo랑 같음 */
+ 		/* 1단으로만 하기로 해서 댓글에는 답글버튼이 있는데 답글에는 답글버튼이 없음 */
+		/* 정상댓글의 갯수만 세겠다 == 쿼리문짜야함. state=1 인것만 세면 됨 */
+		
+		/* 댓글정렬은 쿼리문에서 짜야함 */
+		
+		/* 사용자와 JOIN해서 유저이름가져오는거 연습해보기 */
 	</script>
+	
 	
 	
 	

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gdu.app15.domain.CommentDTO;
 import com.gdu.app15.mapper.CommentMapper;
 import com.gdu.app15.util.PageUtil;
 
@@ -31,10 +32,9 @@ public class CommentServiceImpl implements CommentService {
 	}
 	
 	@Override
-	public Map<String, Object> getCommentCount(int commnet) {
+	public Map<String, Object> addComment(CommentDTO comment) {
 		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("isAdd", commentMapper.insertComment(commnet)==1);
-		
+		result.put("isAdd", commentMapper.insertComment(comment) == 1);
 		return result;
 	}
 	
@@ -44,7 +44,6 @@ public class CommentServiceImpl implements CommentService {
 		int page = Integer.parseInt(request.getParameter("page"));
 		
 		int commentCount = commentMapper.selectCommentCount(blogNo);
-		
 		pageUtil.setPageUtil(page, commentCount);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -52,21 +51,29 @@ public class CommentServiceImpl implements CommentService {
 		map.put("begin", pageUtil.getBegin());
 		map.put("end", pageUtil.getEnd());
 		
-		Map<String, Obejct> result = new HashMap<String, Object>();
-		result.put("commentList", commentMapper.selectCommentCount(map));
-		result.put("pageUtil",pageUtil);
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("commentList", commentMapper.selectCommentList(map));
+		result.put("pageUtil", pageUtil);
 		
 		return result;
-				
-		
-		
-		
-		
-		
-		
-		
 	}
 	
+	
+	
+	@Override
+	public Map<String, Object> removeComment(int commentNo) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("isRemove", commentMapper.delectComment(commentNo)==1);
+		return result;
+	}
+	
+	@Override
+	public Map<String, Object> addReply(CommentDTO reply) {
+
+		
+		
+		return null;
+	}
 	
 	
 	
