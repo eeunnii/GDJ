@@ -11,9 +11,12 @@
 <script>
 
 	$(function(){
-	    
 		fn_add();
-	    
+		fn_init();
+		fn_list();
+		fn_detail();
+		fn_modify();
+		fn_remove();
 	});
 
 
@@ -37,14 +40,173 @@
 				/* 응답 */
 				dataType: 'json', 
 				success: function(resData){
-					
+					if(resData.insertResult >0){
+						alert('회원이 등록되었습니다.');
+						fn_list();
+						fn_init();
+					}else{
+						alert('회원이 등록되지 않았습니다.');
+					}
 				},
 				error : function(jqXHR){
+					alert('에러코드('+jqXHR.status + ')' + jqXHR.responseText);
+				}
+				
+			});  //$.ajax
+		});  // $('#btn_add').click
+	} // fn_add()
+	
+	function fn_init() {
+		$('#id').val('').prop('readonly', false);
+		$('#name').val('');
+		$(':radio[name=gender]').prop('ckecked', false);
+		$('#address').val('');
+	}
+	
+	
+	// 전역변수
+	var page = 1;
+	
+	function fn_list(){
+		$.ajax({
+			type : 'get',
+			url : '${contextPath}/members/page/' + page,
+			dataType : 'json',
+			success : function(resData){
+				$('#member_list').empty();
+				$.each(resData.memberList, function(i, member){
+					var tr = '<tr>';
+					tr += '<td><input type="checkbox" class="check_one" value=' + member.memberNo + '"></td>"';
+					tr += '<td>' + member.id + '</td>';
+					tr += '<td>' + member.name + '</td>';
+					tr += '<td>' + (member.gender == 'M' ? '남자' : '여자') + '</td>';
+					tr += '<td><input type="button" value="조회" class="btn_detail" data-member_no="'+member.memberNo+'"></td>';
+					tr += '</tr>';
+					$('#member_list').append(tr);
+							}  // $.each
+					}  // success : function
+			});  // $.ajax
+	};  // n_list()		
+				
+		function fn_detail(){
+			$('#btn_detail').on('click', '.btn_detail' , function(){
+				$.ajax({
+					type : 'get';
+					url : '${contextPath}/members/' + $(this).data('member_no'),
+					dataType : 'json',
+					success : function(resData){
+						let member = resData.member;
+						if(member == null){
+							alert('해당 회원을 찾을 수 없습니다.');
+						}else {
+							$('#memberNo').val(member.memberNo);
+							$('#id').val(member.id).prop('readonly',true);
+							$('#name').val(member.name);
+							$(':radio[name=gender][value='+member.gender+']').prop('checked',true);
+							$('#address').val(member.address);
+						}	
+						}
+					} // $.ajax
+				});  // $('#btn_detail').on('click'
+			});	  // function fn_detail()
+			
+			
+			
+		function fn_modify(){
+			$('#btn_modify').click(function(){
+				//수정할 회원정보를 JSON으로 만들기 
+				let member = JSON.strigify({
+					memberNo : $('#memberNo').val(),
+					name: $('#name').val(),
+					gender: $(':radio[name=gender]:checked').val(),
+					address: $('#address').val()
+					
+					$.ajax({
+						type : 'put',
+						url : '${contextPath}/members',
+						data : member,
+						contentType: 'json',
+						success : function(resData){
+							if(resData.updateResult > 0){
+								alert('회원정보가 수정되었습니다');
+								fn_list();
+							}else{
+								alert('회원정보가수정되지 않았습니다');
+							}
+							
+						},
+						error : function(jqXHR){
+							
+						}
+						
+						
+						
+						
+						
+					});
+					
+					
+				});
+				alert();
+			});
+		}
+		
+		
+			
+		function fn_remove(){
+			
+			$('#btn_remove').click(function(){
+				if(confirm('선택한 회원을 모두 삭제할까요?')){
+					// 삭제할 회원번호
+					let memberNoList = '';
+					for(let i = 0; i<$('.check_one').length; i++){
+						if($($('check_one')[i]).is(':checked'))  {// $('check_one')[i] -- > 자바스크립트 요소임. [i]로 빼면 변수가 됨
+						
+							memberNoList += $($('.check_one')[i].val()) + ',';  // 3,1, (마지막콤마있음을 주의)
+					
+					}
+					
+					}
+					memberNoList = memberNoList.substr(0, memberNoList.length -1);  // 3, 1 (마지막 콤마 자르기)
+					$.ajax({
+						type : 'delete',
+						url : '${contextPath}/members/' + memberNoList,
+						dataType : 'json',
+						success : function(resData){
+							if(resData.deleteResult > 0) {
+								alert('선택한 회원 정보가 삭제 되었습니다.');
+								fn_list();
+							}else {
+								alert('선택된 회원 정보가 삭제되지 않았습니다.');
+							}
+						}
+						
+						
+						
+					});
+					
+					
 					
 				}
 				
+				
+				
 			});
-		});
+			
+			
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 </script>
 </head>
@@ -52,8 +214,9 @@
 
 
 	<h1>회원관리</h1>
-	<div>
 	
+	<div>
+		<input type="hidden" id="memberNo" value="${member.memberNo}">
 		<div>
 			<label for="id">
 				아이디 <input type="text" id="id">
@@ -90,7 +253,7 @@
 		
 
 		<div>
-			<input type="button" value="초기화" id="btn_init">
+			<input type="button" value="초기화" id="btn_init" onclick="fn_init()">
 			<input type="button" value="등록하기" id="btn_add">
 			<input type="button" value="수정하기" id="btn_modify">
 		</div>
