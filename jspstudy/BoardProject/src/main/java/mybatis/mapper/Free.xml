@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- namespace="mapper의 패키지 경로" ///mybatis.mapper 패키지이름, member는 xml이름-->
+<mapper namespace="mybatis.mapper.Free">
+	
+	<!-- 1. 회원목록 -->
+	<select id="selectAllFree" resultType="Free">
+		SELECT FREENO, WRITER, TITLE, CONTENT, IP, HIT
+			FROM FREE
+			ORDER BY FREENO DESC
+	</select>
+
+	<!-- 4. 학생 등록 -->
+	<insert id="insertFree" parameterType="Free">
+		INSERT INTO FREE
+		    (FREENO, WRITER, TITLE, CONTENT, IP)
+		 VALUES
+		 	(FREE_SEQ.NEXTVAL,#{writer},#{title},#{content},#{ip})
+	</insert>
+	
+	
+	<!-- 게시글 삭제 -->
+	 <delete id="deleteFree" parameterType="int">
+	 	DELETE
+	 		FROM FREE
+	 		WHERE FREENO = #{freeNo}
+	 </delete>
+	
+	<!-- 상세보기 -->
+	<select id="selectFreeByNo" parameterType="int" resultType="Free">  
+	SELECT FREENO, WRITER, TITLE, CONTENT, IP, HIT
+		FROM FREE
+		WHERE FREENO = #{freeNo}
+	</select>
+	
+	
+	 <update id="updatdFree" parameterType="Free">
+      UPDATE FREE
+         SET TITLE = #{title}, CONTENT = #{content}
+     	 WHERE FREENO = #{freeNo}
+ 	</update>
+	
+	
+	
+	
+</mapper> 

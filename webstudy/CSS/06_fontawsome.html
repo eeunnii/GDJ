@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <!-- 
+        CDN
+        1. Content Delivery Network
+        2. 웹 상에서 제공받는 각종 콘텐츠 
+        3. CDN 제공 사이트 https://cdnjs.com/
+     -->
+
+
+     <!-- 
+        fontawesome
+
+        1. 무료로 아이콘을 제공하는 사이트(https://fontawesome.com/)
+        2. 개인 이메일을 제공하고 CDN 주소를 받거나, 
+            CDN 제공 사이트를 통해서 CDN 주소를 받아야 함
+        3. 무료 버전과 PRO 버전(유로 버전)이 있음
+
+      -->
+
+
+      <!-- CDN 제공 사이트 https://cdnjs.com/ 에서 fontawesome 조회 -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+         <!-- 2. @import url() -->
+    <style>
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css');
+    </style>
+
+    </head>
+<body>
+    <!-- 아이콘은 (https://fontawesome.com/) -->
+    <p>트위터 <i class="fa-brands fa-twitter"></i></p>
+    <p>아이폰 <i class="fa-solid fa-apple-whole"></i></p>
+
+    <!-- 검색버튼+아이콘 -->
+    <p>
+        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+    </p>
+
+    <!-- 링크 + 아이콘 -->
+    <p>
+        <a href=https://inflow.pay.naver.com/rd?tr=ds&retUrl=https%3A%2F%2Fweb.dominos.co.kr%2F&pType=P&no=200119722&vcode=5nr37hTMbR0M2dOdVUu0tUVqcE%2F5P7zdPsR7mlUPn1bq6sju6kLBU3hRak9KknZZOl%2B6gVHj1u7ECN1SxmhtXlE8QPep7EHOhPHlk4e18IA%3D><i class="fa-solid fa-pizza-slice"></i></a>
+    </p>
+
+    <!-- 아이콘 크기 조정, fa-10x 까지 가능함 -->
+    <p>
+        <i class="fa-solid fa-music"></i>
+        <i class="fa-solid fa-music fa-2x"></i>
+        <i class="fa-solid fa-music fa-3x"></i>
+        <i class="fa-solid fa-music fa-4x"></i>
+        <i class="fa-solid fa-music fa-5x"></i>
+    </p>
+
+
+ 
+</body>
+</html>

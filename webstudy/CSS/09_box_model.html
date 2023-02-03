@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<!-- 
+    padding - 박스와 박스 사이의 간격 (박스안에 박스가 중첩이 되어 있음)
+    mergin - 박스와 박스 사이의 간격(박스가 따로 존재함.
+    border - 테두리
+    )
+ -->
+
+
+
+
+
+<style>
+.box1 {
+    /* 너비 */
+    width: 100px;
+    /* 높이 */
+    height: 100px;
+    /* 배경 */
+    background-color: cyan;
+}
+.box2 {
+    /* 인라인요소(span, a)는 너비/높이 적용 불가 */
+    width: 100px;
+    height: 100px;
+    background-attachment: salmon;
+}
+
+
+
+</style>
+
+
+
+<div class="box1">BOX1</div>
+<span class="box2">BOX2</span>
+
+
+
+
+<style>
+    .wrap {
+        /* 부모 */
+        width: 200px;
+        height: 200px;
+        background-color: pink;
+    }
+    .wrap> .box3 {
+        /* 자식 : %의 기준은 부모의 크기*/
+        width: 50%;
+        height: 50%;
+        background-color: pink;
+    }
+</style>
+
+
+
+<div class="wrap"></div>
+    <div class="box3">BOX3</div>
+    <div class="box4">BOX4</div>
+
+<hr>
+
+<style>
+
+
+    .box5 {
+        /* 테두리 두께 */ border-width: 1px;
+        /* 테두리 종류 */ border-style: solid;
+        /* 테두리 색상 */ border-color: rgb(0,0,0);
+        /* 단축 속성 */ border: 2px dashed red;
+        /* 방향 선택, 1px면 실선으로 보임 */ border-bottom: 5px double; 
+    }
+
+</style>
+
+<div class="box5">BOX5</div>
+
+<hr>
+
+<style>
+    .box6 {
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+        /* 모서리 곡률  */
+        border-radius: 5px;
+        border-radius: 10px 0;
+        border-radius: 20px 0 20px; /* 두번째 자리에 있는 0이 사각형을 / 이 방향으로 양쪽 모서리 지정함*/
+        border-radius: 5px 10px 15px 20px;  /* 곡률값의 시작은 왼쪽 위 꼭짓점부터 시계 방향으로*/
+    }
+</style>
+    
+<div class="box6">BOX6</div>
+
+<hr>
+
+
+<style>
+    .box7{
+        border: 1px solid black;
+        /* 글자와 박스안의 간격을 padding이라고 함(안쪽으로 채우는거)
+        방향이 4글자 나올 수 있음(top, bottom, left, light) */
+        /* 내부 여백 : content와 border 사이 공간 */
+        padding: 0;
+        padding: 10px 20px; /*위아래 10, 양옆20*/
+        padding: 20px 0px 20px; /* 응 모양으로 위부터 시작, 위20, 양쪽0, 아래20*/
+        padding: 5px 10px 15px 20px; /*top부터 시작, 시계방향으로 적용*/
+
+        padding-top: 10px; /*어디 한군데 골라서 지정하는 것도 가능함*/
+    }
+</style>
+<div class="box7">BOX7</div>
+
+<hr>
+
+
+<style>
+
+    .box8 {
+        /* 박스 크기 : 너비/높이+테두리+내부여백 
+            이와같은 방식으로 박스 크기가 결정되는 박스를 content-box라고 함
+            box-sizing 속성으로 박스의 종류를 결정할 수 있음.
+        디폴트 - 생략가능
+            
+
+        */
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+        padding: 10px;
+        box-sizing: content-box;  /* 박스크기(122px) = content(100px)+padding(20px)+border(2px)  */
+
+    }
+
+
+</style>
+
+<div class="box8">BOX8</div> 
+
+
+
+
+<hr>
+<style>
+
+    /* 
+    박스크기 = 너비/높이
+     이와같은 방식으로 박스 크기가 결정되는 박스를 content-box라고 함
+            box-sizing 속성으로 박스의 종류를 결정할 수 있음.
+ */
+
+ .box9{
+    /* 11정도의 여백과 테두리 */
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    padding: 10px;
+    box-sizing: border-box; /*가장 널리 사용됨*/
+    /* border-box :  너비높이 지정된 대로 box가 만들어짐 */
+
+ }
+</style>
+
+   
+    <div class="box9">BOX9</div>
+
+
+
+
+
+<hr>
+
+<style>
+    /* ★ */
+    /* margin 사용법 : 나중에 프로젝트 할 때 양쪽으로 마진값 줘서 가운데정렬(?)함 */
+    .box10{
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+        /* 바깥여백 */
+        margin: 10px;
+        margin: 10px 0; /*위아래로 10주고 아래는 0*/
+        margin : 10px 0 10px;
+        margin: 5px 10px 15px 20px; /*top부터 시계방향으로 적용*/
+        /* 박스를 화면 가운데 배치*/
+        margin: 0 auto;
+
+    }
+</style>
+
+<div class="box10">BOX10</div>
+
+<style>
+    /* ★세로 가운데 정렬 -1 */
+    .box11 {
+        border: 1px solid blanchedalmond;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    </style>
+    <div class="box11">BOX11</div>
+
+
+    <style>
+        .box12{
+            border : 10px solid gray;
+            /* 세로 가운데 정렬-2 : line-height */
+            height: 50px;
+            Line-height: 50px;
+            /* height = Line-height 둘이 같아야함 */
+            /* 텍스트가 두줄일 때 못씀, 텍스트가 한 줄 일때만 사용가능 */
+        }
+    </style>
+    <div class="box12">BOX12</div>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!-- gnb : global .. bar , 네비게이션 Bar-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        a{
+            color: #000; /*16진수 코드값 사용 0->아무색안씀 8->절반 16->최대한 씀. 16진수에서F가16*/
+            text-decoration: none;
+        }
+
+        ul{
+
+            /* ul은 padding 안줘도 기본적으로 padding이 설정되어있음. 이런건 기본적으로 패딩값 0주는게 조음.*/
+            list-style: none; /*글머리기호없애기*/
+
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+            display: flex; /*메뉴들의 수평 레이아웃 배치*/
+        }
+
+        ul>li{
+            width: 80px; /*너비*/
+            height: 50px; /*높이*/
+            text-align: center; /*가로 가운데 정렬*/
+            line-height: 50px; /*세로 가운데 정렬*/
+        }
+        
+        ul>li>a{
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        ul>li:hover {
+            border-bottom: 3px solid lightgreen;
+            height: 47px; /*heigh와 border값을 합쳐서 원래 크기 50px를 만듬*/
+
+        }
+        ul>li:hover>a{
+            color: lightgreen;
+        }
+
+    </style>
+</head>
+<body>
+
+    <ul>
+        <li>
+            <a href="javascript:void(0)">사전</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)">뉴스</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)">증권</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)">부동산</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)">지도</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)">VIBE</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)">도서</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)">웹툰</a>
+        </li>
+    </ul>
+    
+</body>
+</html>

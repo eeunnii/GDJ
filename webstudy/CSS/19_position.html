@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- ㅁ★ㅁ★ㅁ★ㅁ★ㅁ★ㅁ★ㅁ★ㅁ★ㅁ★중요ㅁ★ㅁ★ㅁ★ㅁ★ㅁ★ㅁ★ㄴㄴ -->
+    <style>
+        /* 
+        1. position=static
+            1) HTML 기본 배치 흐름대로 배치 
+            2) 상대적 위치 조정(top, bottom, left, right) 불가
+            3) 디폴트 (아무것도 주지 않았을 때 )
+        2. position: relative
+            1) HTML 기본 배치 흐름대로 배치 
+            2) 상대적 위치 조정(top, botton, left, right) 가능
+            3) 옵셋 기준 : 원래 자신의 위치 -- 원래 html 기본 흐름대로 아랫쪽에 박스가 생기지만 이게 조정 가능해짐
+        3. position: absolute ★★★★★
+            1) HTML 기본흐름을 깨고 배치 
+            2) 상대적 위치 조정(top, botton, left, right) 가능
+            3) 옵셋 기준 : 부모 요소 // 부모가 있어야함
+            4) 부모 요소가 position: static 이라면 absolute 적용이 불가능하다.
+            5) 대부분의 경우에 부모 요소는 position으로 relative로 맞춰놓고 
+            자식 요소는 position: absolute로 맞춰놓음
+            원하는 요소는 자식 요소로 맞춤
+        4. position: fixed 
+            1) HTML문서 특정 위치에 고정(항상 보임)
+            2) 상대적 위치 조정(top, botton, left, right) 가능
+            3) 옵셋 기준 : 브라우저 화면 전체
+        */
+    </style>
+    <style>
+        .box1{
+            position: static;
+            border: 1px solid gray;
+            top: 100px;  /*적용안됨*/
+            left: 100px;  /*적용안됨*/
+        }
+    </style>
+    <div class="box1">
+        static position
+    </div>
+
+    <style>
+        .box2{
+            position: relative;
+            border: 1px solid gray;
+            top: 100px;
+            left: 100px;  /*원래 있어야하는 자리 기준으로 100px*/
+        }
+    </style>
+    <div class="box2">
+        relative position
+    </div>
+
+
+
+    <style>
+        .wrap{
+            margin-top: 150px;
+            width: 300px;
+            height: 300px;
+            border: 1px solid gray;
+            position: relative;
+        }
+        .wrap>div{
+            width : 100px;
+            height: 100px;
+            border: 1px solid rgb(170, 20, 20);
+            position: absolute;
+        }
+        .spring{
+            top: 10px;
+            left: 10px;
+        }
+        .summer{
+            right: 10px;
+            top: 10px;            
+        }
+        .autumn{
+            bottom: 10px;
+            right: 10px;           
+        }
+        .winter{
+            bottom: 10px;
+            left: 10px;        
+        }
+    </style>
+
+
+
+    <div class="wrap">
+        <div class="spring">봄</div>
+        <div class="summer">여름</div>
+        <div class="autumn">가을</div>
+        <div class="winter">겨울</div>
+    </div>
+
+
+
+
+    <style>
+        .box3{
+            position : fixed;
+            top: 500px;
+            right: 50px;
+            border: 100px;
+            height: 100px;
+            border: 1px solid gray;
+        }
+    </style>
+    <div class="box3">
+        fixed position
+    </div>
+
+
+    <hr>
+
+    <style>
+        .help{
+            color: teal;
+            cursor: help;
+            position: relative;
+        }
+        /* 헬프 기준(헬프가시작이니까?)으로 앞뒤로 박스가 생김 before,(help) after */
+        /* 위치조정안해도 따로 생기니까 아이콘 넣기도 함  */
+        .help:hover:after{
+            /*content를 이용해 내용 작성*/
+            /* 메롱의 부모는 help임, 자신이 붙는 element가 부모임 */
+            content: attr(data-desc);  /* content: '메롱'; */
+            display: inline-block;
+            width: 80px; 
+            border: 1px solid bisque;
+            border-radius: 5px;
+            background-color: beige;
+            color: gray;
+            text-align: center;
+            position: absolute;
+            top: 30px;
+            left: 30px;
+
+        }
+
+        
+        
+    </style>
+
+    <!-- 태그에 변수값 저장하기 data-   *하이픈까지가 포인트 나중에 꺼내서 쓸려는 값-->
+    <!-- attribute : attr class랑 data- 가 속성임 -->
+    <p><span class="help" data-desc="메롱">여기</span>를 선택하시오.</p>
+</body>
+</html>
+

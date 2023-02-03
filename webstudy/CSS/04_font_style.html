@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            /* 글자크기, 디폴트 16px */ font-size: 32px;
+            /* 글자굵기, 디폴트 400 */ font-weight: 900;
+            /* 기울임(none,italic 등) */ font-style: italic;
+            /* 글꼴 (글꼴1, 글꼴2, ... 우선순위대로 적용함, 모두 적용하겠다는 뜻 아님) */ font-family: '궁서','명조',serif;
+            /* serif 시스템에 있는 글씨체 중 붓 글씨체 */
+            /* serif(명조계열), sans-serif(고딕계열) */ font-family: '맑은 고딕', sans-serif;
+            /*  다른 글꼴 적용하는 방버 ??  */
+            /* rgb(0,0,0) */ color: rgb(0, 0, 0);
+            /* rgb(255,255,255)*/ color: rgb(255, 255, 255);
+            /* rgb(128,128,128) */ color: rgb(128, 128, 128);
+            /* *#000(한글자씩 레드,그린,블루.),#00000(두 글자씩 레드,그린,블루) */ color: #000;
+            /* #FFF, #FFFFFF */ color: #FFF;
+            /* #888,#888888 */ color: #888;
+            /* rgba(0,0,0,0.5) */ color: rgba(0, 0, 0, 0.5); /*alpha(투명도) :0(투명)~1(불투명)*/
+            /* 정렬(left,right,center,justify) - 블록 기준으로 */  text-align: center;
+            /* 밑줄(none-밑줄없애는거,underline 등) */ text-decoration: center; /*none만 기억하면 됨.-링크 밑줄 제거 
+            /* 그림자 (x y blur color) */ text-shadow: 5px 5px 10px yellow; /* x y에 -값을 줄 수도 있음*/
+            /* 행높이 (세로 가운데 정렬할 때 많이 사용) */ line-height: 500px; /*세로가운데 정렬하는 법 : 글자크기랑 행높이 같은 값 주기*/
+            /* 글자간격(자간) */ letter-spacing: 10px;  /*마이너스값도 가능. 줄이기 spacing은 어디서든 간격이라는 뜻*/
+            
+            /*
+            벤더 프리픽스(Vender Prefix)
+
+            1. CSS 속성 앞에 브라우저 제공업체를 작성
+            2. 브라우저마다 다른 기능이거나 설정방법이 다른경우에 사용
+            3. 종류
+                1) -webkit- : 크롬, 사파리
+                2) -moz- : 파이어폭스
+                3) -o- : 오페라
+                4: -ms-: 익스플로러
+            */
+            
+            /* 글자테두리색상 */    -webkit-text-stroke-color: red;
+            /* 글자테두리두께 */    -webkit-text-stroke-width: 1px;
+           
+           
+                                                                                                                                                  
+
+            /* webkit- "벤더 프리픽스의 하나로 브라우저 엔진을 의미(크롬)", 모든 종류에 동일한 내뇽이 나타나는거아님. 다를수잇음. */
+            
+        }
+        span{
+            /* sqan은 양쪽 공간이 없어서 정렬이 안됨
+            인라인 요소는 정렬이 적용되지 않는다
+            a라인도 인라인 요소라서 가운데 정렬이 안됨 */
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<!-- div는 블락레발 span 인라인레벨 테이블을 만드는 개념이 아니고
+영역을 지정한다는 개념 
+영역이 눈에 보일려면 css 가 필요함
+css가 없으면 영역이 안보임 
+블락단위로 잡히는게 div
+일부분 sqan 으로 구현됨 -->
+
+<!-- ★ <div> 태그 : 블록 레벨의 영역 지정 -->
+<div style="background-color: teal;">1구역</div>
+<br>
+<!-- <span> 태그 : 인라인 레벨의 영역 지정 -->
+<span style="background-color: antiquewhite;">2구역</span>
+    
+</body>
+</html>

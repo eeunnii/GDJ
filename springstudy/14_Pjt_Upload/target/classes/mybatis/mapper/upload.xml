@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gdu.app14.mapper.UploadMapper">
+	
+	<select id="selectUploadList" resultType="UploadDTO">
+    SELECT U.UPLOAD_NO, U.TITLE, U.CONTENT, U.CREATE_DATE, U.MODIFY_DATE, 1 AS ATTACH_CNT
+   		 FROM UPLOAD U INNER JOIN ATTACH A
+  		 ON U.UPLOAD_NO = A.UPLOAD_NO
+             
+	</select>
+	<!--  1 AS ATTACH_CNT 는 테이블에 없고 DTO에만 있는 속성 -->
+	
+	
+	<!-- UPLOAD_SEQ.NEXTVAL 값을 INSERT 수행 이전(BEFORE)
+		 parameter로 전달되는 UploadDTO의 uploadNo에 넣어주시오 -->
+	
+	<insert id="insertUpload" parameterType="UploadDTo">
+		<selectKey keyProperty="uploadNo" resultType="int" order="BEFORE">
+			SELECT UPLOAD_SEQ.NEXTVAL
+			FROM DUAL
+		</selectKey>
+		INSERT INTO UPLOAD
+				(UPLOAD_NO, TITLE, CONTENT, CREATE_DATE, MODIFY_DATE)
+		VALUES
+				(#{uploadNo}, #{title}, #{content}, SYSTIMESTAMP, SYSTIMESTAMP)
+	</insert>	
+	
+	<!-- 시퀀스는 DB에서 만드는거라 서비스에서 알 수가 없음  -->
+	<!-- 시퀀스로 생성된 값을 uploadNo라고 할 거다. -->
+	<!-- order="BEFORE" 인설트 이전에 수행 -->
+	
+	<insert id="insertAttach" parameterType="AttachDTO">
+		INSERT INTO ATTACH
+				(ATTACH_NO, PATH, ORIGIN, FILESYSTEM, DOWNLOAD_CNT, UPLOAD_NO)
+		VALUES
+				(ATTACH_SEQ.NEXTVAL, #{path}, #{origin}, #{filesystem}, 0, #{uploadNo})
+	
+	</insert>
+	
+	<select id="selectUploadByNo" parameterType="int" resultType="UploadDTO">
+		SELECT UPLOAD_NO, TITLE, CONTENT, CREATE_DATE, MODIFY_DATE
+			FROM UPLOAD
+			WHERE UPLOAD_NO = #{uploadNo}
+	</select>
+
+	<select id="selectAttachList" parameterType="int" resultType="AttachDTO">
+		SELECT ATTACH_NO, PATH, ORIGIN, FILESYSTEM, DOWNLOAD_CNT, UPLOAD_NO
+		FROM ATTACH
+		WHERE UPLOAD_NO = #{uploadNo}
+	
+	</select>	
+	
+	
+	<update id="updateDwonlaodCnt" parameterType="int">
+		UPDATE ATTACH SET DOWNLOAD_CNT = 
+	
+	
+	</update>
+	
+	
+	<select id="selectAttachByNo" parameterType="int" resultType="AttachDTO">
+		SELECT ATTACH_NO, PATH, ORIGIN, FILESYSTEM, DOWNLOAD_CNT, UPLOAD_NO
+		FROM ATTACH
+		WHERE ATTACH_NO = #{attachNo}
+	</select>
+	
+	
+	<delete id="deleteAttachByAttachNo" parameterType="int">
+		DELETE 
+			FROM ATTACH
+			WHERE ATTACH_NO=#{attachNo}
+	</delete>
+	
+</mapper>

@@ -1,0 +1,29 @@
+package com.gdu.app01.xml01;
+
+public class Student {
+	// field
+	private String name;
+	private String school;
+	private Calculator calculator;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getSchool() {
+		return school;
+	}
+	public void setSchool(String school) {
+		this.school = school;
+	}
+	public Calculator getCalculator() {
+		return calculator;
+	}
+	public void setCalculator(Calculator calculator) {
+		this.calculator = calculator;
+	}
+	
+	//method(getter+setter)
+	
+}

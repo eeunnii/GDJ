@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- namespace="mapper의 패키지 경로" -->
+<mapper namespace="mybatis.mapper.post">
+<select id="selectAllPosts" resultType="Post">
+	SELECT NO,WITER,TITLE,CREATE_DATE,CONTENT
+	FROM POST
+	ORDER BY NO DESC
+</select>
+
+
+<select id="countAllPosts" resultType="int">
+	SELECT COUNT(*)
+	FROM POST
+</select>
+
+ <insert id="insertPost" parameterType="Post">
+ 	INSERT INTO
+ 		POST(NO,WITER,TITLE,CREATE_DATE,CONTENT)
+ 	VALUES
+ 		(BOARD_SEQ.NEXTVAL, #{witer},#{title},SYSDATE, #{content})
+ </insert>
+
+
+</mapper> 

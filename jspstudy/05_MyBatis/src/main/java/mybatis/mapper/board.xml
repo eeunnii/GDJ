@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- namespace="mapper의 패키지 경로" -->
+<mapper namespace="mybatis.mapper.board">
+
+<!--  
+	mapper
+	1. 쿼리문을 작성하는 곳
+	2. 모든 쿼리문에 세미콜론(;) 금지
+	3. <select>, <insert>,<update>, <delete>태그 사용
+	아이디 속성은 dao에서 sql문을 구분해서 호출하는 용도로 사용
+
+
+ 	1. 게시글 목록 
+ 		1) parameterType : 없음
+ 		2) resultType : 목록보기, 상세보기 모두 domain 패키지의 Board를 반환 원래 목록 반환 arraylist 썼었음
+ -->
+ <select id="selectAllBoards" resultType="Board">
+	SELECT BOARD_NO, TITLE, CONTENT, CREATE_DATE
+		FROM BOARD
+		ORDER BY BOARD_NO DESC
+ </select>
+
+
+<!-- 
+	2. 게시글 상세보기
+		1) parameterType : int boardNo
+		2) resultType : (반환하는 값이라는 뜻) 목록보기, 상세보기 모두 domain 패키지의 Board를 반환
+ -->
+
+<!--  
+
+	parameterType에 int, integerm Integer 다 가능
+	▶공식 홈 https://mybatis.org/mybatis-3/ko/configuration.html
+	별칭부분
+	별칭 암거나 적으면 mybatis가 바꿔줄거임
+ -->
+<select id="selectBoardByNo" parameterType="int" resultType="Board">  
+<!-- 
+	resultType="domain.Board" 왜 이렇게 적는지?
+	패키지명.클래스
+	select의 결과가 Board에 저장되서 나간다.
+	
+	프레임워크 : 개발의 표준화를 이끌어냄.. 
+ -->
+  <!-- mybatis-config에서 resultType을 Board로 바꿔줌 -->
+	SELECT BOARD_NO, TITLE, CONTENT, CREATE_DATE
+		FROM BOARD
+		WHERE BOARD_NO = #{boardNo}
+<!-- parameter가 #{} 에 들어감 -->		
+
+</select>
+
+<!-- 
+	3. 게시글 삽입
+		1) parameterType : Board board
+		2) resultType : 작성하면 안됨..  자동으로 int로 처리됨
+		
+		MYSQL은 시퀀스가 없음 // MYSQL 전체 칼럼을 집어넣는 경우가 없음..
+ -->
+ <insert id="insertBoard" parameterType="Board">
+ 	INSERT INTO
+ 		BOARD(BOARD_NO, TITLE, CONTENT, CREATE_DATE)
+ 	VALUES
+ 		(BOARD_SEQ.NEXTVAL, #{title}, #{content}, SYSDATE)
+ </insert>
+
+
+<!-- 
+	4. 게시글 삭제 
+		1) parameterType : int boardNo
+		2) resultType : 작성하면 안됨..  자동으로 int로 처리됨
+ -->
+ <delete id="deleteBoard" parameterType="int">
+ 	DELETE
+ 		FROM BOARD
+ 		WHERE BOARD_NO = #{boardNo}
+ </delete>
+ 
+ 
+ <!-- 
+	5. 게시글 수정
+		1)parameterType= : Board board
+		2) resultType : 작성하면 안됨. 자동으로 int 처리
+		
+ -->
+ 
+ <update id="updatdBoard" parameterType="Board">
+      UPDATE BOARD
+         SET TITLE = #{title}, CONTENT = #{content}
+     	 WHERE BOARD_NO = #{boardNo}
+ </update>
+
+</mapper> 

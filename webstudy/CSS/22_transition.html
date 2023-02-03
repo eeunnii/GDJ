@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        /* 
+            transition
+
+            1. 특정 속성이 이행(transition)되는 과정을 설정
+            2. 주요 이행 속성
+                all(디폴트), width, height, margin, padding
+                background-color, border
+                opacity, visibility
+                transform(변형)
+        */
+    </style>
+
+    <style>
+        .box1{
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+            /* 트랜지션 속성 */
+            transition-property: width;  /* width의 변화를 눈으로 확인할 수 있다 */
+            transition-duration: 1s;
+
+        }
+        .box1:hover {
+            width: 50px;
+        }
+        .box1:active {
+            width: 200px;
+        }
+
+            /* 애니매이션 적용 안하면 바로 바로 바뀌는게 눈에 보이는데 transition 적용하면 바뀌는 과정을 볼 수 있음 */
+    </style>
+ 
+ <div class="box1">BOX1</div>
+
+<hr>
+
+<style>
+
+    .box2>input{
+        padding: 10px;
+        /* input . 원래 있는 선이 border고 마우스 올렸을때, 포커스맞첫을때 검은색테두리 생기는게 outline */
+        /* border : 평소테두리, outline : 포커스를 가졌을 때 테두리 */
+        /* 포커스를 가졋다 = :focus */
+        border: 1px solid gray;
+        outline: none;
+        /* 트랜지션 단축 속성 */
+        transition: border 1s linear, backgoound-color 1s linear;   /*일정한 속도로 변하는 것 linear*/
+    }
+
+    .box2>input:focus{
+        border: 1px solid crimson;
+        background-color: beige;
+    }
+
+</style>
+
+<!-- input은 박스에 많이 넣음. input 테두리를 잘 안씀 테두리는 div가 가지고 input 테두리 없이 씀 -->
+
+<div class="box2">
+    <input type="text">
+</div>
+
+
+
+<style>
+    .box3{
+        margin: 0 auto; /*좌우마진이 auto일때 박스가 가운데에 위치하게됨*/
+        width: 100px;
+        height: 100px;
+        border: 1px solid gray;
+        transition : transform 1s linear;  
+    }
+    .box3:active{
+          transform: rotate(1080deg);/* 회전, 1080도*/
+        /* transform: scale(2,1); 가로 2배, 세로 1배, 늘림 */  
+        /*  transform: translate(100px, 100px);  가로 100 세로 100 이동 */
+        /* transform은 transition 이랑 같이 쓰임. 트랜지션없으면 머가 변한건지 모르니까~ */
+    }
+</style>
+<div class="box3">
+    BOX3
+</div>
+
+    
+</body>
+</html>
